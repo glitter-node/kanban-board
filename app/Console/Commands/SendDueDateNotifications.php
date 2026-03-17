@@ -10,7 +10,7 @@ class SendDueDateNotifications extends Command
 {
     protected $signature = 'kanban:notify-due-dates';
 
-    protected $description = '마감일 임박 카드에 대한 알림 발송';
+    protected $description = 'Send notifications for cards with upcoming due dates';
 
     public function handle(): int
     {
@@ -28,7 +28,7 @@ class SendDueDateNotifications extends Command
             $count++;
         }
 
-        $this->info("마감일 임박 알림 {$count}건 발송 완료.");
+        $this->info("Sent {$count} upcoming due date notifications.");
 
         return Command::SUCCESS;
     }

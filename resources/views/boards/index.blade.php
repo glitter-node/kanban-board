@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-semibold leading-tight text-ui-text-primary">
-                내 보드
+                My Boards
             </h2>
             <div class="flex items-center gap-3">
                 {{-- Dark Mode Toggle --}}
@@ -17,7 +17,7 @@
                 </button>
                 <a href="{{ route('boards.create') }}"
                    class="btn-primary focus:ring-offset-canvas">
-                    + 새 보드
+                    + New Board
                 </a>
             </div>
         </div>
@@ -37,12 +37,12 @@
                         <svg class="mx-auto h-12 w-12 text-ui-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
                         </svg>
-                        <h3 class="mt-4 text-lg font-medium text-ui-text-primary">보드가 없습니다</h3>
-                        <p class="mt-2 text-sm text-ui-text-secondary">새 보드를 만들어 작업을 관리해보세요.</p>
+                        <h3 class="mt-4 text-lg font-medium text-ui-text-primary">No boards yet</h3>
+                        <p class="mt-2 text-sm text-ui-text-secondary">Create a new board to start organizing your work.</p>
                         <div class="mt-6">
                             <a href="{{ route('boards.create') }}"
                                class="btn-primary">
-                                + 새 보드 만들기
+                                + Create New Board
                             </a>
                         </div>
                     </div>
@@ -67,15 +67,15 @@
                                             <a href="{{ route('boards.edit', $board) }}"
                                                @click.stop
                                                class="block rounded-md px-4 py-2 text-sm text-ui-text-secondary transition hover:bg-elevated hover:text-ui-text-primary">
-                                                수정
+                                                Edit
                                             </a>
                                             <form method="POST" action="{{ route('boards.destroy', $board) }}" @click.stop
-                                                  onsubmit="return confirm('정말 이 보드를 삭제하시겠습니까?')">
+                                                  onsubmit="return confirm('Are you sure you want to delete this board?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
                                                         class="block w-full rounded-md px-4 py-2 text-left text-sm status-error transition hover:bg-elevated">
-                                                    삭제
+                                                    Delete
                                                 </button>
                                             </form>
                                         </div>
@@ -91,13 +91,13 @@
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2"/>
                                         </svg>
-                                        {{ $board->columns_count }}개 컬럼
+                                        {{ $board->columns_count }} columns
                                     </span>
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                                         </svg>
-                                        {{ $board->cards_count }}개 카드
+                                        {{ $board->cards_count }} cards
                                     </span>
                                     <span class="ml-auto">
                                         {{ $board->created_at->diffForHumans() }}

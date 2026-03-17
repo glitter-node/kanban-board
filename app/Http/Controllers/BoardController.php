@@ -20,7 +20,7 @@ class BoardController extends Controller
         $cacheKey = "user.{$user->id}.boards";
 
         $boards = Cache::remember($cacheKey, 300, function () use ($user) {
-            return $user->allBoards()
+            return $user->boards()
                 ->withCount('cards')
                 ->withCount('columns')
                 ->latest()
@@ -48,7 +48,7 @@ class BoardController extends Controller
         Cache::forget("user.{$request->user()->id}.boards");
 
         return redirect()->route('boards.show', $board)
-            ->with('success', '보드가 생성되었습니다.');
+            ->with('success', 'Board created successfully.');
     }
 
     public function show(Board $board): View
@@ -117,7 +117,7 @@ class BoardController extends Controller
         Cache::forget("user.{$request->user()->id}.boards");
 
         return redirect()->route('boards.show', $board)
-            ->with('success', '보드가 수정되었습니다.');
+            ->with('success', 'Board updated successfully.');
     }
 
     public function destroy(Board $board): RedirectResponse
@@ -129,6 +129,6 @@ class BoardController extends Controller
         Cache::forget('user.'.auth()->id().'.boards');
 
         return redirect()->route('boards.index')
-            ->with('success', '보드가 삭제되었습니다.');
+            ->with('success', 'Board deleted successfully.');
     }
 }

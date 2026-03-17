@@ -39,7 +39,7 @@ class ColumnController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '컬럼이 생성되었습니다.',
+            'message' => 'Column created successfully.',
             'data' => $column,
         ], 201);
     }
@@ -60,7 +60,7 @@ class ColumnController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '컬럼이 수정되었습니다.',
+            'message' => 'Column updated successfully.',
             'data' => $column,
         ]);
     }
@@ -81,7 +81,7 @@ class ColumnController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '컬럼이 삭제되었습니다.',
+            'message' => 'Column deleted successfully.',
         ]);
     }
 
@@ -116,7 +116,7 @@ class ColumnController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '컬럼 순서가 변경되었습니다.',
+            'message' => 'Column order updated successfully.',
         ]);
     }
 }

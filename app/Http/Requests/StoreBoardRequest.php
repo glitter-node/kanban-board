@@ -22,9 +22,9 @@ class StoreBoardRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => '보드 제목을 입력해주세요.',
-            'title.max' => '보드 제목은 255자 이하로 입력해주세요.',
-            'description.max' => '설명은 1000자 이하로 입력해주세요.',
+            'title.required' => 'Please enter a board title.',
+            'title.max' => 'The board title must be 255 characters or fewer.',
+            'description.max' => 'The description must be 1000 characters or fewer.',
         ];
     }
 }
