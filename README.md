@@ -56,8 +56,8 @@ KanbanBoard provides a collaborative task management environment with realtime s
 ## Tech Stack
 
 ### Backend
-- PHP 8.4
-- Laravel 12
+- PHP 8.2+
+- Laravel 12.x
 - Laravel Reverb (WebSocket)
 
 ### Frontend
