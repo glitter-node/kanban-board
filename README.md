@@ -144,7 +144,7 @@ php artisan reverb:start
 ```
 WebSocket endpoint:
 ```bash
-ws://localhost:8080
+wss://reverb-ws.glitter.tw
 ```
 
 ---
