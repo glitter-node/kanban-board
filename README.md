@@ -132,6 +132,8 @@ App URL:
 http://localhost:8000
 ```
 
+---
+
 ## Realtime WebSocket
 
 Realtime updates require the Reverb server.
