@@ -15,5 +15,12 @@ window.Echo = new Echo({
     wsPort: 443,
     wssPort: 443,
     forceTLS: true,
-    enabledTransports: ['ws', 'wss'],
+    enabledTransports: ['ws'],
+    disableStats: true,
 });
+
+window.Echo.connector.pusher.config.wsHost = 'reverb-ws.glitter.tw';
+window.Echo.connector.pusher.config.wssHost = 'reverb-ws.glitter.tw';
+window.Echo.connector.pusher.config.wsPort = 443;
+window.Echo.connector.pusher.config.wssPort = 443;
+window.Echo.connector.pusher.config.forceTLS = true;
