@@ -21,7 +21,6 @@ class BoardController extends Controller
 
         $boards = Cache::remember($cacheKey, 300, function () use ($user) {
             return $user->boards()
-                ->withCount('cards')
                 ->withCount('columns')
                 ->latest()
                 ->get();
