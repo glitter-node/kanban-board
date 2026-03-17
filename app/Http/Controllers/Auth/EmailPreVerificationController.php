@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\EmailPreVerificationMail;
+use App\Mail\PreVerifyMail;
 use App\Models\EmailPreVerification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class EmailPreVerificationController extends Controller
             ],
         );
 
-        Mail::to($email)->send(new EmailPreVerificationMail(
+        Mail::to($email)->send(new PreVerifyMail(
             verificationUrl: route('email.pre-verify.confirm', ['token' => $token]),
             email: $email,
         ));
