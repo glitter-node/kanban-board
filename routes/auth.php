@@ -17,6 +17,7 @@ Route::middleware('guest')->group(function () {
         ->name('email.pre-verify.create');
 
     Route::post('email/pre-verify/request', [EmailPreVerificationController::class, 'store'])
+        ->middleware('throttle:email-preverify')
         ->name('email.pre-verify.request');
 
     Route::get('email/pre-verify/confirm', [EmailPreVerificationController::class, 'confirm'])

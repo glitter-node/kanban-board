@@ -23,5 +23,15 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('search', function (Request $request) {
             return Limit::perMinute(30)->by($request->user()?->id ?: $request->ip());
         });
+
+        RateLimiter::for('email-preverify', function (Request $request) {
+            return Limit::perMinute(5)
+                ->by($request->ip().'|'.mb_strtolower((string) $request->input('email')))
+                ->response(function () {
+                    return response()->json([
+                        'message' => 'Too many verification requests. Please try again later.',
+                    ], 429);
+                });
+        });
     }
 }
