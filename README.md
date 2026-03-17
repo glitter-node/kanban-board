@@ -68,7 +68,7 @@ KanbanBoard provides a collaborative task management environment with realtime s
 
 ### Infrastructure
 - SQLite (default)
-- Redis (cache + queue)
+- Redis (cache + queue ; Not applied yet)
 
 ### Search
 - Laravel Scout (Database driver)
