@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\EmailPreVerificationController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -12,10 +13,21 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
+    Route::get('email/pre-verify/request', [EmailPreVerificationController::class, 'create'])
+        ->name('email.pre-verify.create');
+
+    Route::post('email/pre-verify/request', [EmailPreVerificationController::class, 'store'])
+        ->name('email.pre-verify.request');
+
+    Route::get('email/pre-verify/confirm', [EmailPreVerificationController::class, 'confirm'])
+        ->name('email.pre-verify.confirm');
+
     Route::get('register', [RegisteredUserController::class, 'create'])
+        ->middleware('pre.verified.email')
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store'])
+        ->middleware('pre.verified.email');
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
