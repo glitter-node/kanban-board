@@ -140,7 +140,7 @@ Realtime updates require the Reverb server.
 
 WebSocket endpoint:
 ```bash
-wss://reverb-ws.glitter.tw
+wss://reverb-ws.glitter.tw/app/xi8cgvcxkjpn6r3rrxir
 ```
 
 ---
