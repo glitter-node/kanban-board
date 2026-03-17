@@ -31,8 +31,8 @@
                     <x-ui.avatar class="mt-1" x-text="initials(activity.actor_name || 'System')"></x-ui.avatar>
                     <div class="min-w-0 flex-1">
                         <p class="text-sm font-medium text-foreground" x-text="activity.actor_name || 'System'"></p>
-                        <p class="mt-1 text-sm ui-subtle" x-text="activity.action"></p>
-                        <p class="mt-1 ui-meta" x-text="activity.created_at ? new Date(activity.created_at).toLocaleString() : ''"></p>
+                        <p class="mt-1 text-sm text-muted-foreground" x-text="activity.action"></p>
+                        <p class="mt-1 text-xs text-muted-foreground" x-text="activity.created_at ? new Date(activity.created_at).toLocaleString() : ''"></p>
                     </div>
                 </div>
             </x-ui.card>

@@ -15,13 +15,13 @@
 
                         <div class="mb-6">
                             <label for="title" class="mb-1 block text-sm font-medium text-muted-foreground">
-                                Board Title <span class="status-error">*</span>
+                                Board Title <span class="text-error">*</span>
                             </label>
                             <input type="text" name="title" id="title" value="{{ old('title', $board->title) }}"
                                    class="ui-input w-full"
                                    required autofocus>
                             @error('title')
-                                <p class="mt-1 text-sm status-error">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-error">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -32,7 +32,7 @@
                             <textarea name="description" id="description" rows="4"
                                       class="ui-input w-full">{{ old('description', $board->description) }}</textarea>
                             @error('description')
-                                <p class="mt-1 text-sm status-error">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-error">{{ $message }}</p>
                             @enderror
                         </div>
 

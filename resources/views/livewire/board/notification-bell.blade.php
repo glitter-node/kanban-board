@@ -36,7 +36,7 @@
 
             <div class="max-h-[24rem] overflow-y-auto">
                 <template x-if="notifications.length === 0">
-                    <div class="px-5 py-10 text-center text-sm ui-muted">No notifications yet.</div>
+                    <div class="px-5 py-10 text-center text-sm text-muted-foreground">No notifications yet.</div>
                 </template>
 
                 <template x-for="notification in notifications" :key="notification.id">
@@ -47,7 +47,7 @@
                             </x-ui.avatar>
                             <div class="min-w-0 flex-1">
                                 <p class="text-sm font-medium text-foreground" x-text="notification.payload?.title || notification.type"></p>
-                                <p class="mt-1 ui-meta" x-text="notification.created_at ? new Date(notification.created_at).toLocaleString() : ''"></p>
+                                <p class="mt-1 text-xs text-muted-foreground" x-text="notification.created_at ? new Date(notification.created_at).toLocaleString() : ''"></p>
                             </div>
                         </div>
                     </article>

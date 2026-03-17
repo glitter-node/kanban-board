@@ -3,10 +3,10 @@
         <div class="flex items-center justify-between gap-3">
             <div>
                 <h2 class="text-sm font-semibold text-foreground">{{ $column['title'] ?? 'Column' }}</h2>
-                <p class="ui-meta">{{ count($column['cards'] ?? []) }} cards</p>
+                <p class="text-xs text-muted-foreground">{{ count($column['cards'] ?? []) }} cards</p>
             </div>
             @if($canEdit)
-                <span class="ui-meta">Drag enabled</span>
+                <span class="text-xs text-muted-foreground">Drag enabled</span>
             @endif
         </div>
     </div>

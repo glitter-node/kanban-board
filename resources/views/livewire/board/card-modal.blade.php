@@ -8,7 +8,7 @@
     <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-canvas px-4 py-6">
         <div class="absolute inset-0" @click="closeCardModal()"></div>
 
-        <div class="ui-panel-elevated relative z-10 flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl p-0 shadow-2xl">
+        <div class="ui-panel-elevated relative z-10 flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl p-0">
             <div class="ui-panel-header flex items-start justify-between gap-4 px-6 py-5">
                 <div class="min-w-0">
                     <p class="ui-kicker">Card Detail</p>
@@ -80,7 +80,7 @@
                 <div class="border-t border-border bg-muted px-6 py-5 lg:border-l lg:border-t-0">
                     <div class="mb-4 flex items-center justify-between">
                         <h3 class="text-sm font-semibold text-foreground">Comments</h3>
-                        <span class="ui-meta" x-text="selectedCardComments.length"></span>
+                        <span class="text-xs text-muted-foreground" x-text="selectedCardComments.length"></span>
                     </div>
 
                     <livewire:board.comment-list :key="'comment-list-'.$boardId" />

@@ -3,7 +3,7 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: 'class',
+    darkMode: ['class', '[data-theme="dark"]'],
     content: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
@@ -40,8 +40,14 @@ export default {
                 muted: 'rgb(var(--muted) / <alpha-value>)',
                 'muted-foreground': 'rgb(var(--muted-foreground) / <alpha-value>)',
                 border: 'rgb(var(--border) / <alpha-value>)',
+                'border-strong': 'rgb(var(--border-strong) / <alpha-value>)',
                 primary: 'rgb(var(--primary) / <alpha-value>)',
                 'primary-foreground': 'rgb(var(--primary-foreground) / <alpha-value>)',
+                'primary-hover': 'rgb(var(--primary-hover) / <alpha-value>)',
+                'primary-active': 'rgb(var(--primary-active) / <alpha-value>)',
+                'surface-hover': 'rgb(var(--surface-hover) / <alpha-value>)',
+                'input-background': 'rgb(var(--input-background) / <alpha-value>)',
+                'input-foreground': 'rgb(var(--input-foreground) / <alpha-value>)',
                 success: 'rgb(var(--success) / <alpha-value>)',
                 'success-foreground': 'rgb(var(--success-foreground) / <alpha-value>)',
                 warning: 'rgb(var(--warning) / <alpha-value>)',
@@ -59,8 +65,8 @@ export default {
                     },
                     brand: {
                         primary: 'rgb(var(--primary) / <alpha-value>)',
-                        hover: 'rgb(var(--color-brand-600) / <alpha-value>)',
-                        active: 'rgb(var(--color-brand-600) / <alpha-value>)',
+                        hover: 'rgb(var(--primary-hover) / <alpha-value>)',
+                        active: 'rgb(var(--primary-active) / <alpha-value>)',
                         secondary: 'rgb(var(--primary) / <alpha-value>)',
                         accent: 'rgb(var(--primary) / <alpha-value>)',
                     },

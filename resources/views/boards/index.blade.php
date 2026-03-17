@@ -5,7 +5,6 @@
                 My Boards
             </h2>
             <div class="flex items-center gap-3">
-                {{-- Dark Mode Toggle --}}
                 <button @click="$store.theme.toggle()"
                         aria-label="Toggle dark mode"
                         class="btn-icon p-1.5">
@@ -27,7 +26,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (session('success'))
-                <div class="ui-panel mb-6 px-4 py-3 status-success">
+                <div class="ui-panel mb-6 px-4 py-3 text-success">
                     {{ session('success') }}
                 </div>
             @endif
@@ -75,7 +74,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                        class="block w-full rounded-md px-4 py-2 text-left text-sm status-error transition hover:bg-elevated">
+                                                        class="block w-full rounded-md px-4 py-2 text-left text-sm text-error transition hover:bg-elevated">
                                                     Delete
                                                 </button>
                                             </form>

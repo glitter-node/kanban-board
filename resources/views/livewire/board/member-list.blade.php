@@ -31,7 +31,7 @@
                     <x-ui.avatar size="md" x-text="initials(member.name)"></x-ui.avatar>
                     <div>
                         <p class="text-sm font-medium text-foreground" x-text="member.name"></p>
-                        <p class="ui-meta" x-text="member.email"></p>
+                        <p class="text-xs text-muted-foreground" x-text="member.email"></p>
                     </div>
                 </div>
 

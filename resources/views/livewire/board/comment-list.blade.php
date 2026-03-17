@@ -29,10 +29,10 @@
                 <x-ui.avatar x-text="initials(comment.author_name || currentUserName)"></x-ui.avatar>
                 <div>
                     <p class="text-sm font-medium text-foreground" x-text="comment.author_name || currentUserName"></p>
-                    <p class="ui-meta" x-text="comment.created_at ? new Date(comment.created_at).toLocaleString() : ''"></p>
+                    <p class="text-xs text-muted-foreground" x-text="comment.created_at ? new Date(comment.created_at).toLocaleString() : ''"></p>
                 </div>
             </div>
-            <p class="mt-3 whitespace-pre-wrap text-sm ui-subtle" x-text="comment.body"></p>
+            <p class="mt-3 whitespace-pre-wrap text-sm text-muted-foreground" x-text="comment.body"></p>
         </x-ui.card>
     </template>
 </div>

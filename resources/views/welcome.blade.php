@@ -100,7 +100,7 @@
                                 <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-primary"></div>
                                 <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-background"></div>
 
-                                <div class="rounded-[2rem] border border-border bg-surface p-4 shadow-2xl">
+                                <div class="rounded-[2rem] border border-border bg-surface p-4">
                                     <div class="rounded-[1.7rem] border border-border bg-muted p-5">
                                         <div class="flex items-center justify-between">
                                             <div>
@@ -201,20 +201,20 @@
 
                         <div class="ui-panel mt-10 p-6">
                             <div class="grid gap-4 md:grid-cols-[repeat(5,minmax(0,1fr))] md:items-center">
-                                <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
+                                <div class="rounded-3xl border border-border bg-surface p-5 text-center">
                                     <p class="text-sm font-semibold text-foreground">Tasks</p>
                                 </div>
                                 <div class="text-center text-2xl text-muted-foreground">→</div>
-                                <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
+                                <div class="rounded-3xl border border-border bg-surface p-5 text-center">
                                     <p class="text-sm font-semibold text-foreground">Chat</p>
                                 </div>
                                 <div class="text-center text-2xl text-muted-foreground">→</div>
-                                <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
+                                <div class="rounded-3xl border border-border bg-surface p-5 text-center">
                                     <p class="text-sm font-semibold text-foreground">Email</p>
                                 </div>
                             </div>
                             <div class="mt-4 grid gap-4 md:grid-cols-[repeat(3,minmax(0,1fr))] md:items-center">
-                                <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
+                                <div class="rounded-3xl border border-border bg-surface p-5 text-center">
                                     <p class="text-sm font-semibold text-foreground">Notes</p>
                                 </div>
                                 <div class="text-center text-2xl text-muted-foreground">→</div>
@@ -303,7 +303,7 @@
                                     $steps = ['Create Board', 'Add Columns', 'Create Cards', 'Move Tasks', 'Team Collaboration'];
                                 @endphp
                                 @foreach ($steps as $index => $step)
-                                    <div class="rounded-3xl bg-surface p-5 text-center ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-5 text-center ring-1 ring-border">
                                         <p class="text-sm font-semibold text-foreground">{{ $step }}</p>
                                     </div>
                                     @if ($index < count($steps) - 1)

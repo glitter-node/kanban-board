@@ -12,11 +12,11 @@
         <x-layout.stack space="2">
             <h3 class="text-base font-semibold text-foreground">{{ $title }}</h3>
             @if (trim((string) $slot) !== '')
-                <div class="max-w-md text-sm ui-muted">
+                <div class="max-w-md text-sm text-muted-foreground">
                     {{ $slot }}
                 </div>
             @else
-                <p class="max-w-md text-sm ui-muted">{{ $message }}</p>
+                <p class="max-w-md text-sm text-muted-foreground">{{ $message }}</p>
             @endif
         </x-layout.stack>
         @if ($retryLabel)

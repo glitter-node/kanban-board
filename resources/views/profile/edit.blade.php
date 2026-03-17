@@ -73,7 +73,7 @@
                                 <x-layout.stack class="mt-6" space="4">
                                     <label class="flex items-center gap-3 cursor-pointer">
                                         <input type="checkbox" x-model="notifyAssignment" @change="save('notify_assignment', notifyAssignment)"
-                                               class="focus-ring rounded border-border bg-muted text-primary-foreground shadow-sm">
+                                               class="focus-ring rounded border-border bg-muted text-primary-foreground">
                                         <div>
                                             <span class="text-sm font-medium text-foreground">Card Assignment Notifications</span>
                                             <p class="text-xs text-muted-foreground">When a card is assigned to me</p>
@@ -82,7 +82,7 @@
 
                                     <label class="flex items-center gap-3 cursor-pointer">
                                         <input type="checkbox" x-model="notifyComment" @change="save('notify_comment', notifyComment)"
-                                               class="focus-ring rounded border-border bg-muted text-primary-foreground shadow-sm">
+                                               class="focus-ring rounded border-border bg-muted text-primary-foreground">
                                         <div>
                                             <span class="text-sm font-medium text-foreground">Comment Notifications</span>
                                             <p class="text-xs text-muted-foreground">When someone comments on my card</p>
@@ -91,7 +91,7 @@
 
                                     <label class="flex items-center gap-3 cursor-pointer">
                                         <input type="checkbox" x-model="notifyDueDate" @change="save('notify_due', notifyDueDate)"
-                                               class="focus-ring rounded border-border bg-muted text-primary-foreground shadow-sm">
+                                               class="focus-ring rounded border-border bg-muted text-primary-foreground">
                                         <div>
                                             <span class="text-sm font-medium text-foreground">Due Date Notifications</span>
                                             <p class="text-xs text-muted-foreground">When a card due date is approaching</p>

@@ -27,7 +27,7 @@
                         </button>
                         <div>
                             <h2 class="text-sm font-semibold text-foreground" x-text="column.title"></h2>
-                            <p class="ui-meta" x-text="column.cards.length + ' cards'"></p>
+                            <p class="text-xs text-muted-foreground" x-text="column.cards.length + ' cards'"></p>
                         </div>
                     </div>
                 </div>
