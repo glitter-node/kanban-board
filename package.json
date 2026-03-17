@@ -5,7 +5,8 @@
     "scripts": {
         "audit:a11y": "node scripts/audit-a11y.mjs",
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "lint:colors": "node scripts/check-semantic-colors.mjs"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

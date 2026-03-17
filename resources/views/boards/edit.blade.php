@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-ui-text-primary">
+        <h2 class="text-xl font-semibold leading-tight text-foreground">
             Edit Board
         </h2>
     </x-slot>
@@ -14,7 +14,7 @@
                         @method('PUT')
 
                         <div class="mb-6">
-                            <label for="title" class="mb-1 block text-sm font-medium text-ui-text-secondary">
+                            <label for="title" class="mb-1 block text-sm font-medium text-muted-foreground">
                                 Board Title <span class="status-error">*</span>
                             </label>
                             <input type="text" name="title" id="title" value="{{ old('title', $board->title) }}"
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="mb-6">
-                            <label for="description" class="mb-1 block text-sm font-medium text-ui-text-secondary">
+                            <label for="description" class="mb-1 block text-sm font-medium text-muted-foreground">
                                 Description
                             </label>
                             <textarea name="description" id="description" rows="4"

@@ -25,24 +25,24 @@
             <header>
                 <x-layout.container class="flex items-center justify-between py-6">
                     <a href="/" class="flex items-center gap-3">
-                        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-surface shadow-lg ring-1 ring-white/10">
+                        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-surface ring-1 ring-border">
                             <span class="grid grid-cols-3 gap-1">
                                 <span class="h-2 w-2 rounded-sm bg-primary"></span>
                                 <span class="h-2 w-2 rounded-sm bg-primary"></span>
                                 <span class="h-2 w-2 rounded-sm bg-primary"></span>
-                                <span class="h-2 w-2 rounded-sm bg-ui-text-muted"></span>
-                                <span class="h-2 w-2 rounded-sm bg-ui-text-secondary"></span>
-                                <span class="h-2 w-2 rounded-sm bg-ui-text-primary"></span>
+                                <span class="h-2 w-2 rounded-sm bg-muted-foreground"></span>
+                                <span class="h-2 w-2 rounded-sm bg-surface-foreground"></span>
+                                <span class="h-2 w-2 rounded-sm bg-foreground"></span>
                             </span>
                         </span>
-                        <span class="text-sm font-semibold tracking-[0.22em] text-ui-text-secondary uppercase">Board</span>
+                        <span class="text-sm font-semibold tracking-[0.22em] text-muted-foreground uppercase">Board</span>
                     </a>
 
-                    <nav class="hidden items-center gap-8 text-sm text-ui-text-secondary md:flex">
-                        <a href="#features" class="transition hover:text-ui-text-primary">Features</a>
-                        <a href="#preview" class="transition hover:text-ui-text-primary">Preview</a>
-                        <a href="#use-cases" class="transition hover:text-ui-text-primary">Use Cases</a>
-                        <a href="{{ route('login') }}" class="transition hover:text-ui-text-primary">Sign in</a>
+                    <nav class="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
+                        <a href="#features" class="transition hover:text-foreground">Features</a>
+                        <a href="#preview" class="transition hover:text-foreground">Preview</a>
+                        <a href="#use-cases" class="transition hover:text-foreground">Use Cases</a>
+                        <a href="{{ route('login') }}" class="transition hover:text-foreground">Sign in</a>
                     </nav>
                 </x-layout.container>
             </header>
@@ -52,7 +52,7 @@
                     <x-layout.container>
                         <x-layout.grid :lg="null" class="gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
                             <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary-foreground shadow-lg shadow-slate-950/30">
+                        <div class="inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary-foreground">
                             <span class="h-2 w-2 rounded-full bg-primary"></span>
                             Realtime collaborative workflow
                         </div>
@@ -61,37 +61,37 @@
                             Organize work with simple realtime boards
                         </h1>
 
-                        <p class="mt-6 max-w-2xl text-lg leading-8 text-ui-text-secondary">
+                        <p class="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
                             A collaborative Kanban system for teams and individuals to manage tasks and workflows in realtime.
                         </p>
 
                         <div class="mt-10 flex flex-col gap-3 sm:flex-row">
                             <a
                                 href="{{ route('register') }}"
-                                class="btn-primary rounded-2xl px-6 py-3 text-sm normal-case tracking-normal shadow-lg shadow-primary/20"
+                                class="btn-primary rounded-2xl px-6 py-3 text-sm normal-case tracking-normal"
                             >
                                 Create a board
                             </a>
                             <a
                                 href="#preview"
-                                class="btn-secondary rounded-2xl px-6 py-3 text-sm normal-case tracking-normal shadow-lg shadow-slate-950/20"
+                                class="btn-secondary rounded-2xl px-6 py-3 text-sm normal-case tracking-normal"
                             >
                                 View demo
                             </a>
                         </div>
 
                         <div class="mt-12 grid gap-4 sm:grid-cols-3">
-                            <div class="ui-panel p-4 shadow-lg shadow-slate-950/30">
-                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Boards</p>
-                                <p class="mt-2 text-2xl font-semibold text-ui-text-primary">Personal + Team</p>
+                            <div class="ui-panel p-4">
+                                <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Boards</p>
+                                <p class="mt-2 text-2xl font-semibold text-foreground">Personal + Team</p>
                             </div>
-                            <div class="ui-panel p-4 shadow-lg shadow-slate-950/30">
-                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Sync</p>
-                                <p class="mt-2 text-2xl font-semibold text-ui-text-primary">Realtime</p>
+                            <div class="ui-panel p-4">
+                                <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Sync</p>
+                                <p class="mt-2 text-2xl font-semibold text-foreground">Realtime</p>
                             </div>
-                            <div class="ui-panel p-4 shadow-lg shadow-slate-950/30">
-                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Flow</p>
-                                <p class="mt-2 text-2xl font-semibold text-ui-text-primary">Visual</p>
+                            <div class="ui-panel p-4">
+                                <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Flow</p>
+                                <p class="mt-2 text-2xl font-semibold text-foreground">Visual</p>
                             </div>
                         </div>
                             </div>
@@ -100,67 +100,67 @@
                                 <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-primary"></div>
                                 <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-background"></div>
 
-                                <div class="rounded-[2rem] border border-border/70 bg-surface p-4 shadow-2xl shadow-slate-950/50">
-                                    <div class="rounded-[1.7rem] border border-border/70 bg-section p-5">
+                                <div class="rounded-[2rem] border border-border bg-surface p-4 shadow-2xl">
+                                    <div class="rounded-[1.7rem] border border-border bg-muted p-5">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Product Launch</p>
-                                                <h2 class="mt-2 text-xl font-semibold text-ui-text-primary">Board overview</h2>
+                                                <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Product Launch</p>
+                                                <h2 class="mt-2 text-xl font-semibold text-foreground">Board overview</h2>
                                             </div>
                                             <div class="flex -space-x-2">
-                                                <span class="grid h-9 w-9 place-items-center rounded-full border border-border bg-elevated text-xs font-semibold text-ui-text-secondary">AK</span>
-                                                <span class="grid h-9 w-9 place-items-center rounded-full border border-border bg-elevated text-xs font-semibold text-ui-text-secondary">JM</span>
-                                                <span class="grid h-9 w-9 place-items-center rounded-full border border-border bg-elevated text-xs font-semibold text-ui-text-secondary">LS</span>
+                                                <span class="grid h-9 w-9 place-items-center rounded-full border border-border bg-elevated text-xs font-semibold text-muted-foreground">AK</span>
+                                                <span class="grid h-9 w-9 place-items-center rounded-full border border-border bg-elevated text-xs font-semibold text-muted-foreground">JM</span>
+                                                <span class="grid h-9 w-9 place-items-center rounded-full border border-border bg-elevated text-xs font-semibold text-muted-foreground">LS</span>
                                             </div>
                                         </div>
 
                                         <div class="mt-6 grid gap-4 lg:grid-cols-4">
-                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border">
                                         <div class="flex items-center justify-between">
-                                            <p class="text-sm font-semibold text-ui-text-secondary">Backlog</p>
+                                            <p class="text-sm font-semibold text-muted-foreground">Backlog</p>
                                             <span class="ui-badge ui-badge-sm">6</span>
                                         </div>
                                         <div class="mt-4 space-y-3">
-                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
                                                 <p class="text-sm font-semibold">Outline release scope</p>
-                                                <p class="mt-2 text-xs text-ui-text-secondary">Brief · Spec</p>
+                                                <p class="mt-2 text-xs text-muted-foreground">Brief · Spec</p>
                                             </div>
-                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
                                                 <p class="text-sm font-semibold">Collect beta notes</p>
-                                                <p class="mt-2 text-xs text-ui-text-secondary">Inbox</p>
+                                                <p class="mt-2 text-xs text-muted-foreground">Inbox</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border">
                                         <div class="flex items-center justify-between">
-                                            <p class="text-sm font-semibold text-ui-text-secondary">In Progress</p>
+                                            <p class="text-sm font-semibold text-muted-foreground">In Progress</p>
                                             <span class="ui-badge ui-badge-sm ui-badge-info">3</span>
                                         </div>
                                         <div class="mt-4 space-y-3">
-                                            <div class="rounded-2xl border border-primary/60 bg-primary p-3 text-ui-text-primary shadow-sm">
+                                            <div class="rounded-2xl border border-primary bg-primary p-3 text-primary-foreground">
                                                 <p class="text-sm font-semibold">Build landing page</p>
-                                                <div class="mt-3 flex items-center justify-between text-[11px] text-ui-text-secondary">
+                                                <div class="mt-3 flex items-center justify-between text-[11px] text-muted-foreground">
                                                     <span>Due today</span>
                                                     <span>AK</span>
                                                 </div>
                                             </div>
-                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
                                                 <p class="text-sm font-semibold">Finalize billing copy</p>
-                                                <p class="mt-2 text-xs text-ui-text-secondary">Review tomorrow</p>
+                                                <p class="mt-2 text-xs text-muted-foreground">Review tomorrow</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border">
                                         <div class="flex items-center justify-between">
-                                            <p class="text-sm font-semibold text-ui-text-secondary">Review</p>
+                                            <p class="text-sm font-semibold text-muted-foreground">Review</p>
                                             <span class="ui-badge ui-badge-sm ui-badge-warning">2</span>
                                         </div>
                                         <div class="mt-4 space-y-3">
-                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
                                                 <p class="text-sm font-semibold">Realtime event audit</p>
-                                                <div class="mt-3 flex items-center justify-between text-[11px] text-ui-text-secondary">
+                                                <div class="mt-3 flex items-center justify-between text-[11px] text-muted-foreground">
                                                     <span>12 comments</span>
                                                     <span>JM</span>
                                                 </div>
@@ -168,19 +168,19 @@
                                         </div>
                                     </div>
 
-                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border">
                                         <div class="flex items-center justify-between">
-                                            <p class="text-sm font-semibold text-ui-text-secondary">Done</p>
+                                            <p class="text-sm font-semibold text-muted-foreground">Done</p>
                                             <span class="ui-badge ui-badge-sm ui-badge-success">14</span>
                                         </div>
                                         <div class="mt-4 space-y-3">
-                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
                                                 <p class="text-sm font-semibold">API routes wired</p>
-                                                <p class="mt-2 text-xs text-ui-text-secondary">Delivered</p>
+                                                <p class="mt-2 text-xs text-muted-foreground">Delivered</p>
                                             </div>
-                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
                                                 <p class="text-sm font-semibold">Auth flow ready</p>
-                                                <p class="mt-2 text-xs text-ui-text-secondary">Completed</p>
+                                                <p class="mt-2 text-xs text-muted-foreground">Completed</p>
                                             </div>
                                         </div>
                                     </div>
@@ -192,34 +192,34 @@
                     </x-layout.container>
                 </x-layout.section>
 
-                <x-layout.section class="border-y border-border/40 bg-section" spacing="lg">
+                <x-layout.section class="border-y border-border bg-muted" spacing="lg">
                     <x-layout.container width="xl">
                         <div class="max-w-2xl">
                             <p class="ui-kicker">Problem</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-ui-text-primary">Work becomes chaotic without structure</h2>
+                            <h2 class="mt-4 text-3xl font-semibold text-foreground">Work becomes chaotic without structure</h2>
                         </div>
 
                         <div class="ui-panel mt-10 p-6">
                             <div class="grid gap-4 md:grid-cols-[repeat(5,minmax(0,1fr))] md:items-center">
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Tasks</p>
+                                    <p class="text-sm font-semibold text-foreground">Tasks</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
+                                <div class="text-center text-2xl text-muted-foreground">→</div>
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Chat</p>
+                                    <p class="text-sm font-semibold text-foreground">Chat</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
+                                <div class="text-center text-2xl text-muted-foreground">→</div>
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Email</p>
+                                    <p class="text-sm font-semibold text-foreground">Email</p>
                                 </div>
                             </div>
                             <div class="mt-4 grid gap-4 md:grid-cols-[repeat(3,minmax(0,1fr))] md:items-center">
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Notes</p>
+                                    <p class="text-sm font-semibold text-foreground">Notes</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
-                                <div class="rounded-3xl border border-error/20 bg-error p-5 text-center shadow-sm">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Missed deadlines</p>
+                                <div class="text-center text-2xl text-muted-foreground">→</div>
+                                <div class="rounded-3xl border border-error bg-error p-5 text-center">
+                                    <p class="text-sm font-semibold text-error-foreground">Missed deadlines</p>
                                 </div>
                             </div>
                         </div>
@@ -230,28 +230,28 @@
                     <x-layout.container width="xl">
                         <div class="max-w-2xl">
                             <p class="ui-kicker">Solution</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-ui-text-primary">A clear workflow with Kanban</h2>
-                            <p class="mt-4 text-base text-ui-text-secondary">
+                            <h2 class="mt-4 text-3xl font-semibold text-foreground">A clear workflow with Kanban</h2>
+                            <p class="mt-4 text-base text-muted-foreground">
                                 Tasks move visually across workflow stages, so everyone sees what is next, what is blocked, and what is done.
                             </p>
                         </div>
 
                         <div class="ui-panel mt-10 p-6">
                             <div class="grid gap-4 lg:grid-cols-[repeat(7,minmax(0,1fr))] lg:items-center">
-                                <div class="rounded-3xl bg-surface p-5 text-center ring-1 ring-border/80">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Backlog</p>
+                                <div class="rounded-3xl bg-surface p-5 text-center ring-1 ring-border">
+                                    <p class="text-sm font-semibold text-foreground">Backlog</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
-                                <div class="rounded-3xl bg-primary p-5 text-center ring-1 ring-primary/20">
-                                    <p class="text-sm font-semibold text-ui-text-primary">In Progress</p>
+                                <div class="text-center text-2xl text-muted-foreground">→</div>
+                                <div class="rounded-3xl bg-primary p-5 text-center ring-1 ring-primary">
+                                    <p class="text-sm font-semibold text-primary-foreground">In Progress</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
-                                <div class="rounded-3xl bg-warning p-5 text-center ring-1 ring-warning/20">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Review</p>
+                                <div class="text-center text-2xl text-muted-foreground">→</div>
+                                <div class="rounded-3xl bg-warning p-5 text-center ring-1 ring-warning">
+                                    <p class="text-sm font-semibold text-warning-foreground">Review</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
-                                <div class="rounded-3xl bg-success p-5 text-center ring-1 ring-success/20">
-                                    <p class="text-sm font-semibold text-ui-text-primary">Done</p>
+                                <div class="text-center text-2xl text-muted-foreground">→</div>
+                                <div class="rounded-3xl bg-success p-5 text-center ring-1 ring-success">
+                                    <p class="text-sm font-semibold text-success-foreground">Done</p>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +262,7 @@
                     <x-layout.container width="xl">
                         <div class="max-w-2xl">
                             <p class="ui-kicker">Features</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-ui-text-primary">Built for focused workflow management</h2>
+                            <h2 class="mt-4 text-3xl font-semibold text-foreground">Built for focused workflow management</h2>
                         </div>
 
                         <x-layout.grid class="mt-10" md="2" lg="3" gap="5">
@@ -278,12 +278,12 @@
                             @endphp
 
                             @foreach ($features as $feature)
-                                <article class="ui-panel p-6 shadow-xl shadow-slate-950/30">
-                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-lg font-semibold text-primary-foreground shadow-sm ring-1 ring-primary/20">
+                                <article class="ui-panel p-6">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-lg font-semibold text-primary-foreground ring-1 ring-primary">
                                         {{ $feature['icon'] }}
                                     </div>
-                                    <h3 class="mt-5 text-lg font-semibold text-ui-text-primary">{{ $feature['title'] }}</h3>
-                                    <p class="mt-2 text-sm leading-6 text-ui-text-secondary">{{ $feature['text'] }}</p>
+                                    <h3 class="mt-5 text-lg font-semibold text-foreground">{{ $feature['title'] }}</h3>
+                                    <p class="mt-2 text-sm leading-6 text-muted-foreground">{{ $feature['text'] }}</p>
                                 </article>
                             @endforeach
                         </x-layout.grid>
@@ -294,7 +294,7 @@
                     <x-layout.container width="xl">
                         <div class="max-w-2xl">
                             <p class="ui-kicker">How It Works</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-ui-text-primary">Simple board setup, visible execution</h2>
+                            <h2 class="mt-4 text-3xl font-semibold text-foreground">Simple board setup, visible execution</h2>
                         </div>
 
                         <div class="ui-panel mt-10 p-6">
@@ -304,10 +304,10 @@
                                 @endphp
                                 @foreach ($steps as $index => $step)
                                     <div class="rounded-3xl bg-surface p-5 text-center ring-1 ring-border/80">
-                                        <p class="text-sm font-semibold text-ui-text-primary">{{ $step }}</p>
+                                        <p class="text-sm font-semibold text-foreground">{{ $step }}</p>
                                     </div>
                                     @if ($index < count($steps) - 1)
-                                        <div class="text-center text-2xl text-ui-text-secondary">↓</div>
+                                        <div class="text-center text-2xl text-muted-foreground">↓</div>
                                     @endif
                                 @endforeach
                             </div>
@@ -319,17 +319,17 @@
                     <x-layout.container width="xl">
                         <div class="max-w-2xl">
                             <p class="ui-kicker">Product Preview</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-ui-text-primary">A board interface built around movement and visibility</h2>
+                            <h2 class="mt-4 text-3xl font-semibold text-foreground">A board interface built around movement and visibility</h2>
                         </div>
 
-                        <div class="ui-panel mt-10 rounded-[2.2rem] p-5 shadow-2xl shadow-slate-950/40">
-                            <div class="rounded-[1.8rem] bg-section p-5 ring-1 ring-border/80">
+                        <div class="ui-panel mt-10 rounded-[2.2rem] p-5">
+                            <div class="rounded-[1.8rem] bg-muted p-5 ring-1 ring-border">
                                 <div class="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)]">
-                                    <div class="overflow-hidden rounded-[1.6rem] border border-border/80 bg-surface">
-                                        <div class="flex items-center justify-between border-b border-border/80 px-5 py-4">
+                                    <div class="overflow-hidden rounded-[1.6rem] border border-border bg-surface">
+                                        <div class="flex items-center justify-between border-b border-border px-5 py-4">
                                             <div>
-                                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Board UI</p>
-                                                <h3 class="mt-1 text-lg font-semibold text-ui-text-primary">Sprint planning</h3>
+                                                <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Board UI</p>
+                                                <h3 class="mt-1 text-lg font-semibold text-foreground">Sprint planning</h3>
                                             </div>
                                             <div class="flex -space-x-2">
                                                 <span class="h-8 w-8 rounded-full border border-border bg-elevated"></span>
@@ -340,16 +340,16 @@
 
                                         <div class="grid gap-4 p-4 md:grid-cols-4">
                                             @foreach (['Columns', 'Cards', 'Comments', 'Due dates'] as $label)
-                                                <div class="rounded-3xl bg-section p-4 ring-1 ring-border/80">
-                                                    <p class="text-xs uppercase tracking-[0.16em] text-ui-text-secondary">{{ $label }}</p>
+                                                <div class="rounded-3xl bg-muted p-4 ring-1 ring-border">
+                                                    <p class="text-xs uppercase tracking-[0.16em] text-muted-foreground">{{ $label }}</p>
                                                     <div class="mt-4 space-y-3">
-                                                        <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
-                                                            <div class="h-2.5 w-20 rounded-full bg-ui-text-secondary"></div>
-                                                            <div class="mt-3 h-2 w-14 rounded-full bg-ui-text-muted"></div>
+                                                        <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
+                                                            <div class="h-2.5 w-20 rounded-full bg-surface-foreground"></div>
+                                                            <div class="mt-3 h-2 w-14 rounded-full bg-muted-foreground"></div>
                                                         </div>
-                                                        <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
-                                                            <div class="h-2.5 w-24 rounded-full bg-ui-text-secondary"></div>
-                                                            <div class="mt-3 h-2 w-10 rounded-full bg-ui-text-muted"></div>
+                                                        <div class="rounded-2xl bg-elevated p-3 text-foreground ring-1 ring-border">
+                                                            <div class="h-2.5 w-24 rounded-full bg-surface-foreground"></div>
+                                                            <div class="mt-3 h-2 w-10 rounded-full bg-muted-foreground"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -358,34 +358,34 @@
                                     </div>
 
                                     <div class="space-y-4">
-                                        <div class="ui-panel rounded-[1.6rem] p-5 shadow-xl shadow-slate-950/30">
-                                            <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Visible details</p>
+                                        <div class="ui-panel rounded-[1.6rem] p-5">
+                                            <p class="text-xs uppercase tracking-[0.18em] text-muted-foreground">Visible details</p>
                                             <div class="mt-5 space-y-4">
                                                 <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
-                                                    <span class="text-sm text-ui-text-secondary">Columns</span>
-                                                    <span class="text-sm font-semibold text-ui-text-primary">Workflow stages</span>
+                                                    <span class="text-sm text-muted-foreground">Columns</span>
+                                                    <span class="text-sm font-semibold text-foreground">Workflow stages</span>
                                                 </div>
                                                 <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
-                                                    <span class="text-sm text-ui-text-secondary">Cards</span>
-                                                    <span class="text-sm font-semibold text-ui-text-primary">Work items</span>
+                                                    <span class="text-sm text-muted-foreground">Cards</span>
+                                                    <span class="text-sm font-semibold text-foreground">Work items</span>
                                                 </div>
                                                 <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
-                                                    <span class="text-sm text-ui-text-secondary">User avatars</span>
-                                                    <span class="text-sm font-semibold text-ui-text-primary">Owners</span>
+                                                    <span class="text-sm text-muted-foreground">User avatars</span>
+                                                    <span class="text-sm font-semibold text-foreground">Owners</span>
                                                 </div>
                                                 <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
-                                                    <span class="text-sm text-ui-text-secondary">Comments</span>
-                                                    <span class="text-sm font-semibold text-ui-text-primary">Context</span>
+                                                    <span class="text-sm text-muted-foreground">Comments</span>
+                                                    <span class="text-sm font-semibold text-foreground">Context</span>
                                                 </div>
                                                 <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
-                                                    <span class="text-sm text-ui-text-secondary">Due dates</span>
-                                                    <span class="text-sm font-semibold text-ui-text-primary">Timing</span>
+                                                    <span class="text-sm text-muted-foreground">Due dates</span>
+                                                    <span class="text-sm font-semibold text-foreground">Timing</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="rounded-[1.6rem] border border-primary/20 bg-primary p-5 shadow-xl shadow-slate-950/30">
-                                            <p class="text-sm font-semibold text-ui-text-primary">Move work, keep context, stay aligned.</p>
+                                        <div class="rounded-[1.6rem] border border-primary bg-primary p-5">
+                                            <p class="text-sm font-semibold text-primary-foreground">Move work, keep context, stay aligned.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -398,7 +398,7 @@
                     <x-layout.container width="xl">
                         <div class="max-w-2xl">
                             <p class="ui-kicker">Use Cases</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-ui-text-primary">One board model, multiple ways to work</h2>
+                            <h2 class="mt-4 text-3xl font-semibold text-foreground">One board model, multiple ways to work</h2>
                         </div>
 
                         <x-layout.grid class="mt-10" md="2" lg="4" gap="5">
@@ -412,11 +412,11 @@
                             @endphp
 
                             @foreach ($useCases as $useCase)
-                                <article class="ui-panel p-6 shadow-xl shadow-slate-950/30">
-                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-lg font-semibold text-primary-foreground ring-1 ring-border/80">
+                                <article class="ui-panel p-6">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-lg font-semibold text-primary-foreground ring-1 ring-border">
                                         {{ $useCase['icon'] }}
                                     </div>
-                                    <h3 class="mt-5 text-lg font-semibold text-ui-text-primary">{{ $useCase['title'] }}</h3>
+                                    <h3 class="mt-5 text-lg font-semibold text-foreground">{{ $useCase['title'] }}</h3>
                                 </article>
                             @endforeach
                         </x-layout.grid>
@@ -425,11 +425,11 @@
 
                 <x-layout.section class="pb-24 pt-8" spacing="none">
                     <x-layout.container width="lg">
-                        <div class="app-glass-panel rounded-[2.4rem] p-8 shadow-2xl shadow-slate-950/40 sm:p-10">
+                        <div class="app-glass-panel rounded-[2.4rem] p-8 sm:p-10">
                             <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
                                 <div>
                                     <p class="ui-kicker">Final CTA</p>
-                                    <h2 class="mt-4 text-3xl font-semibold text-ui-text-primary">Start organizing your work</h2>
+                                    <h2 class="mt-4 text-3xl font-semibold text-foreground">Start organizing your work</h2>
                                 </div>
 
                                 <div class="flex flex-col gap-3 sm:flex-row">
@@ -454,15 +454,15 @@
 
             <x-layout.divider class="bg-border" />
             <footer class="py-10">
-                <x-layout.container class="flex flex-col gap-5 text-sm text-ui-text-secondary md:flex-row md:items-center md:justify-between">
+                <x-layout.container class="flex flex-col gap-5 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
                     <p>Board for collaborative Kanban workflow.</p>
                     <nav class="flex flex-wrap gap-x-6 gap-y-3">
-                        <a href="#features" class="transition hover:text-ui-text-primary">Features</a>
-                        <a href="#preview" class="transition hover:text-ui-text-primary">Documentation</a>
-                        <a href="{{ route('login') }}" class="transition hover:text-ui-text-primary">Sign in</a>
-                        <a href="{{ route('register') }}" class="transition hover:text-ui-text-primary">Register</a>
-                        <a href="#" class="transition hover:text-ui-text-primary">Privacy</a>
-                        <a href="#" class="transition hover:text-ui-text-primary">Terms</a>
+                        <a href="#features" class="transition hover:text-foreground">Features</a>
+                        <a href="#preview" class="transition hover:text-foreground">Documentation</a>
+                        <a href="{{ route('login') }}" class="transition hover:text-foreground">Sign in</a>
+                        <a href="{{ route('register') }}" class="transition hover:text-foreground">Register</a>
+                        <a href="#" class="transition hover:text-foreground">Privacy</a>
+                        <a href="#" class="transition hover:text-foreground">Terms</a>
                     </nav>
                 </x-layout.container>
             </footer>

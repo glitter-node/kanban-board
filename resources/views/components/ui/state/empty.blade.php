@@ -11,11 +11,11 @@
 
 <x-ui.card class="p-6">
     <x-layout.stack class="items-center text-center" space="4">
-        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ui-text-secondary ring-1 ring-border/80">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-muted-foreground ring-1 ring-border/80">
             <span class="text-lg">+</span>
         </div>
         <x-layout.stack space="2">
-            <h3 class="text-base font-semibold text-ui-text-primary">{{ $resolvedTitle }}</h3>
+            <h3 class="text-base font-semibold text-foreground">{{ $resolvedTitle }}</h3>
             @if ($description)
                 <p class="max-w-md text-sm ui-muted">{{ $description }}</p>
             @endif

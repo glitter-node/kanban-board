@@ -44,7 +44,7 @@
     <div class="ui-surface border-b border-border">
         <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
             <div class="min-w-0">
-                <h1 class="truncate text-2xl font-semibold text-ui-text-primary" x-text="board.title"></h1>
+                <h1 class="truncate text-2xl font-semibold text-foreground" x-text="board.title"></h1>
                 <p class="mt-1 truncate text-sm ui-muted" x-text="board.description || 'No description'"></p>
             </div>
             <div class="flex items-center gap-3">

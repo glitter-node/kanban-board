@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark" x-data>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="theme-color" content="#0B1220">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -19,7 +18,7 @@
         <div class="app-hero-gradient flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0">
             <div>
                 <a href="/">
-                    <x-application-logo class="h-20 w-20 fill-current text-ui-brand-primary" />
+                    <x-application-logo class="h-20 w-20 fill-current text-primary" />
                 </a>
             </div>
 

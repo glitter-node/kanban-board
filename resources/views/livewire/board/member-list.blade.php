@@ -30,7 +30,7 @@
                 <div class="flex items-center gap-3">
                     <x-ui.avatar size="md" x-text="initials(member.name)"></x-ui.avatar>
                     <div>
-                        <p class="text-sm font-medium text-ui-text-primary" x-text="member.name"></p>
+                        <p class="text-sm font-medium text-foreground" x-text="member.name"></p>
                         <p class="ui-meta" x-text="member.email"></p>
                     </div>
                 </div>

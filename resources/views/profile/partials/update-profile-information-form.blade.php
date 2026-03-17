@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-ui-text-primary">
+        <h2 class="text-lg font-medium text-foreground">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-ui-text-secondary">
+        <p class="mt-1 text-sm text-muted-foreground">
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
@@ -30,7 +30,7 @@
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
-                    <p class="mt-2 text-sm text-ui-text-primary">
+                    <p class="mt-2 text-sm text-foreground">
                         {{ __('Your email address is unverified.') }}
 
                         <button form="send-verification" class="ui-link focus-ring rounded-md text-sm underline">
@@ -56,7 +56,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-ui-text-secondary"
+                    class="text-sm text-muted-foreground"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>

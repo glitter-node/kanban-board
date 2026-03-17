@@ -1,0 +1,74 @@
+:root {
+    --color-white: 255 255 255;
+    --color-black: 0 0 0;
+
+    --color-gray-50: 249 250 251;
+    --color-gray-100: 243 244 246;
+    --color-gray-200: 229 231 235;
+    --color-gray-300: 209 213 219;
+    --color-gray-400: 156 163 175;
+    --color-gray-500: 107 114 128;
+    --color-gray-600: 75 85 99;
+    --color-gray-700: 55 65 81;
+    --color-gray-800: 31 41 55;
+    --color-gray-900: 17 24 39;
+
+    --color-brand-500: 99 102 241;
+    --color-brand-600: 79 70 229;
+
+    --color-success-500: 34 197 94;
+    --color-warning-500: 245 158 11;
+    --color-error-500: 239 68 68;
+    --color-info-500: 56 189 248;
+}
+
+:root,
+[data-theme="dark"] {
+    --background: var(--color-gray-900);
+    --foreground: var(--color-gray-50);
+
+    --surface: var(--color-gray-800);
+    --surface-foreground: var(--color-gray-100);
+
+    --primary: var(--color-brand-500);
+    --primary-foreground: var(--color-white);
+
+    --muted: var(--color-gray-700);
+    --muted-foreground: var(--color-gray-300);
+
+    --border: var(--color-gray-600);
+
+    --success: var(--color-success-500);
+    --success-foreground: var(--color-white);
+    --warning: var(--color-warning-500);
+    --warning-foreground: var(--color-black);
+    --error: var(--color-error-500);
+    --error-foreground: var(--color-white);
+    --info: var(--color-info-500);
+    --info-foreground: var(--color-black);
+}
+
+[data-theme="light"] {
+    --background: var(--color-gray-50);
+    --foreground: var(--color-gray-900);
+
+    --surface: var(--color-white);
+    --surface-foreground: var(--color-gray-900);
+
+    --primary: var(--color-brand-600);
+    --primary-foreground: var(--color-white);
+
+    --muted: var(--color-gray-100);
+    --muted-foreground: var(--color-gray-700);
+
+    --border: var(--color-gray-300);
+
+    --success: var(--color-success-500);
+    --success-foreground: var(--color-white);
+    --warning: var(--color-warning-500);
+    --warning-foreground: var(--color-black);
+    --error: var(--color-error-500);
+    --error-foreground: var(--color-white);
+    --info: var(--color-info-500);
+    --info-foreground: var(--color-black);
+}

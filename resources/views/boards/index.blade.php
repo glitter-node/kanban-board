@@ -1,18 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold leading-tight text-ui-text-primary">
+            <h2 class="text-xl font-semibold leading-tight text-foreground">
                 My Boards
             </h2>
             <div class="flex items-center gap-3">
                 {{-- Dark Mode Toggle --}}
-                <button @click="$store.darkMode.toggle()"
+                <button @click="$store.theme.toggle()"
                         aria-label="Toggle dark mode"
                         class="btn-icon p-1.5">
-                    <svg x-show="!$store.darkMode.on" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg x-show="$store.theme.current !== 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                     </svg>
-                    <svg x-show="$store.darkMode.on" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg x-show="$store.theme.current === 'dark'" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
                 </button>
@@ -35,11 +35,11 @@
             @if ($boards->isEmpty())
                 <div class="ui-panel overflow-hidden sm:rounded-lg">
                     <div class="p-12 text-center">
-                        <svg class="mx-auto h-12 w-12 text-ui-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mx-auto h-12 w-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
                         </svg>
-                        <h3 class="mt-4 text-lg font-medium text-ui-text-primary">No boards yet</h3>
-                        <p class="mt-2 text-sm text-ui-text-secondary">Create a new board to start organizing your work.</p>
+                        <h3 class="mt-4 text-lg font-medium text-foreground">No boards yet</h3>
+                        <p class="mt-2 text-sm text-muted-foreground">Create a new board to start organizing your work.</p>
                         <div class="mt-6">
                             <a href="{{ route('boards.create') }}"
                                class="btn-primary">
@@ -67,7 +67,7 @@
                                              class="ui-panel absolute right-0 z-10 mt-20 w-36 p-1">
                                             <a href="{{ route('boards.edit', $board) }}"
                                                @click.stop
-                                               class="block rounded-md px-4 py-2 text-sm text-ui-text-secondary transition hover:bg-elevated hover:text-ui-text-primary">
+                                               class="block rounded-md px-4 py-2 text-sm text-muted-foreground transition hover:bg-elevated hover:text-foreground">
                                                 Edit
                                             </a>
                                             <form method="POST" action="{{ route('boards.destroy', $board) }}" @click.stop

@@ -11,7 +11,7 @@
         </div>
 
         <div class="mt-4 space-y-4">
-            <div class="text-sm text-ui-text-secondary">
+            <div class="text-sm text-muted-foreground">
                 {{ __('Enter your email to receive a pre-verification link before registration.') }}
             </div>
 

@@ -26,7 +26,7 @@
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/></svg>
                         </button>
                         <div>
-                            <h2 class="text-sm font-semibold text-ui-text-primary" x-text="column.title"></h2>
+                            <h2 class="text-sm font-semibold text-foreground" x-text="column.title"></h2>
                             <p class="ui-meta" x-text="column.cards.length + ' cards'"></p>
                         </div>
                     </div>

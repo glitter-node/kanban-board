@@ -12,7 +12,7 @@
             <div class="ui-panel-header flex items-start justify-between gap-4 px-6 py-5">
                 <div class="min-w-0">
                     <p class="ui-kicker">Card Detail</p>
-                    <h2 class="mt-2 truncate text-xl font-semibold text-ui-text-primary" x-text="selectedCard?.title || 'Card'"></h2>
+                    <h2 class="mt-2 truncate text-xl font-semibold text-foreground" x-text="selectedCard?.title || 'Card'"></h2>
                 </div>
 
                 <button
@@ -29,18 +29,18 @@
                 <div class="min-h-0 overflow-y-auto px-6 py-5">
                     <form class="space-y-5" @submit.prevent="saveCard()">
                         <div>
-                            <label class="mb-2 block text-sm font-medium text-ui-text-secondary">Title</label>
+                            <label class="mb-2 block text-sm font-medium text-muted-foreground">Title</label>
                             <input type="text" x-model="cardForm.title" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm font-medium text-ui-text-secondary">Description</label>
+                            <label class="mb-2 block text-sm font-medium text-muted-foreground">Description</label>
                             <textarea x-model="cardForm.description" rows="5" class="ui-input w-full rounded-2xl px-4 py-3 text-sm"></textarea>
                         </div>
 
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                             <div>
-                                <label class="mb-2 block text-sm font-medium text-ui-text-secondary">Priority</label>
+                                <label class="mb-2 block text-sm font-medium text-muted-foreground">Priority</label>
                                 <select x-model="cardForm.priority" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
                                     <option :value="1">Low</option>
                                     <option :value="2">Medium</option>
@@ -50,7 +50,7 @@
                             </div>
 
                             <div>
-                                <label class="mb-2 block text-sm font-medium text-ui-text-secondary">Assignee</label>
+                                <label class="mb-2 block text-sm font-medium text-muted-foreground">Assignee</label>
                                 <select x-model="cardForm.assigned_user_id" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
                                     <option value="">Unassigned</option>
                                     <template x-for="user in users" :key="user.id">
@@ -60,7 +60,7 @@
                             </div>
 
                             <div>
-                                <label class="mb-2 block text-sm font-medium text-ui-text-secondary">Due date</label>
+                                <label class="mb-2 block text-sm font-medium text-muted-foreground">Due date</label>
                                 <input type="date" x-model="cardForm.due_at" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
                             </div>
                         </div>
@@ -77,9 +77,9 @@
                     </form>
                 </div>
 
-                <div class="border-t border-border bg-section px-6 py-5 lg:border-l lg:border-t-0">
+                <div class="border-t border-border bg-muted px-6 py-5 lg:border-l lg:border-t-0">
                     <div class="mb-4 flex items-center justify-between">
-                        <h3 class="text-sm font-semibold text-ui-text-primary">Comments</h3>
+                        <h3 class="text-sm font-semibold text-foreground">Comments</h3>
                         <span class="ui-meta" x-text="selectedCardComments.length"></span>
                     </div>
 

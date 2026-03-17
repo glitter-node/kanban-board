@@ -2,7 +2,7 @@
     <div class="ui-panel-header px-4 py-3">
         <div class="flex items-center justify-between gap-3">
             <div>
-                <h2 class="text-sm font-semibold text-ui-text-primary">{{ $column['title'] ?? 'Column' }}</h2>
+                <h2 class="text-sm font-semibold text-foreground">{{ $column['title'] ?? 'Column' }}</h2>
                 <p class="ui-meta">{{ count($column['cards'] ?? []) }} cards</p>
             </div>
             @if($canEdit)

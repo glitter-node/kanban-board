@@ -6,11 +6,11 @@
 
 <x-ui.card class="p-6">
     <x-layout.stack class="items-center text-center" space="4">
-        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-error text-error ring-1 ring-error/20">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-error text-error-foreground ring-1 ring-error">
             <span class="text-lg">!</span>
         </div>
         <x-layout.stack space="2">
-            <h3 class="text-base font-semibold text-ui-text-primary">{{ $title }}</h3>
+            <h3 class="text-base font-semibold text-foreground">{{ $title }}</h3>
             @if (trim((string) $slot) !== '')
                 <div class="max-w-md text-sm ui-muted">
                     {{ $slot }}

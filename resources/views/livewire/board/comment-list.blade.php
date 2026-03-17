@@ -28,7 +28,7 @@
             <div class="flex items-center gap-3">
                 <x-ui.avatar x-text="initials(comment.author_name || currentUserName)"></x-ui.avatar>
                 <div>
-                    <p class="text-sm font-medium text-ui-text-primary" x-text="comment.author_name || currentUserName"></p>
+                    <p class="text-sm font-medium text-foreground" x-text="comment.author_name || currentUserName"></p>
                     <p class="ui-meta" x-text="comment.created_at ? new Date(comment.created_at).toLocaleString() : ''"></p>
                 </div>
             </div>
