@@ -40,12 +40,12 @@ class Board extends Model
 
     public function columns(): HasMany
     {
-        return $this->hasMany(Column::class)->orderBy('order_key');
+        return $this->hasMany(Column::class)->orderBy('position');
     }
 
     public function cards(): HasMany
     {
-        return $this->hasMany(Card::class)->orderBy('order_key');
+        return $this->hasMany(Card::class)->orderBy('position');
     }
 
     public function activities(): HasMany

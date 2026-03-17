@@ -15,22 +15,17 @@ class Activity extends Model
 
     protected $fillable = [
         'board_id',
-        'actor_user_id',
-        'entity_type',
-        'entity_id',
+        'user_id',
         'action',
-        'metadata_json',
+        'target_type',
+        'target_id',
+        'metadata',
     ];
 
-    public $timestamps = false;
-
-    protected function casts(): array
-    {
-        return [
-            'metadata_json' => 'array',
-            'created_at' => 'datetime',
-        ];
-    }
+    protected $casts = [
+        'metadata' => 'array',
+        'created_at' => 'datetime',
+    ];
 
     public function board(): BelongsTo
     {
@@ -39,7 +34,7 @@ class Activity extends Model
 
     public function actor(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'actor_user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function scopeForBoard(Builder $query, Board|int $board): Builder
@@ -49,11 +44,11 @@ class Activity extends Model
         return $query->where('board_id', $boardId);
     }
 
-    public function scopeForEntity(Builder $query, string $entityType, int $entityId): Builder
+    public function scopeForEntity(Builder $query, string $type, int $id): Builder
     {
         return $query
-            ->where('entity_type', $entityType)
-            ->where('entity_id', $entityId);
+            ->where('target_type', $type)
+            ->where('target_id', $id);
     }
 
     public function scopeLatestFirst(Builder $query): Builder
@@ -64,8 +59,8 @@ class Activity extends Model
     public function entityReference(): array
     {
         return [
-            'type' => $this->entity_type,
-            'id' => $this->entity_id,
+            'type' => $this->target_type,
+            'id' => $this->target_id,
         ];
     }
 }

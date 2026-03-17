@@ -5,7 +5,7 @@
         window.addEventListener('board:card-modal-close', () => open = false);
     "
 >
-    <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-canvas/70 px-4 py-6 backdrop-blur-sm">
+    <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-canvas px-4 py-6 backdrop-blur-sm">
         <div class="absolute inset-0" @click="closeCardModal()"></div>
 
         <div class="ui-panel-elevated relative z-10 flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl p-0 shadow-2xl">
@@ -76,7 +76,7 @@
                     </form>
                 </div>
 
-                <div class="border-t border-border bg-section/60 px-6 py-5 lg:border-l lg:border-t-0">
+                <div class="border-t border-border bg-section px-6 py-5 lg:border-l lg:border-t-0">
                     <div class="mb-4 flex items-center justify-between">
                         <h3 class="text-sm font-semibold text-ui-text-primary">Comments</h3>
                         <span class="ui-meta" x-text="selectedCardComments.length"></span>

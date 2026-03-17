@@ -34,11 +34,11 @@
             @if ($boards->isEmpty())
                 <div class="ui-panel overflow-hidden sm:rounded-lg">
                     <div class="p-12 text-center">
-                        <svg class="mx-auto h-12 w-12 text-ui-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mx-auto h-12 w-12 text-ui-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
                         </svg>
                         <h3 class="mt-4 text-lg font-medium text-ui-text-primary">보드가 없습니다</h3>
-                        <p class="mt-2 text-sm text-ui-text-muted">새 보드를 만들어 작업을 관리해보세요.</p>
+                        <p class="mt-2 text-sm text-ui-text-secondary">새 보드를 만들어 작업을 관리해보세요.</p>
                         <div class="mt-6">
                             <a href="{{ route('boards.create') }}"
                                class="btn-primary">
@@ -83,10 +83,10 @@
                                 </div>
 
                                 @if ($board->description)
-                                    <p class="mt-2 line-clamp-2 text-sm text-ui-text-muted">{{ $board->description }}</p>
+                                    <p class="mt-2 line-clamp-2 text-sm text-ui-text-secondary">{{ $board->description }}</p>
                                 @endif
 
-                                <div class="mt-4 flex items-center gap-4 text-xs text-ui-text-muted">
+                                <div class="mt-4 flex items-center gap-4 text-xs text-ui-text-secondary">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2"/>

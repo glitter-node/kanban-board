@@ -6,7 +6,7 @@
 
 <x-ui.card class="p-6">
     <x-layout.stack class="items-center text-center" space="4">
-        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-error/10 text-error ring-1 ring-error/20">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-error text-error ring-1 ring-error/20">
             <span class="text-lg">!</span>
         </div>
         <x-layout.stack space="2">

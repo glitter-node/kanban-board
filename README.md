@@ -138,10 +138,6 @@ http://localhost:8000
 
 Realtime updates require the Reverb server.
 
-Run in a separate terminal:
-```bash
-php artisan reverb:start
-```
 WebSocket endpoint:
 ```bash
 wss://reverb-ws.glitter.tw
@@ -158,10 +154,6 @@ Terminal 1:
 php artisan serve
 ```
 Terminal 2:
-```bash
-php artisan reverb:start
-```
-Terminal 3:
 ```bash
 npm run dev
 ```

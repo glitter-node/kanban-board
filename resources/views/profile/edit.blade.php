@@ -30,7 +30,7 @@
                                 <x-layout.grid :lg="null" class="mt-6" md="2">
                                     <button @click="theme = 'light'; $store.darkMode.on = false; localStorage.setItem('darkMode', 'false')"
                                             class="focus-ring flex-1 rounded-lg border-2 p-4 transition-all"
-                                            :class="theme === 'light' ? 'border-primary bg-primary/10' : 'border-border bg-section hover:border-ui-text-muted'"
+                                            :class="theme === 'light' ? 'border-primary bg-primary' : 'border-border bg-section hover:border-ui-text-muted'"
                                             role="radio" :aria-checked="theme === 'light'" tabindex="0">
                                         <div class="flex items-center gap-3">
                                             <svg class="h-6 w-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,7 +42,7 @@
 
                                     <button @click="theme = 'dark'; $store.darkMode.on = true; localStorage.setItem('darkMode', 'true')"
                                             class="focus-ring flex-1 rounded-lg border-2 p-4 transition-all"
-                                            :class="theme === 'dark' ? 'border-primary bg-primary/10' : 'border-border bg-section hover:border-ui-text-muted'"
+                                            :class="theme === 'dark' ? 'border-primary bg-primary' : 'border-border bg-section hover:border-ui-text-muted'"
                                             role="radio" :aria-checked="theme === 'dark'" tabindex="0">
                                         <div class="flex items-center gap-3">
                                             <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@
                                                class="focus-ring rounded border-border bg-section text-primary shadow-sm">
                                         <div>
                                             <span class="text-sm font-medium text-ui-text-primary">카드 배정 알림</span>
-                                            <p class="text-xs text-ui-text-muted">카드가 나에게 배정되었을 때</p>
+                                            <p class="text-xs text-ui-text-secondary">카드가 나에게 배정되었을 때</p>
                                         </div>
                                     </label>
 
@@ -85,7 +85,7 @@
                                                class="focus-ring rounded border-border bg-section text-primary shadow-sm">
                                         <div>
                                             <span class="text-sm font-medium text-ui-text-primary">댓글 알림</span>
-                                            <p class="text-xs text-ui-text-muted">내 카드에 댓글이 달렸을 때</p>
+                                            <p class="text-xs text-ui-text-secondary">내 카드에 댓글이 달렸을 때</p>
                                         </div>
                                     </label>
 
@@ -94,7 +94,7 @@
                                                class="focus-ring rounded border-border bg-section text-primary shadow-sm">
                                         <div>
                                             <span class="text-sm font-medium text-ui-text-primary">마감일 알림</span>
-                                            <p class="text-xs text-ui-text-muted">마감일이 임박한 카드가 있을 때</p>
+                                            <p class="text-xs text-ui-text-secondary">마감일이 임박한 카드가 있을 때</p>
                                         </div>
                                     </label>
                                 </x-layout.stack>
