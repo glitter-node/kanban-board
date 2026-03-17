@@ -5,7 +5,7 @@
         window.addEventListener('board:card-modal-close', () => open = false);
     "
 >
-    <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-canvas px-4 py-6 backdrop-blur-sm">
+    <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-canvas px-4 py-6">
         <div class="absolute inset-0" @click="closeCardModal()"></div>
 
         <div class="ui-panel-elevated relative z-10 flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl p-0 shadow-2xl">

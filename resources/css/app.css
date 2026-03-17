@@ -4,22 +4,37 @@
 
 @layer base {
     :root {
-        --color-bg-base: #0B1220;
-        --color-bg-section: #0F172A;
-        --color-bg-surface: #1E293B;
-        --color-bg-elevated: #334155;
+        --background: #0b0f1a;
+        --foreground: #ffffff;
 
-        --color-text-primary: #F8FAFC;
-        --color-text-secondary: #D1D5DB;
-        --color-text-muted: #9CA3AF;
+        --primary: #6366f1;
+        --primary-foreground: #ffffff;
+
+        --surface: #111827;
+        --surface-foreground: #f9fafb;
+
+        --muted: #1f2937;
+        --muted-foreground: #d1d5db;
+
+        --elevated: #334155;
+        --elevated-foreground: #f9fafb;
+
+        --color-bg-base: var(--background);
+        --color-bg-section: var(--muted);
+        --color-bg-surface: var(--surface);
+        --color-bg-elevated: var(--elevated);
+
+        --color-text-primary: var(--foreground);
+        --color-text-secondary: var(--muted-foreground);
+        --color-text-muted: var(--muted-foreground);
         --color-text-disabled: #94A3B8;
 
         --color-border: #334155;
 
-        --color-primary: #4F46E5;
+        --color-primary: var(--primary);
         --color-primary-hover: #4338CA;
         --color-primary-active: #3730A3;
-        --color-secondary: #4F46E5;
+        --color-secondary: var(--primary);
         --color-accent: #22C55E;
 
         --color-success: #22C55E;
@@ -274,11 +289,10 @@
     }
 
     .ui-card {
-        @apply motion rounded-2xl shadow-xl;
-        background-color: var(--color-bg-elevated);
-        border: 1px solid var(--color-border);
-        color: var(--color-text-primary);
-        box-shadow: var(--shadow-sm);
+        @apply motion rounded-2xl;
+        background-color: var(--surface);
+        border: 1px solid #374151;
+        color: var(--surface-foreground);
     }
 
     .ui-card-interactive {
@@ -287,14 +301,13 @@
 
     .ui-card-interactive:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
     }
 
     .ui-card-muted {
-        @apply rounded-2xl shadow-lg;
-        background-color: var(--color-bg-section);
-        border: 1px solid var(--color-border);
-        color: var(--color-text-primary);
+        @apply rounded-2xl;
+        background-color: var(--surface);
+        border: 1px solid #374151;
+        color: var(--surface-foreground);
     }
 
     .ui-panel {
@@ -441,7 +454,7 @@
 
     .btn-danger {
         @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-widest;
-        background-color: color-mix(in srgb, var(--color-error) 18%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-error) 40%, var(--color-bg-surface));
         border-color: color-mix(in srgb, var(--color-error) 45%, var(--color-border));
         color: var(--color-text-primary);
         box-shadow: var(--shadow-sm);
@@ -455,7 +468,7 @@
 
     .btn-danger:hover,
     .btn-danger:focus {
-        background-color: color-mix(in srgb, var(--color-error) 28%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-error) 40%, var(--color-bg-surface));
         transform: translateY(-1px);
         box-shadow: var(--shadow-md);
     }
@@ -554,17 +567,13 @@
 
     .app-hero-orbs {
         background-image:
-            radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent 28%),
-            radial-gradient(circle at top right, color-mix(in srgb, var(--color-text-primary) 6%, transparent), transparent 32%);
+            radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 40%, transparent), transparent 28%),
+            radial-gradient(circle at top right, color-mix(in srgb, var(--color-text-primary) 40%, transparent), transparent 32%);
     }
 
     .app-glass-panel {
-        background-image: linear-gradient(
-            135deg,
-            color-mix(in srgb, var(--color-bg-surface) 92%, transparent),
-            color-mix(in srgb, var(--color-bg-section) 98%, transparent)
-        );
-        border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+        background-color: var(--surface);
+        border: 1px solid var(--color-border);
     }
 
     .status-success {
@@ -595,38 +604,38 @@
     }
 
     .ui-badge-accent {
-        background-color: color-mix(in srgb, var(--color-accent) 16%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-bg-surface));
         color: var(--color-text-primary);
-        border-color: color-mix(in srgb, var(--color-accent) 28%, var(--color-border));
+        border-color: color-mix(in srgb, var(--color-accent) 60%, var(--color-border));
     }
 
     .ui-badge-success {
-        background-color: color-mix(in srgb, var(--color-success) 16%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-success) 40%, var(--color-bg-surface));
         color: var(--color-text-primary);
-        border-color: color-mix(in srgb, var(--color-success) 28%, var(--color-border));
+        border-color: color-mix(in srgb, var(--color-success) 60%, var(--color-border));
     }
 
     .ui-badge-warning {
-        background-color: color-mix(in srgb, var(--color-warning) 16%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-warning) 40%, var(--color-bg-surface));
         color: var(--color-text-primary);
-        border-color: color-mix(in srgb, var(--color-warning) 28%, var(--color-border));
+        border-color: color-mix(in srgb, var(--color-warning) 60%, var(--color-border));
     }
 
     .ui-badge-error {
-        background-color: color-mix(in srgb, var(--color-error) 16%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-error) 40%, var(--color-bg-surface));
         color: var(--color-text-primary);
-        border-color: color-mix(in srgb, var(--color-error) 28%, var(--color-border));
+        border-color: color-mix(in srgb, var(--color-error) 60%, var(--color-border));
     }
 
     .ui-badge-info {
-        background-color: color-mix(in srgb, var(--color-info) 16%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-info) 40%, var(--color-bg-surface));
         color: var(--color-text-primary);
-        border-color: color-mix(in srgb, var(--color-info) 28%, var(--color-border));
+        border-color: color-mix(in srgb, var(--color-info) 60%, var(--color-border));
     }
 
     .ui-avatar {
         @apply inline-flex items-center justify-center rounded-full text-xs font-semibold;
-        background-color: color-mix(in srgb, var(--color-accent) 14%, var(--color-bg-surface));
+        background-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-bg-surface));
         color: var(--color-accent);
         border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
     }
@@ -665,7 +674,7 @@
     }
 
     .modal-backdrop {
-        @apply fixed inset-0 backdrop-blur-sm;
+        @apply fixed inset-0;
         background-color: var(--color-overlay);
         animation: fadeIn 150ms var(--ease-standard);
     }

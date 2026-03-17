@@ -52,12 +52,12 @@
                     <x-layout.container>
                         <x-layout.grid :lg="null" class="gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
                             <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary shadow-lg shadow-slate-950/30">
+                        <div class="inline-flex items-center gap-2 rounded-full border border-primary bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary-foreground shadow-lg shadow-slate-950/30">
                             <span class="h-2 w-2 rounded-full bg-primary"></span>
                             Realtime collaborative workflow
                         </div>
 
-                        <h1 class="mt-8 max-w-3xl text-5xl font-semibold tracking-tight text-ui-text-primary sm:text-6xl">
+                        <h1 class="mt-8 max-w-3xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
                             Organize work with simple realtime boards
                         </h1>
 
@@ -97,10 +97,10 @@
                             </div>
 
                             <div class="relative">
-                                <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-primary blur-3xl"></div>
-                                <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-background blur-3xl"></div>
+                                <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-primary"></div>
+                                <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-background"></div>
 
-                                <div class="rounded-[2rem] border border-border/70 bg-surface p-4 shadow-2xl shadow-slate-950/50 backdrop-blur">
+                                <div class="rounded-[2rem] border border-border/70 bg-surface p-4 shadow-2xl shadow-slate-950/50">
                                     <div class="rounded-[1.7rem] border border-border/70 bg-section p-5">
                                         <div class="flex items-center justify-between">
                                             <div>
@@ -138,7 +138,7 @@
                                             <span class="ui-badge ui-badge-sm ui-badge-info">3</span>
                                         </div>
                                         <div class="mt-4 space-y-3">
-                                            <div class="rounded-2xl border border-primary/30 bg-primary p-3 text-ui-text-primary shadow-sm">
+                                            <div class="rounded-2xl border border-primary/60 bg-primary p-3 text-ui-text-primary shadow-sm">
                                                 <p class="text-sm font-semibold">Build landing page</p>
                                                 <div class="mt-3 flex items-center justify-between text-[11px] text-ui-text-secondary">
                                                     <span>Due today</span>
@@ -279,7 +279,7 @@
 
                             @foreach ($features as $feature)
                                 <article class="ui-panel p-6 shadow-xl shadow-slate-950/30">
-                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-lg font-semibold text-primary shadow-sm ring-1 ring-primary/20">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-lg font-semibold text-primary-foreground shadow-sm ring-1 ring-primary/20">
                                         {{ $feature['icon'] }}
                                     </div>
                                     <h3 class="mt-5 text-lg font-semibold text-ui-text-primary">{{ $feature['title'] }}</h3>
@@ -413,7 +413,7 @@
 
                             @foreach ($useCases as $useCase)
                                 <article class="ui-panel p-6 shadow-xl shadow-slate-950/30">
-                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-lg font-semibold text-primary ring-1 ring-border/80">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-lg font-semibold text-primary-foreground ring-1 ring-border/80">
                                         {{ $useCase['icon'] }}
                                     </div>
                                     <h3 class="mt-5 text-lg font-semibold text-ui-text-primary">{{ $useCase['title'] }}</h3>
@@ -425,7 +425,7 @@
 
                 <x-layout.section class="pb-24 pt-8" spacing="none">
                     <x-layout.container width="lg">
-                        <div class="app-glass-panel rounded-[2.4rem] p-8 shadow-2xl shadow-slate-950/40 backdrop-blur sm:p-10">
+                        <div class="app-glass-panel rounded-[2.4rem] p-8 shadow-2xl shadow-slate-950/40 sm:p-10">
                             <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
                                 <div>
                                     <p class="ui-kicker">Final CTA</p>

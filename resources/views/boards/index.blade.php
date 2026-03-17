@@ -54,7 +54,7 @@
                         <div class="ui-card-interactive overflow-visible sm:rounded-lg">
                             <a href="{{ route('boards.show', $board) }}" class="block p-6">
                                 <div class="flex items-start justify-between">
-                                    <h3 class="flex-1 truncate text-lg font-semibold text-ui-text-primary">
+                                    <h3 class="flex-1 truncate text-lg font-semibold text-surface-foreground">
                                         {{ $board->title }}
                                     </h3>
                                     <div class="flex items-center gap-1 ml-2" x-data="{ open: false }">
@@ -84,10 +84,10 @@
                                 </div>
 
                                 @if ($board->description)
-                                    <p class="mt-2 line-clamp-2 text-sm text-ui-text-secondary">{{ $board->description }}</p>
+                                    <p class="mt-2 line-clamp-2 text-sm text-surface-foreground">{{ $board->description }}</p>
                                 @endif
 
-                                <div class="mt-4 flex items-center gap-4 text-xs text-ui-text-secondary">
+                                <div class="mt-4 flex items-center gap-4 text-xs text-surface-foreground">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2"/>

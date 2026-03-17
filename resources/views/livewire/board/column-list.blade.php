@@ -41,7 +41,7 @@
                                 @click="openCard(card.id)"
                             >
                                 <div class="flex items-start justify-between gap-2">
-                                    <h3 class="line-clamp-2 text-sm font-medium text-ui-text-primary" x-text="card.title"></h3>
+                                    <h3 class="line-clamp-2 text-sm font-medium text-surface-foreground" x-text="card.title"></h3>
                                     <span
                                         class="ui-badge ui-badge-sm"
                                         :class="{
@@ -53,9 +53,9 @@
                                     ></span>
                                 </div>
 
-                                <p class="ui-meta mt-2 line-clamp-2" x-text="card.description || 'No description'"></p>
+                                <p class="mt-2 line-clamp-2 text-xs text-surface-foreground" x-text="card.description || 'No description'"></p>
 
-                                <div class="ui-meta mt-3 flex items-center justify-between gap-2">
+                                <div class="mt-3 flex items-center justify-between gap-2 text-xs text-surface-foreground">
                                     <span x-text="card.due_at ? new Date(card.due_at).toLocaleDateString() : 'No due date'"></span>
                                     <span
                                         x-show="card.assigned_user_id"

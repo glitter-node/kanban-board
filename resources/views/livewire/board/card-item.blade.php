@@ -1,9 +1,9 @@
 <x-ui.card class="p-3">
     <div class="flex items-start justify-between gap-2">
-        <h3 class="text-sm font-medium text-ui-text-primary">{{ $card['title'] ?? 'Untitled card' }}</h3>
+        <h3 class="text-sm font-medium text-surface-foreground">{{ $card['title'] ?? 'Untitled card' }}</h3>
         <x-ui.badge tone="accent" size="sm">
             P{{ $card['priority'] ?? 0 }}
         </x-ui.badge>
     </div>
-    <p class="mt-2 text-xs ui-muted">{{ $card['description'] ?? 'No description' }}</p>
+    <p class="mt-2 text-xs text-surface-foreground">{{ $card['description'] ?? 'No description' }}</p>
 </x-ui.card>

@@ -45,7 +45,7 @@
                                             :class="theme === 'dark' ? 'border-primary bg-primary' : 'border-border bg-section hover:border-ui-text-muted'"
                                             role="radio" :aria-checked="theme === 'dark'" tabindex="0">
                                         <div class="flex items-center gap-3">
-                                            <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="h-6 w-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                                             </svg>
                                             <span class="text-sm font-medium text-ui-text-primary">Dark</span>
@@ -73,7 +73,7 @@
                                 <x-layout.stack class="mt-6" space="4">
                                     <label class="flex items-center gap-3 cursor-pointer">
                                         <input type="checkbox" x-model="notifyAssignment" @change="save('notify_assignment', notifyAssignment)"
-                                               class="focus-ring rounded border-border bg-section text-primary shadow-sm">
+                                               class="focus-ring rounded border-border bg-section text-primary-foreground shadow-sm">
                                         <div>
                                             <span class="text-sm font-medium text-ui-text-primary">Card Assignment Notifications</span>
                                             <p class="text-xs text-ui-text-secondary">When a card is assigned to me</p>
@@ -82,7 +82,7 @@
 
                                     <label class="flex items-center gap-3 cursor-pointer">
                                         <input type="checkbox" x-model="notifyComment" @change="save('notify_comment', notifyComment)"
-                                               class="focus-ring rounded border-border bg-section text-primary shadow-sm">
+                                               class="focus-ring rounded border-border bg-section text-primary-foreground shadow-sm">
                                         <div>
                                             <span class="text-sm font-medium text-ui-text-primary">Comment Notifications</span>
                                             <p class="text-xs text-ui-text-secondary">When someone comments on my card</p>
@@ -91,7 +91,7 @@
 
                                     <label class="flex items-center gap-3 cursor-pointer">
                                         <input type="checkbox" x-model="notifyDueDate" @change="save('notify_due', notifyDueDate)"
-                                               class="focus-ring rounded border-border bg-section text-primary shadow-sm">
+                                               class="focus-ring rounded border-border bg-section text-primary-foreground shadow-sm">
                                         <div>
                                             <span class="text-sm font-medium text-ui-text-primary">Due Date Notifications</span>
                                             <p class="text-xs text-ui-text-secondary">When a card due date is approaching</p>
