@@ -37,14 +37,14 @@ class CommentController extends Controller
 
         $role = $board->getMemberRole(auth()->id());
         if ($role === 'viewer') {
-            return response()->json(['success' => false, 'message' => '댓글 작성 권한이 없습니다.'], 403);
+            return response()->json(['success' => false, 'message' => 'You do not have permission to write comments.'], 403);
         }
 
         $validated = $request->validate([
             'content' => 'required|string|max:1000',
         ], [
-            'content.required' => '댓글 내용을 입력해주세요.',
-            'content.max' => '댓글은 1000자를 초과할 수 없습니다.',
+            'content.required' => 'Please enter a comment.',
+            'content.max' => 'Comments may not exceed 1000 characters.',
         ]);
 
         $comment = $card->comments()->create([
@@ -63,7 +63,7 @@ class CommentController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '댓글이 작성되었습니다.',
+            'message' => 'Comment created successfully.',
             'data' => [
                 'id' => $comment->id,
                 'card_id' => $comment->card_id,
@@ -82,12 +82,12 @@ class CommentController extends Controller
         if ($comment->user_id !== auth()->id()) {
             $role = $board->getMemberRole(auth()->id());
             if (! in_array($role, ['owner', 'editor'])) {
-                return response()->json(['success' => false, 'message' => '삭제 권한이 없습니다.'], 403);
+                return response()->json(['success' => false, 'message' => 'You do not have permission to delete this comment.'], 403);
             }
         }
 
         $comment->delete();
 
-        return response()->json(['success' => true, 'message' => '댓글이 삭제되었습니다.']);
+        return response()->json(['success' => true, 'message' => 'Comment deleted successfully.']);
     }
 }

@@ -36,15 +36,15 @@ class CardControllerTest extends TestCase
 
         $this->actingAs($this->user)
             ->postJson("/api/boards/{$this->board->id}/columns/{$this->column->id}/cards", [
-                'title' => '새 카드',
+                'title' => 'New Card',
                 'priority' => 'high',
             ])
             ->assertCreated()
             ->assertJsonPath('success', true)
-            ->assertJsonPath('data.title', '새 카드');
+            ->assertJsonPath('data.title', 'New Card');
 
         $this->assertDatabaseHas('cards', [
-            'title' => '새 카드',
+            'title' => 'New Card',
             'column_id' => $this->column->id,
             'priority' => 'high',
         ]);
@@ -59,28 +59,28 @@ class CardControllerTest extends TestCase
 
         $this->actingAs($this->user)
             ->postJson("/api/boards/{$this->board->id}/columns/{$this->column->id}/cards", [
-                'title' => '세 번째',
+                'title' => 'Third',
                 'priority' => 'medium',
             ])
             ->assertCreated();
 
-        $this->assertDatabaseHas('cards', ['title' => '세 번째', 'position' => 2]);
+        $this->assertDatabaseHas('cards', ['title' => 'Third', 'position' => 2]);
     }
 
     public function test_user_can_update_card(): void
     {
         Event::fake();
 
-        $card = Card::factory()->create(['column_id' => $this->column->id, 'title' => '원래 제목']);
+        $card = Card::factory()->create(['column_id' => $this->column->id, 'title' => 'Original Title']);
 
         $this->actingAs($this->user)
             ->putJson("/api/boards/{$this->board->id}/cards/{$card->id}", [
-                'title' => '수정된 제목',
+                'title' => 'Updated Title',
                 'priority' => 'urgent',
-                'description' => '새 설명',
+                'description' => 'New description',
             ])
             ->assertOk()
-            ->assertJsonPath('data.title', '수정된 제목');
+            ->assertJsonPath('data.title', 'Updated Title');
     }
 
     public function test_user_can_delete_card(): void
@@ -151,7 +151,7 @@ class CardControllerTest extends TestCase
     {
         $this->actingAs($this->user)
             ->postJson("/api/boards/{$this->board->id}/columns/{$this->column->id}/cards", [
-                'title' => '카드',
+                'title' => 'Card',
                 'priority' => 'invalid',
             ])
             ->assertUnprocessable()
@@ -161,7 +161,7 @@ class CardControllerTest extends TestCase
     public function test_unauthenticated_user_cannot_create_card(): void
     {
         $this->postJson("/api/boards/{$this->board->id}/columns/{$this->column->id}/cards", [
-            'title' => '카드',
+            'title' => 'Card',
         ])->assertUnauthorized();
     }
 }

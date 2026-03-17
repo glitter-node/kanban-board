@@ -71,14 +71,14 @@ class BoardMemberController extends Controller
             'user_id' => 'required|exists:users,id',
             'role' => 'required|in:editor,viewer',
         ], [
-            'user_id.required' => '사용자를 선택해주세요.',
-            'user_id.exists' => '존재하지 않는 사용자입니다.',
-            'role.required' => '역할을 선택해주세요.',
-            'role.in' => '유효하지 않은 역할입니다.',
+            'user_id.required' => 'Please select a user.',
+            'user_id.exists' => 'The selected user does not exist.',
+            'role.required' => 'Please select a role.',
+            'role.in' => 'The selected role is invalid.',
         ]);
 
         if ($board->hasMember($validated['user_id'])) {
-            return response()->json(['success' => false, 'message' => '이미 보드 멤버입니다.'], 422);
+            return response()->json(['success' => false, 'message' => 'This user is already a board member.'], 422);
         }
 
         $member = $board->members()->create($validated);
@@ -86,7 +86,7 @@ class BoardMemberController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '멤버가 추가되었습니다.',
+            'message' => 'Member added successfully.',
             'data' => [
                 'id' => $member->id,
                 'user_id' => $member->user_id,
@@ -107,7 +107,7 @@ class BoardMemberController extends Controller
 
         $member->update($validated);
 
-        return response()->json(['success' => true, 'message' => '역할이 변경되었습니다.']);
+        return response()->json(['success' => true, 'message' => 'Role updated successfully.']);
     }
 
     public function destroy(Board $board, BoardMember $member): JsonResponse
@@ -116,6 +116,6 @@ class BoardMemberController extends Controller
 
         $member->delete();
 
-        return response()->json(['success' => true, 'message' => '멤버가 제거되었습니다.']);
+        return response()->json(['success' => true, 'message' => 'Member removed successfully.']);
     }
 }

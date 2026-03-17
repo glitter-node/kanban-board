@@ -26,11 +26,11 @@ class StoreCardRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => '카드 제목을 입력해주세요.',
-            'title.max' => '카드 제목은 255자 이하로 입력해주세요.',
-            'description.max' => '설명은 2000자 이하로 입력해주세요.',
-            'priority.in' => '올바른 우선순위를 선택해주세요.',
-            'due_date.date' => '올바른 날짜 형식을 입력해주세요.',
+            'title.required' => 'Please enter a card title.',
+            'title.max' => 'The card title must be 255 characters or fewer.',
+            'description.max' => 'The description must be 2000 characters or fewer.',
+            'priority.in' => 'Please select a valid priority.',
+            'due_date.date' => 'Please enter a valid date.',
         ];
     }
 }

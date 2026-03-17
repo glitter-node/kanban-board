@@ -21,7 +21,7 @@ class StoreColumnRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => '컬럼 제목을 입력해주세요.',
+            'title.required' => 'Please enter a column title.',
         ];
     }
 }

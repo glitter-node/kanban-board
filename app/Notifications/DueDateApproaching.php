@@ -31,7 +31,7 @@ class DueDateApproaching extends Notification implements ShouldQueue
             'card_id' => $this->card->id,
             'card_title' => $this->card->title,
             'due_date' => $this->card->due_date->format('Y-m-d'),
-            'message' => "'{$this->card->title}' 카드의 마감일이 내일입니다.",
+            'message' => "The '{$this->card->title}' card is due tomorrow.",
         ];
     }
 }

@@ -34,7 +34,7 @@ class CommentAdded extends Notification implements ShouldQueue
             'card_title' => $this->card->title,
             'commenter_name' => $this->comment->user->name,
             'comment_preview' => mb_substr($this->comment->content, 0, 50),
-            'message' => "{$this->comment->user->name}님이 '{$this->card->title}' 카드에 댓글을 남겼습니다.",
+            'message' => "{$this->comment->user->name} left a comment on the '{$this->card->title}' card.",
         ];
     }
 }

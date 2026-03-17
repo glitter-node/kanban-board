@@ -45,7 +45,7 @@ class CardController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '카드가 생성되었습니다.',
+            'message' => 'Card created successfully.',
             'data' => $card,
         ], 201);
     }
@@ -73,7 +73,7 @@ class CardController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '카드가 수정되었습니다.',
+            'message' => 'Card updated successfully.',
             'data' => $card,
         ]);
     }
@@ -95,7 +95,7 @@ class CardController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '카드가 삭제되었습니다.',
+            'message' => 'Card deleted successfully.',
         ]);
     }
 
@@ -152,7 +152,7 @@ class CardController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => '카드가 이동되었습니다.',
+            'message' => 'Card moved successfully.',
         ]);
     }
 }

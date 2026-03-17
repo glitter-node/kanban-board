@@ -32,7 +32,7 @@ class CardAssigned extends Notification implements ShouldQueue
             'card_id' => $this->card->id,
             'card_title' => $this->card->title,
             'assigner_name' => $this->assignerName,
-            'message' => "{$this->assignerName}님이 '{$this->card->title}' 카드를 할당했습니다.",
+            'message' => "{$this->assignerName} assigned the '{$this->card->title}' card.",
         ];
     }
 }

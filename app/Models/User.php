@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
@@ -47,12 +46,9 @@ class User extends Authenticatable
         return $this->hasMany(BoardMember::class);
     }
 
-    public function boards(): BelongsToMany
+    public function boards(): HasMany
     {
-        return $this->belongsToMany(Board::class, 'board_members')
-            ->using(BoardMember::class)
-            ->withPivot(['id', 'role', 'status', 'joined_at'])
-            ->withTimestamps();
+        return $this->hasMany(Board::class);
     }
 
     public function assignedCards(): HasMany

@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
         $allUsers = $users->push($admin);
 
         $boardConfigs = [
-            ['title' => '프로젝트 관리', 'description' => '메인 프로젝트 칸반 보드'],
-            ['title' => '스프린트 #12', 'description' => '현재 스프린트 작업 관리'],
-            ['title' => '버그 트래커', 'description' => '버그 수정 및 이슈 추적'],
+            ['title' => 'Project Management', 'description' => 'Main project kanban board'],
+            ['title' => 'Sprint #12', 'description' => 'Current sprint task tracking'],
+            ['title' => 'Bug Tracker', 'description' => 'Bug fixes and issue tracking'],
         ];
 
         foreach ($boardConfigs as $index => $config) {
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
 
-            $columnTitles = ['할 일', '진행 중', '검토 중', '완료'];
+            $columnTitles = ['To Do', 'In Progress', 'In Review', 'Done'];
             $columns = collect();
 
             foreach ($columnTitles as $pos => $title) {
