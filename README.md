@@ -81,7 +81,7 @@ KanbanBoard provides a collaborative task management environment with realtime s
 
 ## Requirements
 
-- PHP 8.4+
+- PHP 8.2+
 - Composer 2.x
 - Node.js 18+
 - Redis 7+
