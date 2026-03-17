@@ -10,7 +10,7 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
     broadcaster: 'reverb',
-    key: import.meta.env.VITE_REVERB_APP_KEY,
+    key: 'xi8cgvcxkjpn6r3rrxir',
     wsHost: 'reverb-ws.glitter.tw',
     wsPort: 443,
     wssPort: 443,
