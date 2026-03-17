@@ -6,12 +6,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 
-window.Pusher = Pusher;
-
-window.Echo = new Echo({
-    broadcaster: 'reverb',
-    key: 'xi8cgvcxkjpn6r3rrxir',
+const pusher = new Pusher('xi8cgvcxkjpn6r3rrxir', {
     wsHost: 'reverb-ws.glitter.tw',
+    wssHost: 'reverb-ws.glitter.tw',
     wsPort: 443,
     wssPort: 443,
     forceTLS: true,
@@ -19,10 +16,9 @@ window.Echo = new Echo({
     disableStats: true,
 });
 
-window.Echo.connector.pusher.config.wsHost = 'reverb-ws.glitter.tw';
-window.Echo.connector.pusher.config.wssHost = 'reverb-ws.glitter.tw';
-window.Echo.connector.pusher.config.httpHost = 'reverb-ws.glitter.tw';
-window.Echo.connector.pusher.config.httpsPort = 443;
-window.Echo.connector.pusher.config.wsPort = 443;
-window.Echo.connector.pusher.config.wssPort = 443;
-window.Echo.connector.pusher.config.forceTLS = true;
+window.Pusher = Pusher;
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'xi8cgvcxkjpn6r3rrxir',
+    client: pusher,
+});
