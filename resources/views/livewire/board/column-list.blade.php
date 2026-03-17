@@ -21,6 +21,7 @@
                             data-column-handle
                             x-show="canEdit"
                             class="btn-icon cursor-grab"
+                            aria-label="Drag column"
                         >
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/></svg>
                         </button>

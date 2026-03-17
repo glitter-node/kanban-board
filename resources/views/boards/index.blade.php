@@ -7,6 +7,7 @@
             <div class="flex items-center gap-3">
                 {{-- Dark Mode Toggle --}}
                 <button @click="$store.darkMode.toggle()"
+                        aria-label="Toggle dark mode"
                         class="btn-icon p-1.5">
                     <svg x-show="!$store.darkMode.on" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
@@ -57,7 +58,7 @@
                                         {{ $board->title }}
                                     </h3>
                                     <div class="flex items-center gap-1 ml-2" x-data="{ open: false }">
-                                        <button @click.prevent="open = !open" class="btn-icon p-1">
+                                        <button @click.prevent="open = !open" aria-label="Open board actions" class="btn-icon p-1">
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/>
                                             </svg>

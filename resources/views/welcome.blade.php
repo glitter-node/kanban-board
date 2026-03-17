@@ -168,7 +168,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80 opacity-80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
                                         <div class="flex items-center justify-between">
                                             <p class="text-sm font-semibold text-ui-text-secondary">Done</p>
                                             <span class="ui-badge ui-badge-sm ui-badge-success">14</span>
