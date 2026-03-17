@@ -13,7 +13,7 @@ class ResetPasswordCustom extends ResetPassword
             ->subject('Reset Your Password')
             ->view('mail.password_reset', [
                 'title' => 'Reset Your Password',
-                'message' => 'You requested a password reset.',
+                'content' => 'You requested a password reset.',
                 'action_url' => $this->resetUrl($notifiable),
                 'action_text' => 'Reset Password',
             ]);

@@ -17,7 +17,7 @@
                         </tr>
                         <tr>
                             <td style="padding:0 32px 24px 32px; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:24px; color:#444444; text-align:left;">
-                                @yield('message')
+                                @yield('content')
                             </td>
                         </tr>
                         <tr>

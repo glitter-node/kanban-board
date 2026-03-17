@@ -21,7 +21,7 @@ class PreVerifyMail extends Mailable
             ->view('mail.verify')
             ->with([
                 'title' => 'Verify Your Email',
-                'message' => 'Please confirm your email to continue.',
+                'content' => 'Please confirm your email to continue.',
                 'action_url' => $this->verificationUrl,
                 'action_text' => 'Verify Email',
                 'email' => $this->email,

@@ -13,7 +13,7 @@ class VerifyEmailCustom extends VerifyEmail
             ->subject('Email Verification Required')
             ->view('mail.verify', [
                 'title' => 'Verify Your Email',
-                'message' => 'Please confirm your email to continue.',
+                'content' => 'Please confirm your email to continue.',
                 'action_url' => $this->verificationUrl($notifiable),
                 'action_text' => 'Verify Email',
             ]);
