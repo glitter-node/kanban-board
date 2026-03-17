@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Notifications\ResetPasswordCustom;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
@@ -32,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
                         'message' => 'Too many verification requests. Please try again later.',
                     ], 429);
                 });
+        });
+
+        ResetPassword::toMailUsing(function ($notifiable, string $token) {
+            return (new ResetPasswordCustom($token))->toMail($notifiable);
         });
     }
 }
