@@ -39,7 +39,7 @@
                 </template>
 
                 <template x-for="notification in notifications" :key="notification.id">
-                    <article class="border-b border-border px-5 py-4 transition last:border-b-0" :class="notification.read_at ? 'bg-surface' : 'bg-white'">
+                    <article class="border-b border-border px-5 py-4 transition last:border-b-0" :class="notification.read_at ? 'bg-surface' : 'bg-elevated'">
                         <div class="flex items-start gap-3">
                             <x-ui.avatar class="mt-1">
                                 <span x-text="notification.type.split('.').pop().charAt(0).toUpperCase()"></span>
