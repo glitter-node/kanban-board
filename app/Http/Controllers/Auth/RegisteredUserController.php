@@ -34,51 +34,52 @@ class RegisteredUserController extends Controller
     {
         $preVerifiedEmail = Str::lower((string) $request->session()->get('pre_verified_email', ''));
 
+        if ($preVerifiedEmail !== '') {
+            $request->merge([
+                'email' => $preVerifiedEmail,
+            ]);
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                'unique:'.User::class,
-                function (string $attribute, mixed $value, \Closure $fail) use ($preVerifiedEmail): void {
-                    $email = Str::lower((string) $value);
-
-                    if ($preVerifiedEmail === '') {
-                        $fail('Email pre-verification is required.');
-
-                        return;
-                    }
-
-                    if ($email !== $preVerifiedEmail) {
-                        $fail('The email must match the pre-verified email address.');
-
-                        return;
-                    }
-
-                    $exists = EmailPreVerification::query()
-                        ->where('email', $email)
-                        ->whereNotNull('verified_at')
-                        ->exists();
-
-                    if (! $exists) {
-                        $fail('The email address has not been pre-verified.');
-                    }
-                },
-            ],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if ($preVerifiedEmail === '') {
+            throw ValidationException::withMessages([
+                'email' => 'Email pre-verification is required.',
+            ]);
+        }
+
+        $preVerification = EmailPreVerification::query()
+            ->where('email', $preVerifiedEmail)
+            ->whereNotNull('verified_at')
+            ->first();
+
+        if ($preVerification === null) {
+            throw ValidationException::withMessages([
+                'email' => 'The email address has not been pre-verified.',
+            ]);
+        }
+
+        if ($preVerification->expires_at->isPast()) {
+            $request->session()->forget('pre_verified_email');
+            $preVerification->delete();
+
+            throw ValidationException::withMessages([
+                'email' => 'The pre-verification session has expired. Please verify your email again.',
+            ]);
+        }
+
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $preVerifiedEmail,
             'password' => Hash::make($request->password),
         ]);
 
         EmailPreVerification::query()
-            ->where('email', Str::lower($request->email))
+            ->where('email', $preVerifiedEmail)
             ->delete();
 
         $request->session()->forget('pre_verified_email');
