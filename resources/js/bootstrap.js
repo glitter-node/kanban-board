@@ -21,6 +21,8 @@ window.Echo = new Echo({
 
 window.Echo.connector.pusher.config.wsHost = 'reverb-ws.glitter.tw';
 window.Echo.connector.pusher.config.wssHost = 'reverb-ws.glitter.tw';
+window.Echo.connector.pusher.config.httpHost = 'reverb-ws.glitter.tw';
+window.Echo.connector.pusher.config.httpsPort = 443;
 window.Echo.connector.pusher.config.wsPort = 443;
 window.Echo.connector.pusher.config.wssPort = 443;
 window.Echo.connector.pusher.config.forceTLS = true;
