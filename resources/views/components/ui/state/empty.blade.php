@@ -11,7 +11,7 @@
 
 <x-ui.card class="p-6">
     <x-layout.stack class="items-center text-center" space="4">
-        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ui-text-muted ring-1 ring-border/80">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface text-ui-text-secondary ring-1 ring-border/80">
             <span class="text-lg">+</span>
         </div>
         <x-layout.stack space="2">

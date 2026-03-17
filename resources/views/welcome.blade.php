@@ -20,16 +20,16 @@
         <x-layout.page as="div" class="relative isolate overflow-hidden">
             <div class="app-hero-gradient absolute inset-0 -z-20"></div>
             <div class="app-hero-orbs absolute inset-0 -z-10"></div>
-            <div class="absolute inset-x-0 top-0 -z-10 h-[38rem] bg-white/[0.02]"></div>
+            <div class="absolute inset-x-0 top-0 -z-10 h-[38rem] bg-white"></div>
 
             <header>
                 <x-layout.container class="flex items-center justify-between py-6">
                     <a href="/" class="flex items-center gap-3">
-                        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-surface/70 shadow-lg ring-1 ring-white/10">
+                        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-surface shadow-lg ring-1 ring-white/10">
                             <span class="grid grid-cols-3 gap-1">
                                 <span class="h-2 w-2 rounded-sm bg-primary"></span>
-                                <span class="h-2 w-2 rounded-sm bg-primary/80"></span>
-                                <span class="h-2 w-2 rounded-sm bg-primary/60"></span>
+                                <span class="h-2 w-2 rounded-sm bg-primary"></span>
+                                <span class="h-2 w-2 rounded-sm bg-primary"></span>
                                 <span class="h-2 w-2 rounded-sm bg-ui-text-muted"></span>
                                 <span class="h-2 w-2 rounded-sm bg-ui-text-secondary"></span>
                                 <span class="h-2 w-2 rounded-sm bg-ui-text-primary"></span>
@@ -38,7 +38,7 @@
                         <span class="text-sm font-semibold tracking-[0.22em] text-ui-text-secondary uppercase">Board</span>
                     </a>
 
-                    <nav class="hidden items-center gap-8 text-sm text-ui-text-muted md:flex">
+                    <nav class="hidden items-center gap-8 text-sm text-ui-text-secondary md:flex">
                         <a href="#features" class="transition hover:text-ui-text-primary">Features</a>
                         <a href="#preview" class="transition hover:text-ui-text-primary">Preview</a>
                         <a href="#use-cases" class="transition hover:text-ui-text-primary">Use Cases</a>
@@ -52,7 +52,7 @@
                     <x-layout.container>
                         <x-layout.grid :lg="null" class="gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
                             <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary shadow-lg shadow-slate-950/30">
+                        <div class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary shadow-lg shadow-slate-950/30">
                             <span class="h-2 w-2 rounded-full bg-primary"></span>
                             Realtime collaborative workflow
                         </div>
@@ -82,29 +82,29 @@
 
                         <div class="mt-12 grid gap-4 sm:grid-cols-3">
                             <div class="ui-panel p-4 shadow-lg shadow-slate-950/30">
-                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-muted">Boards</p>
+                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Boards</p>
                                 <p class="mt-2 text-2xl font-semibold text-ui-text-primary">Personal + Team</p>
                             </div>
                             <div class="ui-panel p-4 shadow-lg shadow-slate-950/30">
-                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-muted">Sync</p>
+                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Sync</p>
                                 <p class="mt-2 text-2xl font-semibold text-ui-text-primary">Realtime</p>
                             </div>
                             <div class="ui-panel p-4 shadow-lg shadow-slate-950/30">
-                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-muted">Flow</p>
+                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Flow</p>
                                 <p class="mt-2 text-2xl font-semibold text-ui-text-primary">Visual</p>
                             </div>
                         </div>
                             </div>
 
                             <div class="relative">
-                                <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-primary/12 blur-3xl"></div>
-                                <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-white/[0.04] blur-3xl"></div>
+                                <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-primary blur-3xl"></div>
+                                <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-white blur-3xl"></div>
 
-                                <div class="rounded-[2rem] border border-border/70 bg-surface/55 p-4 shadow-2xl shadow-slate-950/50 backdrop-blur">
-                                    <div class="rounded-[1.7rem] border border-border/70 bg-section/95 p-5">
+                                <div class="rounded-[2rem] border border-border/70 bg-surface p-4 shadow-2xl shadow-slate-950/50 backdrop-blur">
+                                    <div class="rounded-[1.7rem] border border-border/70 bg-section p-5">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-muted">Product Launch</p>
+                                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Product Launch</p>
                                                 <h2 class="mt-2 text-xl font-semibold text-ui-text-primary">Board overview</h2>
                                             </div>
                                             <div class="flex -space-x-2">
@@ -115,7 +115,7 @@
                                         </div>
 
                                         <div class="mt-6 grid gap-4 lg:grid-cols-4">
-                                    <div class="rounded-3xl bg-surface/85 p-4 ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
                                         <div class="flex items-center justify-between">
                                             <p class="text-sm font-semibold text-ui-text-secondary">Backlog</p>
                                             <span class="ui-badge ui-badge-sm">6</span>
@@ -123,36 +123,36 @@
                                         <div class="mt-4 space-y-3">
                                             <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
                                                 <p class="text-sm font-semibold">Outline release scope</p>
-                                                <p class="mt-2 text-xs text-ui-text-muted">Brief · Spec</p>
+                                                <p class="mt-2 text-xs text-ui-text-secondary">Brief · Spec</p>
                                             </div>
-                                            <div class="rounded-2xl bg-elevated/95 p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
                                                 <p class="text-sm font-semibold">Collect beta notes</p>
-                                                <p class="mt-2 text-xs text-ui-text-muted">Inbox</p>
+                                                <p class="mt-2 text-xs text-ui-text-secondary">Inbox</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="rounded-3xl bg-surface/85 p-4 ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
                                         <div class="flex items-center justify-between">
                                             <p class="text-sm font-semibold text-ui-text-secondary">In Progress</p>
                                             <span class="ui-badge ui-badge-sm ui-badge-info">3</span>
                                         </div>
                                         <div class="mt-4 space-y-3">
-                                            <div class="rounded-2xl border border-primary/30 bg-primary/12 p-3 text-ui-text-primary shadow-sm">
+                                            <div class="rounded-2xl border border-primary/30 bg-primary p-3 text-ui-text-primary shadow-sm">
                                                 <p class="text-sm font-semibold">Build landing page</p>
                                                 <div class="mt-3 flex items-center justify-between text-[11px] text-ui-text-secondary">
                                                     <span>Due today</span>
                                                     <span>AK</span>
                                                 </div>
                                             </div>
-                                            <div class="rounded-2xl bg-elevated/95 p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                            <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
                                                 <p class="text-sm font-semibold">Finalize billing copy</p>
-                                                <p class="mt-2 text-xs text-ui-text-muted">Review tomorrow</p>
+                                                <p class="mt-2 text-xs text-ui-text-secondary">Review tomorrow</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="rounded-3xl bg-surface/85 p-4 ring-1 ring-border/80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80">
                                         <div class="flex items-center justify-between">
                                             <p class="text-sm font-semibold text-ui-text-secondary">Review</p>
                                             <span class="ui-badge ui-badge-sm ui-badge-warning">2</span>
@@ -160,7 +160,7 @@
                                         <div class="mt-4 space-y-3">
                                             <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
                                                 <p class="text-sm font-semibold">Realtime event audit</p>
-                                                <div class="mt-3 flex items-center justify-between text-[11px] text-ui-text-muted">
+                                                <div class="mt-3 flex items-center justify-between text-[11px] text-ui-text-secondary">
                                                     <span>12 comments</span>
                                                     <span>JM</span>
                                                 </div>
@@ -168,7 +168,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="rounded-3xl bg-surface/85 p-4 ring-1 ring-border/80 opacity-80">
+                                    <div class="rounded-3xl bg-surface p-4 ring-1 ring-border/80 opacity-80">
                                         <div class="flex items-center justify-between">
                                             <p class="text-sm font-semibold text-ui-text-secondary">Done</p>
                                             <span class="ui-badge ui-badge-sm ui-badge-success">14</span>
@@ -176,11 +176,11 @@
                                         <div class="mt-4 space-y-3">
                                             <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
                                                 <p class="text-sm font-semibold">API routes wired</p>
-                                                <p class="mt-2 text-xs text-ui-text-muted">Delivered</p>
+                                                <p class="mt-2 text-xs text-ui-text-secondary">Delivered</p>
                                             </div>
                                             <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
                                                 <p class="text-sm font-semibold">Auth flow ready</p>
-                                                <p class="mt-2 text-xs text-ui-text-muted">Completed</p>
+                                                <p class="mt-2 text-xs text-ui-text-secondary">Completed</p>
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@
                     </x-layout.container>
                 </x-layout.section>
 
-                <x-layout.section class="border-y border-border/40 bg-section/80" spacing="lg">
+                <x-layout.section class="border-y border-border/40 bg-section" spacing="lg">
                     <x-layout.container width="xl">
                         <div class="max-w-2xl">
                             <p class="ui-kicker">Problem</p>
@@ -204,11 +204,11 @@
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
                                     <p class="text-sm font-semibold text-ui-text-primary">Tasks</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-muted">→</div>
+                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
                                     <p class="text-sm font-semibold text-ui-text-primary">Chat</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-muted">→</div>
+                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
                                     <p class="text-sm font-semibold text-ui-text-primary">Email</p>
                                 </div>
@@ -217,8 +217,8 @@
                                 <div class="rounded-3xl border border-border bg-surface p-5 text-center shadow-sm">
                                     <p class="text-sm font-semibold text-ui-text-primary">Notes</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-muted">→</div>
-                                <div class="rounded-3xl border border-error/20 bg-error/10 p-5 text-center shadow-sm">
+                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
+                                <div class="rounded-3xl border border-error/20 bg-error p-5 text-center shadow-sm">
                                     <p class="text-sm font-semibold text-ui-text-primary">Missed deadlines</p>
                                 </div>
                             </div>
@@ -241,16 +241,16 @@
                                 <div class="rounded-3xl bg-surface p-5 text-center ring-1 ring-border/80">
                                     <p class="text-sm font-semibold text-ui-text-primary">Backlog</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-muted">→</div>
-                                <div class="rounded-3xl bg-primary/10 p-5 text-center ring-1 ring-primary/20">
+                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
+                                <div class="rounded-3xl bg-primary p-5 text-center ring-1 ring-primary/20">
                                     <p class="text-sm font-semibold text-ui-text-primary">In Progress</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-muted">→</div>
-                                <div class="rounded-3xl bg-warning/10 p-5 text-center ring-1 ring-warning/20">
+                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
+                                <div class="rounded-3xl bg-warning p-5 text-center ring-1 ring-warning/20">
                                     <p class="text-sm font-semibold text-ui-text-primary">Review</p>
                                 </div>
-                                <div class="text-center text-2xl text-ui-text-muted">→</div>
-                                <div class="rounded-3xl bg-success/10 p-5 text-center ring-1 ring-success/20">
+                                <div class="text-center text-2xl text-ui-text-secondary">→</div>
+                                <div class="rounded-3xl bg-success p-5 text-center ring-1 ring-success/20">
                                     <p class="text-sm font-semibold text-ui-text-primary">Done</p>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@
 
                             @foreach ($features as $feature)
                                 <article class="ui-panel p-6 shadow-xl shadow-slate-950/30">
-                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-lg font-semibold text-primary shadow-sm ring-1 ring-primary/20">
+                                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-lg font-semibold text-primary shadow-sm ring-1 ring-primary/20">
                                         {{ $feature['icon'] }}
                                     </div>
                                     <h3 class="mt-5 text-lg font-semibold text-ui-text-primary">{{ $feature['title'] }}</h3>
@@ -307,7 +307,7 @@
                                         <p class="text-sm font-semibold text-ui-text-primary">{{ $step }}</p>
                                     </div>
                                     @if ($index < count($steps) - 1)
-                                        <div class="text-center text-2xl text-ui-text-muted">↓</div>
+                                        <div class="text-center text-2xl text-ui-text-secondary">↓</div>
                                     @endif
                                 @endforeach
                             </div>
@@ -323,12 +323,12 @@
                         </div>
 
                         <div class="ui-panel mt-10 rounded-[2.2rem] p-5 shadow-2xl shadow-slate-950/40">
-                            <div class="rounded-[1.8rem] bg-section/90 p-5 ring-1 ring-border/80">
+                            <div class="rounded-[1.8rem] bg-section p-5 ring-1 ring-border/80">
                                 <div class="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)]">
                                     <div class="overflow-hidden rounded-[1.6rem] border border-border/80 bg-surface">
                                         <div class="flex items-center justify-between border-b border-border/80 px-5 py-4">
                                             <div>
-                                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-muted">Board UI</p>
+                                                <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Board UI</p>
                                                 <h3 class="mt-1 text-lg font-semibold text-ui-text-primary">Sprint planning</h3>
                                             </div>
                                             <div class="flex -space-x-2">
@@ -340,16 +340,16 @@
 
                                         <div class="grid gap-4 p-4 md:grid-cols-4">
                                             @foreach (['Columns', 'Cards', 'Comments', 'Due dates'] as $label)
-                                                <div class="rounded-3xl bg-section/90 p-4 ring-1 ring-border/80">
-                                                    <p class="text-xs uppercase tracking-[0.16em] text-ui-text-muted">{{ $label }}</p>
+                                                <div class="rounded-3xl bg-section p-4 ring-1 ring-border/80">
+                                                    <p class="text-xs uppercase tracking-[0.16em] text-ui-text-secondary">{{ $label }}</p>
                                                     <div class="mt-4 space-y-3">
                                                         <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
-                                                            <div class="h-2.5 w-20 rounded-full bg-ui-text-secondary/50"></div>
-                                                            <div class="mt-3 h-2 w-14 rounded-full bg-ui-text-muted/35"></div>
+                                                            <div class="h-2.5 w-20 rounded-full bg-ui-text-secondary"></div>
+                                                            <div class="mt-3 h-2 w-14 rounded-full bg-ui-text-muted"></div>
                                                         </div>
-                                                        <div class="rounded-2xl bg-elevated/95 p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
-                                                            <div class="h-2.5 w-24 rounded-full bg-ui-text-secondary/50"></div>
-                                                            <div class="mt-3 h-2 w-10 rounded-full bg-ui-text-muted/35"></div>
+                                                        <div class="rounded-2xl bg-elevated p-3 text-ui-text-primary shadow-sm ring-1 ring-border/80">
+                                                            <div class="h-2.5 w-24 rounded-full bg-ui-text-secondary"></div>
+                                                            <div class="mt-3 h-2 w-10 rounded-full bg-ui-text-muted"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -359,32 +359,32 @@
 
                                     <div class="space-y-4">
                                         <div class="ui-panel rounded-[1.6rem] p-5 shadow-xl shadow-slate-950/30">
-                                            <p class="text-xs uppercase tracking-[0.18em] text-ui-text-muted">Visible details</p>
+                                            <p class="text-xs uppercase tracking-[0.18em] text-ui-text-secondary">Visible details</p>
                                             <div class="mt-5 space-y-4">
-                                                <div class="flex items-center justify-between rounded-2xl bg-elevated/80 px-4 py-3">
+                                                <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
                                                     <span class="text-sm text-ui-text-secondary">Columns</span>
                                                     <span class="text-sm font-semibold text-ui-text-primary">Workflow stages</span>
                                                 </div>
-                                                <div class="flex items-center justify-between rounded-2xl bg-elevated/80 px-4 py-3">
+                                                <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
                                                     <span class="text-sm text-ui-text-secondary">Cards</span>
                                                     <span class="text-sm font-semibold text-ui-text-primary">Work items</span>
                                                 </div>
-                                                <div class="flex items-center justify-between rounded-2xl bg-elevated/80 px-4 py-3">
+                                                <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
                                                     <span class="text-sm text-ui-text-secondary">User avatars</span>
                                                     <span class="text-sm font-semibold text-ui-text-primary">Owners</span>
                                                 </div>
-                                                <div class="flex items-center justify-between rounded-2xl bg-elevated/80 px-4 py-3">
+                                                <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
                                                     <span class="text-sm text-ui-text-secondary">Comments</span>
                                                     <span class="text-sm font-semibold text-ui-text-primary">Context</span>
                                                 </div>
-                                                <div class="flex items-center justify-between rounded-2xl bg-elevated/80 px-4 py-3">
+                                                <div class="flex items-center justify-between rounded-2xl bg-elevated px-4 py-3">
                                                     <span class="text-sm text-ui-text-secondary">Due dates</span>
                                                     <span class="text-sm font-semibold text-ui-text-primary">Timing</span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="rounded-[1.6rem] border border-primary/20 bg-primary/10 p-5 shadow-xl shadow-slate-950/30">
+                                        <div class="rounded-[1.6rem] border border-primary/20 bg-primary p-5 shadow-xl shadow-slate-950/30">
                                             <p class="text-sm font-semibold text-ui-text-primary">Move work, keep context, stay aligned.</p>
                                         </div>
                                     </div>
@@ -452,9 +452,9 @@
                 </x-layout.section>
             </main>
 
-            <x-layout.divider class="bg-border/40" />
+            <x-layout.divider class="bg-border" />
             <footer class="py-10">
-                <x-layout.container class="flex flex-col gap-5 text-sm text-ui-text-muted md:flex-row md:items-center md:justify-between">
+                <x-layout.container class="flex flex-col gap-5 text-sm text-ui-text-secondary md:flex-row md:items-center md:justify-between">
                     <p>Board for collaborative Kanban workflow.</p>
                     <nav class="flex flex-wrap gap-x-6 gap-y-3">
                         <a href="#features" class="transition hover:text-ui-text-primary">Features</a>

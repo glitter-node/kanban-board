@@ -8,11 +8,13 @@ import Pusher from 'pusher-js';
 
 window.Pusher = Pusher;
 window.Echo = new Echo({
-    broadcaster: 'reverb',
-    key: 'xi8cgvcxkjpn6r3rrxir',
-    wsHost: 'reverb-ws.glitter.tw',
-    wsPort: 443,
-    wssPort: 443,
+    broadcaster: 'pusher',
+    key: import.meta.env.VITE_PUSHER_APP_KEY || 'xi8cgvcxkjpn6r3rrxir',
+    wsHost: import.meta.env.VITE_PUSHER_HOST || 'reverb-ws.glitter.tw',
+    wsPort: Number(import.meta.env.VITE_PUSHER_PORT || 443),
+    wssPort: Number(import.meta.env.VITE_PUSHER_PORT || 443),
     forceTLS: true,
     enabledTransports: ['ws', 'wss'],
+    cluster: '',
+    disableStats: true,
 });

@@ -11,12 +11,12 @@ class CardComment extends Model
 {
     use HasFactory;
 
-    protected $table = 'card_comments';
+    protected $table = 'comments';
 
     protected $fillable = [
         'card_id',
         'user_id',
-        'body',
+        'content',
         'mentions_json',
     ];
 

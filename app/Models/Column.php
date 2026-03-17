@@ -18,7 +18,7 @@ class Column extends Model
         'board_id',
         'title',
         'type',
-        'order_key',
+        'position',
         'wip_limit',
         'is_archived',
     ];
@@ -39,8 +39,7 @@ class Column extends Model
     public function cards(): HasMany
     {
         return $this->hasMany(Card::class)
-            ->whereColumn('cards.board_id', 'columns.board_id')
-            ->orderBy('order_key');
+            ->orderBy('position');
     }
 
     public function activeCards(): HasMany
@@ -57,7 +56,7 @@ class Column extends Model
 
     public function scopeOrdered(Builder $query): Builder
     {
-        return $query->orderBy('order_key');
+        return $query->orderBy('position');
     }
 
     public function scopeActive(Builder $query): Builder
