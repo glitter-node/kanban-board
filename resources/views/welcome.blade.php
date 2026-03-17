@@ -20,7 +20,7 @@
         <x-layout.page as="div" class="relative isolate overflow-hidden">
             <div class="app-hero-gradient absolute inset-0 -z-20"></div>
             <div class="app-hero-orbs absolute inset-0 -z-10"></div>
-            <div class="absolute inset-x-0 top-0 -z-10 h-[38rem] bg-white"></div>
+            <div class="absolute inset-x-0 top-0 -z-10 h-[38rem] bg-background"></div>
 
             <header>
                 <x-layout.container class="flex items-center justify-between py-6">
@@ -98,7 +98,7 @@
 
                             <div class="relative">
                                 <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-primary blur-3xl"></div>
-                                <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-white blur-3xl"></div>
+                                <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-background blur-3xl"></div>
 
                                 <div class="rounded-[2rem] border border-border/70 bg-surface p-4 shadow-2xl shadow-slate-950/50 backdrop-blur">
                                     <div class="rounded-[1.7rem] border border-border/70 bg-section p-5">
