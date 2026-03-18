@@ -6,7 +6,9 @@
         </x-ui.badge>
     </div>
 
-    <p class="mt-2 text-xs ui-meta">
-        {{ $card['description'] ?? 'No description' }}
-    </p>
+    @if (!empty($card['description']))
+        <p class="mt-2 text-xs ui-meta">
+            {{ $card['description'] }}
+        </p>
+    @endif
 </x-ui.card>

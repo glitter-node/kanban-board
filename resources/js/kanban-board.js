@@ -28,6 +28,7 @@ const registerKanbanBoard = () => {
             editingCardId: null,
             inlineCardTitle: '',
             pendingArchive: null,
+            pendingArchiveConfirmation: null,
             cardForm: {
                 id: null,
                 title: '',
@@ -132,6 +133,11 @@ const registerKanbanBoard = () => {
 
                 if (toast.actionType === 'undo-archive') {
                     this.undoArchive(toast.actionPayload);
+                    return;
+                }
+
+                if (toast.actionType === 'confirm-archive') {
+                    this.confirmArchive(toast.actionPayload);
                 }
             },
 
@@ -146,6 +152,18 @@ const registerKanbanBoard = () => {
 
             apiBase(path = '') {
                 return `/api/v1/boards/${this.boardId}${path}`;
+            },
+
+            primaryActionLabel(card) {
+                if (card.blocked) {
+                    return 'Unblock';
+                }
+
+                if (this.isNextActionable(card)) {
+                    return 'Open next';
+                }
+
+                return 'Open';
             },
 
             recalculateFlowState() {
@@ -474,7 +492,7 @@ const registerKanbanBoard = () => {
                     return;
                 }
 
-                this.archiveCardWithUndo(this.selectedCard.id, this.selectedColumnId);
+                this.requestArchiveConfirmation(this.selectedCard.id, this.selectedColumnId);
                 this.closeCardModal();
             },
 
@@ -527,6 +545,32 @@ const registerKanbanBoard = () => {
                     actionPayload: { cardId },
                     duration: 2600,
                 });
+            },
+
+            requestArchiveConfirmation(cardId, columnId = null) {
+                const existing = this.pendingArchiveConfirmation;
+
+                if (existing && Number(existing.cardId) === Number(cardId)) {
+                    this.confirmArchive(existing);
+                    return;
+                }
+
+                this.pendingArchiveConfirmation = { cardId, columnId };
+                this.queueToast('Archive this card?', 'info', {
+                    actionLabel: 'Archive',
+                    actionType: 'confirm-archive',
+                    actionPayload: { cardId, columnId },
+                    duration: 4000,
+                });
+            },
+
+            confirmArchive(payload) {
+                if (!payload?.cardId) {
+                    return;
+                }
+
+                this.pendingArchiveConfirmation = null;
+                this.archiveCardWithUndo(payload.cardId, payload.columnId);
             },
 
             undoArchive(payload) {
@@ -749,6 +793,7 @@ const registerKanbanBoard = () => {
                             onStart: (event) => {
                                 event.item.classList.add('drag-active');
                                 this.setDropTarget(event.from.closest('[data-column-panel]'));
+                                event.from.classList.add('drag-origin');
                                 window.trackEvent?.('drag_started', {
                                     board_id: this.boardId,
                                     card_id: Number(event.item.dataset.cardId),
@@ -757,9 +802,12 @@ const registerKanbanBoard = () => {
                             },
                             onMove: (event) => {
                                 this.setDropTarget(event.to.closest('[data-column-panel]'));
+                                event.to.classList.add('drop-target-list');
                             },
                             onEnd: async (event) => {
                                 event.item.classList.remove('drag-active');
+                                event.from.classList.remove('drag-origin');
+                                event.to.classList.remove('drop-target-list');
                                 this.clearDropTarget();
 
                                 const cardId = Number(event.item.dataset.cardId);

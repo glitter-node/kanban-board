@@ -29,7 +29,7 @@
                             size="sm"
                             data-column-handle
                             x-show="canEdit"
-                            class="cursor-grab"
+                            class="cursor-grab kanban-column-handle"
                             aria-label="Drag column"
                         >
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,8 +69,8 @@
                     <div :data-column-id="column.id" data-cards-sortable class="space-y-3">
                         <template x-if="column.cards.length === 0">
                             <x-ui.surface class="kanban-empty-slot px-4 py-5 text-center">
-                                <p class="text-sm font-medium">No cards yet</p>
-                                <p class="mt-1 text-xs ui-meta">Drop work here or create the next task for this step.</p>
+                                <p class="text-sm font-medium">Ready for the next card</p>
+                                <p class="mt-1 text-xs ui-meta">Drag work here to continue the flow.</p>
                             </x-ui.surface>
                         </template>
 
@@ -97,7 +97,7 @@
                                             class="kanban-card-handle cursor-grab touch-none"
                                             aria-label="Drag card"
                                             @click.stop
-                                            >
+                                        >
                                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/>
                                             </svg>
@@ -137,7 +137,7 @@
                                     ></span>
                                 </div>
 
-                                <p class="mt-2 line-clamp-2 text-xs ui-meta" x-text="card.description || 'No description'"></p>
+                                <p class="mt-2 line-clamp-2 text-xs ui-meta" x-show="card.description" x-text="card.description"></p>
 
                                 <div class="mt-3 flex flex-wrap items-center gap-2">
                                     <x-ui.badge tone="warning" x-show="card.blocked">Blocked</x-ui.badge>
@@ -165,7 +165,7 @@
                                             aria-label="Open card details"
                                             @click.stop="openCard(card.id)"
                                         >
-                                            Open
+                                            <span x-text="primaryActionLabel(card)"></span>
                                         </x-ui.button>
                                         <x-ui.button
                                             type="button"
@@ -195,7 +195,7 @@
                                         size="sm"
                                         aria-label="Archive card"
                                         x-show="canEdit"
-                                        @click.stop="archiveCardWithUndo(card.id, column.id)"
+                                        @click.stop="requestArchiveConfirmation(card.id, column.id)"
                                     >
                                         <span aria-hidden="true">×</span>
                                     </x-ui.button>
@@ -241,7 +241,7 @@
                                         </x-ui.button>
                                     </div>
 
-                                    <span class="ui-meta">Move</span>
+                                    <span class="ui-meta" x-text="isNextActionable(card) ? 'Suggested next move' : 'Move'"></span>
                                 </div>
                             </x-ui.card>
                         </template>

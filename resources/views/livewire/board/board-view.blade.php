@@ -45,7 +45,7 @@
             <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
                 <div class="min-w-0 flex-1">
                     <h1 class="truncate text-2xl font-semibold" x-text="board.title"></h1>
-                    <p class="mt-1 truncate text-sm ui-meta" x-text="board.description || 'No description'"></p>
+                    <p class="mt-1 truncate text-sm ui-meta" x-show="board.description" x-text="board.description"></p>
                     <div class="mt-3 flex flex-wrap items-center gap-3 text-xs ui-meta">
                         <x-ui.badge>
                             <span x-text="(boardAverageCycleTime() ?? 'N/A') + 'h avg cycle'"></span>

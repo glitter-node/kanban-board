@@ -584,6 +584,31 @@
 
     .kanban-empty-slot {
         border-style: dashed;
+        min-height: 8rem;
+        display: grid;
+        place-items: center;
+    }
+
+    .kanban-column-handle,
+    .kanban-card-handle {
+        border-style: dashed;
+        border-color: var(--border-strong);
+    }
+
+    .kanban-card-handle svg,
+    .kanban-column-handle svg {
+        opacity: 0.95;
+    }
+
+    .drag-origin {
+        opacity: 0.75;
+    }
+
+    .drop-target-list {
+        min-height: 5rem;
+        border-radius: 1rem;
+        outline: 1px dashed var(--color-primary);
+        outline-offset: 4px;
     }
 
     .kanban-card-handle {
