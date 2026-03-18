@@ -1,2 +1,37 @@
-<x-guest-layout> <x-auth-session-status class="mb-4" :status="session('status')" /> <form method="POST" action="{{ route('email.pre-verify.request') }}"> @csrf <div> <x-input-label for="email" :value="__('Email')" /> <x-text-input id="email" class="mt-1 block w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" /> <x-input-error :messages="$errors->get('email')" class="mt-2" /> </div> <div class="mt-4 space-y-4"> <div class="text-sm text-secondary"> {{ __('Enter your email to receive a pre-verification link before registration.') }} </div> <div class="flex items-center justify-end gap-3"> <x-secondary-button type="button" onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = '{{ url('/') }}'; }" > {{ __('Cancel') }} </x-secondary-button> <x-primary-button> {{ __('Send Link') }} </x-primary-button> </div> </div> </form>
+<x-guest-layout>
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+
+    <form method="POST" action="{{ route('email.pre-verify.request') }}">
+        @csrf
+
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input
+                id="email"
+                class="mt-1 block w-full"
+                type="email"
+                name="email"
+                :value="old('email')"
+                required
+                autofocus
+                autocomplete="email"
+            />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <div class="mt-4 space-y-4">
+            <p class="text-sm text-secondary">
+                {{ __('Enter your email to receive a pre-verification link before registration.') }}
+            </p>
+
+            <div class="flex items-center justify-end gap-3">
+                <x-secondary-button type="button" onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = '{{ url('/') }}'; }">
+                    {{ __('Cancel') }}
+                </x-secondary-button>
+                <x-primary-button>
+                    {{ __('Send Link') }}
+                </x-primary-button>
+            </div>
+        </div>
+    </form>
 </x-guest-layout>
