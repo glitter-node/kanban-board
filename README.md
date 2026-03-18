@@ -1,4 +1,4 @@
-# KanbanBoard
+# [KanbanBoard](https://sir.kr/showcases/173)
 
 A modern realtime Kanban board application built with **Laravel 12**, **Livewire**, and **Tailwind CSS**.
 
@@ -304,3 +304,7 @@ ActivityLogged
 ## License
 
 MIT License
+
+---
+
+## [실시간 보드](https://sir.kr/showcases/173)
