@@ -9,36 +9,36 @@
         --elevated: var(--surface-hover);
         --elevated-foreground: var(--surface-foreground);
 
-        --color-bg-base: rgb(var(--background));
-        --color-bg-section: rgb(var(--muted));
-        --color-bg-surface: rgb(var(--surface));
-        --color-bg-elevated: rgb(var(--elevated));
+        --color-bg-base: var(--background);
+        --color-bg-section: var(--muted);
+        --color-bg-surface: var(--surface);
+        --color-bg-elevated: var(--elevated);
 
-        --color-text-primary: rgb(var(--foreground));
-        --color-text-secondary: rgb(var(--muted-foreground));
-        --color-text-muted: rgb(var(--muted-foreground));
-        --color-text-disabled: rgb(var(--color-gray-400));
+        --color-text-primary: var(--foreground);
+        --color-text-secondary: var(--muted-foreground);
+        --color-text-muted: var(--muted-foreground);
+        --color-text-disabled: var(--muted-foreground);
 
-        --color-border: rgb(var(--border));
+        --color-border: var(--border);
 
-        --color-primary: rgb(var(--primary));
-        --color-primary-hover: rgb(var(--primary-hover));
-        --color-primary-active: rgb(var(--primary-active));
-        --color-secondary: rgb(var(--primary));
-        --color-accent: rgb(var(--primary));
+        --color-primary: var(--primary);
+        --color-primary-hover: var(--primary-hover);
+        --color-primary-active: var(--primary-active);
+        --color-secondary: var(--primary);
+        --color-accent: var(--primary);
 
-        --color-success: rgb(var(--success));
-        --color-success-foreground: rgb(var(--success-foreground));
-        --color-warning: rgb(var(--warning));
-        --color-warning-foreground: rgb(var(--warning-foreground));
-        --color-error: rgb(var(--error));
-        --color-error-foreground: rgb(var(--error-foreground));
-        --color-info: rgb(var(--info));
-        --color-info-foreground: rgb(var(--info-foreground));
+        --color-success: var(--success);
+        --color-success-foreground: var(--success-foreground);
+        --color-warning: var(--warning);
+        --color-warning-foreground: var(--warning-foreground);
+        --color-error: var(--error);
+        --color-error-foreground: var(--error-foreground);
+        --color-info: var(--info);
+        --color-info-foreground: var(--info-foreground);
 
-        --color-overlay: rgb(var(--background));
-        --color-hero-gradient-start: rgb(var(--background));
-        --color-hero-gradient-end: rgb(var(--background));
+        --color-overlay: var(--background);
+        --color-hero-gradient-start: var(--background);
+        --color-hero-gradient-end: var(--background);
 
         --motion-fast: 120ms;
         --motion-normal: 180ms;
@@ -314,7 +314,7 @@
 
     .ui-panel:hover,
     .ui-panel-elevated:hover {
-        background-color: rgb(var(--surface-hover));
+        background-color: var(--surface-hover);
     }
 
     .ui-panel-header {
@@ -350,9 +350,9 @@
 
     .ui-input {
         @apply motion rounded-md;
-        background-color: rgb(var(--input-background));
+        background-color: var(--input-background);
         border: 1px solid var(--color-border);
-        color: rgb(var(--input-foreground));
+        color: var(--input-foreground);
         transition:
             box-shadow var(--motion-fast) var(--ease-standard),
             border-color var(--motion-fast) var(--ease-standard),
@@ -374,7 +374,7 @@
         @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-widest;
         background-color: var(--color-primary);
         border-color: var(--color-primary);
-        color: rgb(var(--primary-foreground));
+        color: var(--primary-foreground);
         transition:
             transform var(--motion-fast) var(--ease-standard),
             background-color var(--motion-fast) var(--ease-standard),
@@ -386,7 +386,7 @@
     .btn-primary:focus {
         background-color: var(--color-primary-hover);
         border-color: var(--color-primary-hover);
-        color: rgb(var(--primary-foreground));
+        color: var(--primary-foreground);
     }
 
     .btn-primary:active {
@@ -398,7 +398,7 @@
         @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-widest;
         background-color: var(--color-bg-surface);
         border-color: var(--color-border);
-        color: rgb(var(--surface-foreground));
+        color: var(--surface-foreground);
         transition:
             transform var(--motion-fast) var(--ease-standard),
             background-color var(--motion-fast) var(--ease-standard),
@@ -408,13 +408,13 @@
 
     .btn-secondary:hover,
     .btn-secondary:focus {
-        background-color: rgb(var(--surface-hover));
-        border-color: rgb(var(--border-strong));
-        color: rgb(var(--surface-foreground));
+        background-color: var(--surface-hover);
+        border-color: var(--border-strong);
+        color: var(--surface-foreground);
     }
 
     .btn-secondary:active {
-        background-color: rgb(var(--muted));
+        background-color: var(--muted);
     }
 
     .btn-danger {
@@ -431,12 +431,12 @@
 
     .btn-danger:hover,
     .btn-danger:focus {
-        background-color: rgb(var(--error));
-        border-color: rgb(var(--error));
+        background-color: var(--error);
+        border-color: var(--error);
     }
 
     .btn-danger:active {
-        background-color: rgb(var(--error));
+        background-color: var(--error);
     }
 
     .btn-ghost {
@@ -452,19 +452,19 @@
 
     .btn-ghost:hover,
     .btn-ghost:focus {
-        background-color: rgb(var(--muted));
+        background-color: var(--muted);
         color: var(--color-text-primary);
     }
 
     .btn-ghost:active {
-        background-color: rgb(var(--surface-hover));
+        background-color: var(--surface-hover);
     }
 
     .btn-icon {
         @apply inline-flex items-center justify-center rounded-full border p-2;
         background-color: var(--color-bg-surface);
         border-color: var(--color-border);
-        color: rgb(var(--surface-foreground));
+        color: var(--surface-foreground);
         transition:
             transform var(--motion-fast) var(--ease-standard),
             background-color var(--motion-fast) var(--ease-standard),
@@ -474,13 +474,13 @@
 
     .btn-icon:hover,
     .btn-icon:focus {
-        background-color: rgb(var(--surface-hover));
-        border-color: rgb(var(--border-strong));
-        color: rgb(var(--surface-foreground));
+        background-color: var(--surface-hover);
+        border-color: var(--border-strong);
+        color: var(--surface-foreground);
     }
 
     .btn-icon:active {
-        background-color: rgb(var(--muted));
+        background-color: var(--muted);
     }
 
     .btn-sm {
@@ -531,8 +531,8 @@
     .ui-badge {
         @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase;
         background-color: var(--color-bg-surface);
-        color: rgb(var(--surface-foreground));
-        border: 1px solid rgb(var(--border-strong));
+        color: var(--surface-foreground);
+        border: 1px solid var(--border-strong);
     }
 
     .ui-badge-sm {
@@ -541,7 +541,7 @@
 
     .ui-badge-accent {
         background-color: var(--color-primary);
-        color: rgb(var(--primary-foreground));
+        color: var(--primary-foreground);
         border-color: var(--color-primary);
     }
 
@@ -573,7 +573,7 @@
         @apply inline-flex items-center justify-center rounded-full text-xs font-semibold;
         background-color: var(--color-bg-elevated);
         color: var(--color-text-primary);
-        border: 1px solid rgb(var(--border-strong));
+        border: 1px solid var(--border-strong);
     }
 
     .ui-avatar-sm {
@@ -586,7 +586,7 @@
 
     .ui-empty {
         @apply rounded-2xl border border-dashed px-4 py-8 text-center text-sm;
-        border-color: rgb(var(--border-strong));
+        border-color: var(--border-strong);
         color: var(--color-text-secondary);
         background-color: var(--color-bg-surface);
     }
@@ -664,7 +664,7 @@
 
     .skeleton {
         @apply animate-pulse rounded;
-        background-color: rgb(var(--surface-hover));
+        background-color: var(--surface-hover);
     }
 
     :focus-visible {
@@ -684,7 +684,7 @@
     .ui-tooltip-content {
         @apply pointer-events-none absolute z-50 max-w-xs rounded-xl px-3 py-2 text-xs;
         background-color: var(--color-bg-surface);
-        border: 1px solid rgb(var(--border-strong));
+        border: 1px solid var(--border-strong);
         color: var(--color-text-secondary);
     }
 
