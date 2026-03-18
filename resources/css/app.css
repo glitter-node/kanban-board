@@ -303,6 +303,10 @@
         box-shadow: var(--shadow-lg), var(--glow-primary);
     }
 
+    .ui-card-interactive:active {
+        transform: translateY(-1px) scale(0.99);
+    }
+
     .ui-card-muted {
         @apply rounded-2xl;
         background: var(--gradient-surface), var(--surface);
@@ -417,6 +421,7 @@
     .btn-primary:active {
         background: var(--color-primary-active);
         border-color: var(--color-primary-active);
+        transform: scale(0.98);
     }
 
     .btn-secondary {
@@ -442,6 +447,7 @@
 
     .btn-secondary:active {
         background-color: var(--muted);
+        transform: scale(0.98);
     }
 
     .btn-danger {
@@ -465,6 +471,7 @@
 
     .btn-danger:active {
         background-color: var(--error);
+        transform: scale(0.98);
     }
 
     .btn-ghost {
@@ -510,6 +517,38 @@
 
     .btn-icon:active {
         background-color: var(--muted);
+        transform: scale(0.96);
+    }
+
+    .kanban-card {
+        will-change: transform, box-shadow, opacity;
+    }
+
+    .kanban-card-handle {
+        opacity: 0.9;
+    }
+
+    .kanban-card-handle:hover,
+    .kanban-card-handle:focus {
+        cursor: grab;
+    }
+
+    .drag-active {
+        transform: scale(1.03);
+        opacity: 0.92;
+        box-shadow: var(--shadow-lg), var(--glow-primary);
+    }
+
+    .drop-target {
+        border-color: var(--color-primary) !important;
+        box-shadow: var(--shadow-lg), var(--glow-primary);
+    }
+
+    .drop-preview,
+    .sortable-ghost {
+        border: 1px dashed var(--color-primary);
+        box-shadow: inset 0 2px 0 var(--color-primary);
+        opacity: 0.55;
     }
 
     .btn-sm {

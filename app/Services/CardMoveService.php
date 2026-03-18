@@ -120,7 +120,7 @@ class CardMoveService
                         card: [
                             'id' => $lockedCard->getKey(),
                             'column_id' => $destinationColumn->getKey(),
-                            'order_key' => $newOrderKey,
+                            'order_key' => $orderKey,
                             'updated_at' => $lockedCard->updated_at?->toISOString(),
                         ],
                     ));

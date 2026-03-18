@@ -14,6 +14,7 @@
                 as="section"
                 padding="none"
                 :data-column-id="column.id"
+                data-column-panel
                 class="flex h-full w-[20rem] shrink-0 flex-col"
             >
                 <div class="ui-panel-header flex items-center justify-between">
@@ -45,12 +46,28 @@
                             <x-ui.card
                                 as="article"
                                 :data-card-id="card.id"
-                                class="cursor-pointer p-4"
+                                class="kanban-card cursor-pointer p-4"
                                 interactive="true"
                                 @click="openCard(card.id)"
                             >
                                 <div class="flex items-start justify-between gap-2">
-                                    <h3 class="line-clamp-2 text-sm font-medium" x-text="card.title"></h3>
+                                    <div class="flex items-start gap-2">
+                                        <x-ui.button
+                                            type="button"
+                                            variant="icon"
+                                            size="sm"
+                                            data-card-handle
+                                            class="kanban-card-handle cursor-grab touch-none"
+                                            aria-label="Drag card"
+                                            @click.stop
+                                        >
+                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/>
+                                            </svg>
+                                        </x-ui.button>
+
+                                        <h3 class="line-clamp-2 text-sm font-medium" x-text="card.title"></h3>
+                                    </div>
                                     <span
                                         class="ui-badge ui-badge-sm"
                                         :class="{
@@ -71,6 +88,49 @@
                                         class="ui-badge ui-badge-sm ui-badge-accent max-w-[9rem] truncate"
                                         x-text="users.find(user => Number(user.id) === Number(card.assigned_user_id))?.name || 'Assigned'"
                                     ></span>
+                                </div>
+
+                                <div x-show="canEdit" class="mt-3 flex items-center justify-between gap-2" @click.stop>
+                                    <div class="flex items-center gap-2">
+                                        <x-ui.button
+                                            type="button"
+                                            variant="icon"
+                                            size="sm"
+                                            aria-label="Move card left"
+                                            @click.stop="moveCardHorizontally(card.id, -1)"
+                                        >
+                                            <span aria-hidden="true">←</span>
+                                        </x-ui.button>
+                                        <x-ui.button
+                                            type="button"
+                                            variant="icon"
+                                            size="sm"
+                                            aria-label="Move card up"
+                                            @click.stop="moveCardVertically(card.id, column.id, -1)"
+                                        >
+                                            <span aria-hidden="true">↑</span>
+                                        </x-ui.button>
+                                        <x-ui.button
+                                            type="button"
+                                            variant="icon"
+                                            size="sm"
+                                            aria-label="Move card down"
+                                            @click.stop="moveCardVertically(card.id, column.id, 1)"
+                                        >
+                                            <span aria-hidden="true">↓</span>
+                                        </x-ui.button>
+                                        <x-ui.button
+                                            type="button"
+                                            variant="icon"
+                                            size="sm"
+                                            aria-label="Move card right"
+                                            @click.stop="moveCardHorizontally(card.id, 1)"
+                                        >
+                                            <span aria-hidden="true">→</span>
+                                        </x-ui.button>
+                                    </div>
+
+                                    <span class="ui-meta">Move</span>
                                 </div>
                             </x-ui.card>
                         </template>
