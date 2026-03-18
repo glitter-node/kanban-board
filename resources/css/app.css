@@ -6,7 +6,7 @@
 
 @layer base {
     :root {
-        --elevated: var(--surface-hover);
+        --elevated: var(--surface-elevated);
         --elevated-foreground: var(--surface-foreground);
 
         --color-bg-base: var(--background);
@@ -25,7 +25,7 @@
         --color-primary-hover: var(--primary-hover);
         --color-primary-active: var(--primary-active);
         --color-secondary: var(--primary);
-        --color-accent: var(--primary);
+        --color-accent: var(--accent);
 
         --color-success: var(--success);
         --color-success-foreground: var(--success-foreground);
@@ -38,7 +38,7 @@
 
         --color-overlay: var(--background);
         --color-hero-gradient-start: var(--background);
-        --color-hero-gradient-end: var(--background);
+        --color-hero-gradient-end: var(--surface-elevated);
 
         --motion-fast: 120ms;
         --motion-normal: 180ms;
@@ -57,6 +57,7 @@
 
     body {
         background-color: var(--color-bg-base);
+        background-image: var(--gradient-page);
         color: var(--color-text-primary);
     }
 
@@ -129,6 +130,7 @@
 
     .layout-section {
         @apply py-16;
+        position: relative;
     }
 
     .layout-section-none {
@@ -137,10 +139,12 @@
 
     .layout-section-sm {
         @apply py-10;
+        position: relative;
     }
 
     .layout-section-lg {
         @apply py-24;
+        position: relative;
     }
 
     .layout-stack {
@@ -264,25 +268,30 @@
     }
 
     .ui-section {
-        background-color: var(--color-bg-section);
+        background: var(--gradient-surface), var(--color-bg-section);
         border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
     }
 
     .ui-surface {
-        background-color: var(--color-bg-surface);
+        background: var(--color-bg-surface);
         border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
     }
 
+    .ui-surface-elevated,
     .ui-elevated {
-        background-color: var(--color-bg-elevated);
+        background: var(--gradient-surface), var(--color-bg-elevated);
         border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-md);
     }
 
     .ui-card {
         @apply motion rounded-2xl;
-        background-color: var(--surface);
+        background: var(--gradient-surface), var(--surface-elevated);
         border: 1px solid var(--color-border);
         color: var(--surface-foreground);
+        box-shadow: var(--shadow-lg);
     }
 
     .ui-card-interactive {
@@ -291,30 +300,44 @@
 
     .ui-card-interactive:hover {
         transform: translateY(-2px);
+        box-shadow: var(--shadow-lg), var(--glow-primary);
     }
 
     .ui-card-muted {
         @apply rounded-2xl;
-        background-color: var(--surface);
+        background: var(--gradient-surface), var(--surface);
         border: 1px solid var(--color-border);
         color: var(--surface-foreground);
+        box-shadow: var(--shadow-md);
     }
 
     .ui-panel {
         @apply motion rounded-3xl;
-        background-color: var(--color-bg-surface);
+        background: var(--gradient-surface), var(--color-bg-surface);
         border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-md);
     }
 
     .ui-panel-elevated {
         @apply motion rounded-3xl;
-        background-color: var(--color-bg-surface);
+        background: var(--gradient-surface), var(--color-bg-elevated);
         border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: var(--blur-bg);
     }
 
     .ui-panel:hover,
     .ui-panel-elevated:hover {
         background-color: var(--surface-hover);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .ui-glow {
+        box-shadow: var(--glow-primary);
+    }
+
+    .ui-gradient {
+        background-image: var(--gradient-surface);
     }
 
     .ui-panel-header {
@@ -372,9 +395,10 @@
 
     .btn-primary {
         @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-widest;
-        background-color: var(--color-primary);
+        background: linear-gradient(180deg, var(--primary), var(--primary-hover));
         border-color: var(--color-primary);
         color: var(--primary-foreground);
+        box-shadow: var(--glow-primary), var(--shadow-md);
         transition:
             transform var(--motion-fast) var(--ease-standard),
             background-color var(--motion-fast) var(--ease-standard),
@@ -384,21 +408,23 @@
 
     .btn-primary:hover,
     .btn-primary:focus {
-        background-color: var(--color-primary-hover);
+        background: linear-gradient(180deg, var(--primary-hover), var(--primary-active));
         border-color: var(--color-primary-hover);
         color: var(--primary-foreground);
+        box-shadow: var(--glow-primary), var(--shadow-lg);
     }
 
     .btn-primary:active {
-        background-color: var(--color-primary-active);
+        background: var(--color-primary-active);
         border-color: var(--color-primary-active);
     }
 
     .btn-secondary {
         @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-widest;
-        background-color: var(--color-bg-surface);
+        background: var(--gradient-surface), var(--color-bg-surface);
         border-color: var(--color-border);
         color: var(--surface-foreground);
+        box-shadow: var(--shadow-sm);
         transition:
             transform var(--motion-fast) var(--ease-standard),
             background-color var(--motion-fast) var(--ease-standard),
@@ -408,9 +434,10 @@
 
     .btn-secondary:hover,
     .btn-secondary:focus {
-        background-color: var(--surface-hover);
+        background: var(--gradient-surface), var(--surface-hover);
         border-color: var(--border-strong);
         color: var(--surface-foreground);
+        box-shadow: var(--shadow-md);
     }
 
     .btn-secondary:active {
@@ -419,9 +446,10 @@
 
     .btn-danger {
         @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-widest;
-        background-color: var(--color-error);
+        background: linear-gradient(180deg, var(--color-error), #dc2626);
         border-color: var(--color-error);
         color: var(--color-error-foreground);
+        box-shadow: var(--shadow-md);
         transition:
             transform var(--motion-fast) var(--ease-standard),
             background-color var(--motion-fast) var(--ease-standard),
@@ -441,7 +469,7 @@
 
     .btn-ghost {
         @apply inline-flex items-center justify-center rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-widest;
-        background-color: var(--color-bg-base);
+        background: var(--gradient-surface), transparent;
         color: var(--color-text-secondary);
         transition:
             transform var(--motion-fast) var(--ease-standard),
@@ -462,9 +490,10 @@
 
     .btn-icon {
         @apply inline-flex items-center justify-center rounded-full border p-2;
-        background-color: var(--color-bg-surface);
+        background: var(--gradient-surface), var(--color-bg-surface);
         border-color: var(--color-border);
         color: var(--surface-foreground);
+        box-shadow: var(--shadow-sm);
         transition:
             transform var(--motion-fast) var(--ease-standard),
             background-color var(--motion-fast) var(--ease-standard),
@@ -516,7 +545,7 @@
     }
 
     .app-hero-gradient {
-        background-color: var(--color-bg-base);
+        background: var(--gradient-page), var(--color-bg-base);
     }
 
     .app-hero-orbs {
@@ -524,15 +553,18 @@
     }
 
     .app-glass-panel {
-        background-color: var(--surface);
+        background: var(--gradient-surface), var(--surface-elevated);
         border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: var(--blur-bg);
     }
 
     .ui-badge {
         @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase;
-        background-color: var(--color-bg-surface);
+        background: var(--gradient-surface), var(--color-bg-surface);
         color: var(--surface-foreground);
         border: 1px solid var(--border-strong);
+        box-shadow: var(--shadow-sm);
     }
 
     .ui-badge-sm {
@@ -540,9 +572,10 @@
     }
 
     .ui-badge-accent {
-        background-color: var(--color-primary);
-        color: var(--primary-foreground);
-        border-color: var(--color-primary);
+        background-color: var(--color-accent);
+        color: var(--color-accent-foreground);
+        border-color: var(--color-accent);
+        box-shadow: var(--glow-accent);
     }
 
     .ui-badge-success {

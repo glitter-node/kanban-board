@@ -12,6 +12,6 @@
     };
 @endphp
 
-<{{ $as }} {{ $attributes->class([$spacingClass]) }}>
+<{{ $as }} {{ $attributes->class([$spacingClass, 'ui-gradient']) }}>
     {{ $slot }}
 </{{ $as }}>

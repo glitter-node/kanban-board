@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 ui-surface'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 ui-surface-elevated'])
 
 @php
 $alignmentClasses = match ($align) {
