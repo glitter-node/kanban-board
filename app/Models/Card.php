@@ -23,10 +23,13 @@ class Card extends Model
         'assigned_user_id',
         'priority',
         'status',
+        'blocked',
+        'blocked_reason',
         'order_key',
         'due_at',
         'started_at',
         'completed_at',
+        'moved_to_done_at',
         'archived_at',
         'version',
     ];
@@ -35,9 +38,11 @@ class Card extends Model
     {
         return [
             'priority' => 'integer',
+            'blocked' => 'boolean',
             'due_at' => 'datetime',
             'started_at' => 'datetime',
             'completed_at' => 'datetime',
+            'moved_to_done_at' => 'datetime',
             'archived_at' => 'datetime',
             'version' => 'integer',
         ];
@@ -66,6 +71,11 @@ class Card extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(CardComment::class)->latest('created_at');
+    }
+
+    public function columnHistory(): HasMany
+    {
+        return $this->hasMany(CardColumnHistory::class)->latest('entered_at');
     }
 
     public function scopeForBoard(Builder $query, Board|int $board): Builder
@@ -120,5 +130,10 @@ class Card extends Model
     public function isArchived(): bool
     {
         return $this->status === 'archived' || $this->archived_at !== null;
+    }
+
+    public function isBlocked(): bool
+    {
+        return $this->blocked === true;
     }
 }

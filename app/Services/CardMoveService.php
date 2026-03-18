@@ -18,6 +18,7 @@ class CardMoveService
     public function __construct(
         private readonly ActivityService $activityService,
         private readonly AnalyticsService $analyticsService,
+        private readonly FlowMetricsService $flowMetricsService,
     ) {}
 
     /**
@@ -90,11 +91,17 @@ class CardMoveService
 
                     $fromColumnId = $lockedCard->column_id;
 
+                    $this->assertWipLimitNotExceeded($destinationColumn, $lockedCard);
+                    $this->flowMetricsService->recordColumnExit($lockedCard, $actor);
+
                     $lockedCard->forceFill([
                         'column_id' => $destinationColumn->getKey(),
                         'order_key' => $orderKey,
+                        ...$this->flowMetricsService->updateCompletionSignals($lockedCard, $destinationColumn),
                         'version' => $lockedCard->version + 1,
                     ])->save();
+
+                    $this->flowMetricsService->recordColumnEntry($lockedCard, $destinationColumn, $actor);
 
                     $this->activityService->logActivity(
                         board: $board,
@@ -122,6 +129,9 @@ class CardMoveService
                             'id' => $lockedCard->getKey(),
                             'column_id' => $destinationColumn->getKey(),
                             'order_key' => $orderKey,
+                            'status' => $lockedCard->status,
+                            'completed_at' => $lockedCard->completed_at?->toISOString(),
+                            'moved_to_done_at' => $lockedCard->moved_to_done_at?->toISOString(),
                             'updated_at' => $lockedCard->updated_at?->toISOString(),
                         ],
                     ));
@@ -247,12 +257,18 @@ class CardMoveService
                         default => $this->generateOrderKeyBetween(null, null),
                     };
 
+                    $this->assertWipLimitNotExceeded($destinationColumn, $lockedCard);
+                    $this->flowMetricsService->recordColumnExit($lockedCard, $actor);
+
                     $lockedCard->forceFill([
                         'board_id' => $board->getKey(),
                         'column_id' => $destinationColumn->getKey(),
                         'order_key' => $newOrderKey,
+                        ...$this->flowMetricsService->updateCompletionSignals($lockedCard, $destinationColumn),
                         'version' => $lockedCard->version + 1,
                     ])->save();
+
+                    $this->flowMetricsService->recordColumnEntry($lockedCard, $destinationColumn, $actor);
 
                     $this->activityService->logActivity(
                         board: $board,
@@ -279,7 +295,10 @@ class CardMoveService
                         card: [
                             'id' => $lockedCard->getKey(),
                             'column_id' => $destinationColumn->getKey(),
-                            'order_key' => $orderKey,
+                            'order_key' => $newOrderKey,
+                            'status' => $lockedCard->status,
+                            'completed_at' => $lockedCard->completed_at?->toISOString(),
+                            'moved_to_done_at' => $lockedCard->moved_to_done_at?->toISOString(),
                             'updated_at' => $lockedCard->updated_at?->toISOString(),
                         ],
                     ));
@@ -345,6 +364,26 @@ class CardMoveService
 
         if ((int) $neighbor->column_id !== (int) $destinationColumn->getKey()) {
             throw new DomainException('A neighbor card does not belong to the destination column.');
+        }
+    }
+
+    private function assertWipLimitNotExceeded(Column $destinationColumn, Card $card): void
+    {
+        if ($destinationColumn->wip_limit === null) {
+            return;
+        }
+
+        $activeCards = Card::query()
+            ->forColumn($destinationColumn)
+            ->where('status', '!=', 'archived')
+            ->when(
+                (int) $card->column_id === (int) $destinationColumn->getKey(),
+                fn ($query) => $query->whereKeyNot($card->getKey())
+            )
+            ->count();
+
+        if ($activeCards >= $destinationColumn->wip_limit) {
+            throw new DomainException('This move would exceed the destination column WIP limit.');
         }
     }
 

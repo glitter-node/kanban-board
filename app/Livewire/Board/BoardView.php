@@ -9,6 +9,7 @@ use App\Services\BoardMemberService;
 use App\Services\BoardService;
 use App\Services\CardService;
 use App\Services\ColumnService;
+use App\Services\FlowMetricsService;
 use App\Services\NotificationService;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
@@ -47,6 +48,7 @@ class BoardView extends Component
         BoardMemberService $boardMemberService,
         ActivityService $activityService,
         NotificationService $notificationService,
+        FlowMetricsService $flowMetricsService,
     ): void {
         Gate::authorize('view', $board);
 
@@ -59,19 +61,23 @@ class BoardView extends Component
         $this->currentRole = $board->roleFor($user);
         $this->canEdit = in_array($this->currentRole, ['owner', 'editor'], true);
 
+        $cards = collect($cardService->listCards($board, [], 500)->items());
+        $cardsByColumn = $cards->groupBy('column_id');
+        $flowMetrics = $flowMetricsService->boardMetrics($board);
+
         $this->boardPayload = [
             'id' => $board->getKey(),
             'title' => $board->title,
             'description' => $board->description,
             'type' => $board->type,
             'experiments' => $this->experimentAssignments(),
+            'metrics' => $flowMetrics,
         ];
-
-        $cards = collect($cardService->listCards($board, [], 500)->items());
-        $cardsByColumn = $cards->groupBy('column_id');
 
         $this->columns = $columnService->listColumns($board)
             ->map(function ($column) use ($cardsByColumn) {
+                $columnCards = collect($cardsByColumn->get($column->getKey(), []));
+
                 return [
                     'id' => $column->getKey(),
                     'board_id' => $column->board_id,
@@ -79,9 +85,11 @@ class BoardView extends Component
                     'type' => $column->type,
                     'order_key' => $column->order_key,
                     'wip_limit' => $column->wip_limit,
+                    'current_wip' => $columnCards->where('status', '!=', 'archived')->count(),
+                    'average_time_hours' => data_get($flowMetrics, 'average_time_per_column.'.$column->getKey().'.average_hours', 0),
                     'is_archived' => (bool) $column->is_archived,
                     'updated_at' => optional($column->updated_at)->toISOString(),
-                    'cards' => collect($cardsByColumn->get($column->getKey(), []))
+                    'cards' => $columnCards
                         ->map(fn ($card) => [
                             'id' => $card->id,
                             'board_id' => $card->board_id,
@@ -92,8 +100,13 @@ class BoardView extends Component
                             'description' => $card->description,
                             'priority' => $card->priority,
                             'status' => $card->status,
+                            'blocked' => (bool) $card->blocked,
+                            'blocked_reason' => $card->blocked_reason,
                             'order_key' => $card->order_key,
+                            'created_at' => optional($card->created_at)->toISOString(),
                             'due_at' => optional($card->due_at)->toISOString(),
+                            'completed_at' => optional($card->completed_at)->toISOString(),
+                            'moved_to_done_at' => optional($card->moved_to_done_at)->toISOString(),
                             'updated_at' => optional($card->updated_at)->toISOString(),
                         ])
                         ->sortBy('order_key')

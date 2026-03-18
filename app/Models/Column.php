@@ -47,6 +47,11 @@ class Column extends Model
         return $this->cards()->where('status', '!=', 'archived');
     }
 
+    public function cardHistory(): HasMany
+    {
+        return $this->hasMany(CardColumnHistory::class);
+    }
+
     public function scopeForBoard(Builder $query, Board|int $board): Builder
     {
         $boardId = $board instanceof Board ? $board->getKey() : $board;

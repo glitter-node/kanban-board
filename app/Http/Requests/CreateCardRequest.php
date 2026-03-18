@@ -33,6 +33,8 @@ class CreateCardRequest extends FormRequest
             'assigned_user_id' => ['nullable', 'integer', 'exists:users,id'],
             'priority' => ['nullable', 'integer', 'min:0', 'max:255'],
             'status' => ['nullable', 'in:open,done,archived'],
+            'blocked' => ['nullable', 'boolean'],
+            'blocked_reason' => ['nullable', 'string', 'required_if:blocked,true'],
             'due_at' => ['nullable', 'date'],
             'started_at' => ['nullable', 'date'],
             'completed_at' => ['nullable', 'date'],

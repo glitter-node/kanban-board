@@ -22,6 +22,7 @@ class CardService
         private readonly NotificationService $notificationService,
         private readonly CardMoveService $cardMoveService,
         private readonly AnalyticsService $analyticsService,
+        private readonly FlowMetricsService $flowMetricsService,
     ) {}
 
     /**
@@ -34,6 +35,8 @@ class CardService
         for ($attempt = 0; $attempt < 5; $attempt++) {
             try {
                 return DB::transaction(function () use ($board, $column, $creator, $attributes): Card {
+                    $this->assertWipLimitNotExceeded($column);
+
                     $lastOrderKey = Card::query()
                         ->forBoard($board)
                         ->forColumn($column)
@@ -51,13 +54,18 @@ class CardService
                         'description' => Arr::get($attributes, 'description'),
                         'priority' => Arr::get($attributes, 'priority', 2),
                         'status' => Arr::get($attributes, 'status', 'open'),
+                        'blocked' => (bool) Arr::get($attributes, 'blocked', false),
+                        'blocked_reason' => Arr::get($attributes, 'blocked_reason'),
                         'order_key' => $this->cardMoveService->generateOrderKeyAfter($lastOrderKey),
                         'due_at' => Arr::get($attributes, 'due_at'),
                         'started_at' => Arr::get($attributes, 'started_at'),
                         'completed_at' => Arr::get($attributes, 'completed_at'),
+                        'moved_to_done_at' => Arr::get($attributes, 'completed_at'),
                         'archived_at' => Arr::get($attributes, 'archived_at'),
                         'version' => 1,
                     ]);
+
+                    $this->flowMetricsService->recordColumnEntry($card, $column, $creator);
 
                     $this->activityService->logActivity(
                         board: $board,
@@ -109,6 +117,8 @@ class CardService
                 'description',
                 'priority',
                 'status',
+                'blocked',
+                'blocked_reason',
                 'due_at',
                 'started_at',
                 'completed_at',
@@ -119,10 +129,25 @@ class CardService
                 'description',
                 'priority',
                 'status',
+                'blocked',
+                'blocked_reason',
                 'due_at',
                 'started_at',
                 'completed_at',
             ]));
+
+            if ($card->blocked !== true) {
+                $card->blocked_reason = null;
+            }
+
+            if (in_array($card->status, ['done', 'completed'], true) && $card->completed_at === null) {
+                $card->completed_at = now();
+            }
+
+            if (in_array($card->status, ['done', 'completed'], true) && $card->moved_to_done_at === null) {
+                $card->moved_to_done_at = now();
+            }
+
             $card->version++;
             $card->save();
 
@@ -179,6 +204,8 @@ class CardService
                 'archived_at' => now(),
                 'version' => $card->version + 1,
             ])->save();
+
+            $this->flowMetricsService->recordColumnExit($card, $actor);
 
             $this->activityService->logActivity(
                 board: $board,
@@ -330,10 +357,34 @@ class CardService
             'column_id' => $card->column_id,
             'order_key' => $card->order_key,
             'title' => $card->title,
+            'description' => $card->description,
             'assigned_user_id' => $card->assigned_user_id,
+            'priority' => $card->priority,
             'status' => $card->status,
+            'blocked' => $card->blocked,
+            'blocked_reason' => $card->blocked_reason,
+            'due_at' => $card->due_at?->toISOString(),
+            'created_at' => $card->created_at?->toISOString(),
+            'completed_at' => $card->completed_at?->toISOString(),
+            'moved_to_done_at' => $card->moved_to_done_at?->toISOString(),
             'updated_at' => $card->updated_at?->toISOString(),
         ];
+    }
+
+    private function assertWipLimitNotExceeded(Column $column): void
+    {
+        if ($column->wip_limit === null) {
+            return;
+        }
+
+        $activeCards = Card::query()
+            ->forColumn($column)
+            ->where('status', '!=', 'archived')
+            ->count();
+
+        if ($activeCards >= $column->wip_limit) {
+            throw new DomainException('This column has reached its WIP limit.');
+        }
     }
 
     private function dispatchAfterCommit(object $event): void

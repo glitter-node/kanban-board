@@ -15,6 +15,7 @@ use App\Models\Column;
 use App\Models\User;
 use App\Services\CardMoveService;
 use App\Services\CardService;
+use DomainException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -42,7 +43,13 @@ class CardController extends Controller
     {
         $column = Column::query()->findOrFail($request->validated('column_id'));
         $this->assertColumnBelongsToBoard($board, $column);
-        $card = $this->cardService->createCard($board, $column, $request->user(), $request->validated());
+        try {
+            $card = $this->cardService->createCard($board, $column, $request->user(), $request->validated());
+        } catch (DomainException $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+            ], 422);
+        }
 
         return response()->json([
             'message' => 'Card created successfully.',
@@ -107,13 +114,19 @@ class CardController extends Controller
 
         $destinationColumn = Column::query()->findOrFail($request->validated('column_id'));
 
-        $movedCard = $this->cardMoveService->moveCardToOrderKey(
-            board: $board,
-            card: $card,
-            destinationColumn: $destinationColumn,
-            orderKey: $request->validated('order_key'),
-            actor: $request->user(),
-        );
+        try {
+            $movedCard = $this->cardMoveService->moveCardToOrderKey(
+                board: $board,
+                card: $card,
+                destinationColumn: $destinationColumn,
+                orderKey: $request->validated('order_key'),
+                actor: $request->user(),
+            );
+        } catch (DomainException $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+            ], 422);
+        }
 
         return response()->json([
             'message' => 'Card moved successfully.',

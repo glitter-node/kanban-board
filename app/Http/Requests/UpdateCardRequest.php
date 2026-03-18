@@ -24,6 +24,8 @@ class UpdateCardRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'priority' => ['sometimes', 'integer', 'min:0', 'max:255'],
             'status' => ['sometimes', 'in:open,done,archived'],
+            'blocked' => ['sometimes', 'boolean'],
+            'blocked_reason' => ['nullable', 'string', 'required_if:blocked,true'],
             'due_at' => ['nullable', 'date'],
             'started_at' => ['nullable', 'date'],
             'completed_at' => ['nullable', 'date'],

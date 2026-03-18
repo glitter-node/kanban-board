@@ -31,6 +31,12 @@
             <div class="grid min-h-0 flex-1 grid-cols-1 overflow-hidden lg:grid-cols-[minmax(0,1fr)_340px]">
                 <div class="min-h-0 overflow-y-auto px-6 py-5">
                     <form class="space-y-5" @submit.prevent="saveCard()">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <x-ui.badge tone="warning" x-show="selectedCard?.blocked">Blocked</x-ui.badge>
+                            <x-ui.badge tone="error" x-show="selectedCard && cardIsStuck(selectedCard)">Stuck</x-ui.badge>
+                            <x-ui.badge tone="info" x-show="selectedCard && isNextActionable(selectedCard)">Next pull</x-ui.badge>
+                        </div>
+
                         <div class="space-y-2">
                             <label class="block text-sm font-medium ui-meta">Title</label>
                             <x-ui.surface class="p-0">
@@ -74,6 +80,23 @@
                                 <label class="block text-sm font-medium ui-meta">Due date</label>
                                 <x-ui.surface class="p-0">
                                     <input type="date" x-model="cardForm.due_at" class="ui-input w-full rounded-xl border-0 bg-transparent px-4 py-3 text-sm outline-none">
+                                </x-ui.surface>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-[180px_minmax(0,1fr)]">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium ui-meta">Flow state</label>
+                                <x-ui.surface class="flex items-center gap-3 px-4 py-3">
+                                    <input type="checkbox" x-model="cardForm.blocked" class="h-4 w-4 rounded border-border bg-input-background text-primary focus:ring-primary">
+                                    <span class="text-sm">Blocked</span>
+                                </x-ui.surface>
+                            </div>
+
+                            <div class="space-y-2" x-show="cardForm.blocked">
+                                <label class="block text-sm font-medium ui-meta">Blocked reason</label>
+                                <x-ui.surface class="p-0">
+                                    <textarea x-model="cardForm.blocked_reason" rows="3" class="ui-input w-full rounded-xl border-0 bg-transparent px-4 py-3 text-sm outline-none" placeholder="What is preventing this card from moving?"></textarea>
                                 </x-ui.surface>
                             </div>
                         </div>

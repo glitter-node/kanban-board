@@ -43,9 +43,20 @@
     <div x-show="!booting && !boardError">
         <x-ui.surface class="rounded-none border-x-0 border-t-0 px-0 py-0">
             <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-                <div class="min-w-0">
+                <div class="min-w-0 flex-1">
                     <h1 class="truncate text-2xl font-semibold" x-text="board.title"></h1>
                     <p class="mt-1 truncate text-sm ui-meta" x-text="board.description || 'No description'"></p>
+                    <div class="mt-3 flex flex-wrap items-center gap-3 text-xs ui-meta">
+                        <x-ui.badge>
+                            <span x-text="(boardAverageCycleTime() ?? 'N/A') + 'h avg cycle'"></span>
+                        </x-ui.badge>
+                        <x-ui.badge tone="success">
+                            <span x-text="completedThisWeek() + ' completed this week'"></span>
+                        </x-ui.badge>
+                        <x-ui.badge tone="warning" x-show="blockedCardsCount() > 0">
+                            <span x-text="blockedCardsCount() + ' blocked'"></span>
+                        </x-ui.badge>
+                    </div>
                 </div>
 
                 <div class="flex items-center gap-3">
@@ -101,7 +112,20 @@
                     'border-success text-success': toast.tone === 'success',
                     'border-error text-error': toast.tone === 'error',
                     'border-info text-info': toast.tone === 'info'
-                }" x-text="toast.message"></div>
+                }">
+                    <div class="flex items-center gap-3">
+                        <span class="flex-1" x-text="toast.message"></span>
+                        <x-ui.button
+                            type="button"
+                            variant="secondary"
+                            size="sm"
+                            x-show="toast.actionLabel"
+                            @click="handleToastAction(toast.id)"
+                        >
+                            <span x-text="toast.actionLabel"></span>
+                        </x-ui.button>
+                    </div>
+                </div>
             </template>
         </div>
     </div>

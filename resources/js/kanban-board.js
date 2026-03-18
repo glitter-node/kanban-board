@@ -25,12 +25,17 @@ const registerKanbanBoard = () => {
             selectedCardCommentsError: null,
             pendingColumnReorder: null,
             activeDropPanel: null,
+            editingCardId: null,
+            inlineCardTitle: '',
+            pendingArchive: null,
             cardForm: {
                 id: null,
                 title: '',
                 description: '',
                 priority: 2,
                 assigned_user_id: null,
+                blocked: false,
+                blocked_reason: '',
                 due_at: null,
             },
             loading: false,
@@ -41,6 +46,7 @@ const registerKanbanBoard = () => {
                     this.initColumnSortable();
                     this.initCardSortables();
                     this.initEcho();
+                    this.registerKeyboardShortcuts();
                     window.trackEvent?.('board_viewed', {
                         board_id: this.boardId,
                         columns_count: this.columns.length,
@@ -63,6 +69,7 @@ const registerKanbanBoard = () => {
                         cards: [...(column.cards || [])].sort((a, b) => a.order_key.localeCompare(b.order_key)),
                     }))
                     .sort((a, b) => a.order_key.localeCompare(b.order_key));
+                this.recalculateFlowState();
             },
 
             cloneColumns() {
@@ -78,15 +85,54 @@ const registerKanbanBoard = () => {
                     cards: [...column.cards].sort((a, b) => a.order_key.localeCompare(b.order_key)),
                 })).sort((a, b) => a.order_key.localeCompare(b.order_key));
 
+                this.recalculateFlowState();
                 this.$nextTick(() => this.initCardSortables());
             },
 
-            queueToast(message, tone = 'info') {
+            queueToast(message, tone = 'info', options = {}) {
                 const id = Date.now() + Math.floor(Math.random() * 1000);
-                this.toasts.push({ id, message, tone });
-                window.setTimeout(() => {
-                    this.toasts = this.toasts.filter((toast) => toast.id !== id);
-                }, 3200);
+                const toast = {
+                    id,
+                    message,
+                    tone,
+                    actionLabel: options.actionLabel ?? null,
+                    actionType: options.actionType ?? null,
+                    actionPayload: options.actionPayload ?? null,
+                };
+
+                this.toasts.push(toast);
+                toast.timeoutId = window.setTimeout(() => {
+                    this.dismissToast(id);
+                }, options.duration ?? 3200);
+
+                return id;
+            },
+
+            dismissToast(id) {
+                const toast = this.toasts.find((item) => item.id === id);
+                if (toast?.timeoutId) {
+                    window.clearTimeout(toast.timeoutId);
+                }
+
+                this.toasts = this.toasts.filter((item) => item.id !== id);
+            },
+
+            async handleToastAction(id) {
+                const toast = this.toasts.find((item) => item.id === id);
+                if (!toast?.actionType) {
+                    return;
+                }
+
+                this.dismissToast(id);
+
+                if (toast.actionType === 'undo-move') {
+                    await this.undoMove(toast.actionPayload);
+                    return;
+                }
+
+                if (toast.actionType === 'undo-archive') {
+                    this.undoArchive(toast.actionPayload);
+                }
             },
 
             initials(name) {
@@ -100,6 +146,110 @@ const registerKanbanBoard = () => {
 
             apiBase(path = '') {
                 return `/api/v1/boards/${this.boardId}${path}`;
+            },
+
+            recalculateFlowState() {
+                this.columns.forEach((column) => {
+                    column.current_wip = column.cards.filter((card) => card.status !== 'archived').length;
+                });
+            },
+
+            boardAverageCycleTime() {
+                const completedCards = this.columns
+                    .flatMap((column) => column.cards)
+                    .filter((card) => card.created_at && card.moved_to_done_at);
+
+                if (!completedCards.length) {
+                    return this.board.metrics?.average_cycle_time_hours ?? null;
+                }
+
+                const totalHours = completedCards.reduce((sum, card) => {
+                    return sum + ((new Date(card.moved_to_done_at).getTime() - new Date(card.created_at).getTime()) / 3600000);
+                }, 0);
+
+                return Math.round((totalHours / completedCards.length) * 100) / 100;
+            },
+
+            completedThisWeek() {
+                const startOfWeek = new Date();
+                startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+                startOfWeek.setHours(0, 0, 0, 0);
+
+                return this.columns
+                    .flatMap((column) => column.cards)
+                    .filter((card) => card.moved_to_done_at && new Date(card.moved_to_done_at) >= startOfWeek)
+                    .length;
+            },
+
+            blockedCardsCount() {
+                return this.columns
+                    .flatMap((column) => column.cards)
+                    .filter((card) => card.blocked)
+                    .length;
+            },
+
+            columnUsagePercent(column) {
+                if (!column.wip_limit) {
+                    return 0;
+                }
+
+                return Math.min(100, Math.round(((column.current_wip || 0) / column.wip_limit) * 100));
+            },
+
+            columnUsageBarClass(column) {
+                const percent = this.columnUsagePercent(column);
+
+                if (percent <= 0) return 'kanban-wip-0';
+                if (percent <= 10) return 'kanban-wip-10';
+                if (percent <= 20) return 'kanban-wip-20';
+                if (percent <= 30) return 'kanban-wip-30';
+                if (percent <= 40) return 'kanban-wip-40';
+                if (percent <= 50) return 'kanban-wip-50';
+                if (percent <= 60) return 'kanban-wip-60';
+                if (percent <= 70) return 'kanban-wip-70';
+                if (percent <= 80) return 'kanban-wip-80';
+                if (percent <= 90) return 'kanban-wip-90';
+                return 'kanban-wip-100';
+            },
+
+            columnOverLimit(column) {
+                return Boolean(column.wip_limit) && (column.current_wip || 0) > column.wip_limit;
+            },
+
+            columnAtLimit(column) {
+                return Boolean(column.wip_limit) && (column.current_wip || 0) >= column.wip_limit;
+            },
+
+            cardIsStuck(card) {
+                const reference = card.updated_at || card.created_at;
+
+                if (!reference || ['done', 'archived'].includes(card.status)) {
+                    return false;
+                }
+
+                return ((Date.now() - new Date(reference).getTime()) / 3600000) >= 24;
+            },
+
+            nextActionableCardId() {
+                for (const column of this.columns) {
+                    if (['done', 'completed'].includes((column.type || '').toLowerCase())) {
+                        continue;
+                    }
+
+                    const candidate = [...column.cards]
+                        .sort((a, b) => a.order_key.localeCompare(b.order_key))
+                        .find((card) => !card.blocked && card.status !== 'archived');
+
+                    if (candidate) {
+                        return Number(candidate.id);
+                    }
+                }
+
+                return null;
+            },
+
+            isNextActionable(card) {
+                return Number(card.id) === Number(this.nextActionableCardId());
             },
 
             sortColumns() {
@@ -129,6 +279,37 @@ const registerKanbanBoard = () => {
                 return { card: null, column: null };
             },
 
+            registerKeyboardShortcuts() {
+                window.addEventListener('keydown', (event) => {
+                    if (event.defaultPrevented) {
+                        return;
+                    }
+
+                    const tagName = event.target instanceof HTMLElement ? event.target.tagName : '';
+                    const isTyping = ['INPUT', 'TEXTAREA', 'SELECT'].includes(tagName);
+
+                    if ((event.key === 'Escape') && this.selectedCard) {
+                        event.preventDefault();
+                        this.closeCardModal();
+                        return;
+                    }
+
+                    if ((event.metaKey || event.ctrlKey) && event.key === 'Enter' && this.selectedCard) {
+                        event.preventDefault();
+                        void this.saveCard();
+                        return;
+                    }
+
+                    if (!isTyping && !this.selectedCard && (event.key === 'n' || event.key === 'N')) {
+                        const nextCardId = this.nextActionableCardId();
+                        if (nextCardId) {
+                            event.preventDefault();
+                            this.openCard(nextCardId);
+                        }
+                    }
+                });
+            },
+
             openCard(cardId) {
                 const { card, column } = this.findCard(cardId);
                 if (!card || !column) {
@@ -144,6 +325,8 @@ const registerKanbanBoard = () => {
                     description: card.description,
                     priority: card.priority,
                     assigned_user_id: card.assigned_user_id,
+                    blocked: !!card.blocked,
+                    blocked_reason: card.blocked_reason || '',
                     due_at: card.due_at ? card.due_at.slice(0, 10) : null,
                 };
 
@@ -176,6 +359,8 @@ const registerKanbanBoard = () => {
                     description: '',
                     priority: 2,
                     assigned_user_id: null,
+                    blocked: false,
+                    blocked_reason: '',
                     due_at: null,
                 };
                 window.dispatchEvent(new CustomEvent('board:card-modal-close'));
@@ -206,10 +391,17 @@ const registerKanbanBoard = () => {
                 this.loading = true;
 
                 try {
+                    if (this.cardForm.blocked && !this.cardForm.blocked_reason.trim()) {
+                        this.queueToast('A blocked card requires a reason.', 'error');
+                        return;
+                    }
+
                     const response = await window.axios.patch(this.apiBase(`/cards/${this.selectedCard.id}`), {
                         title: this.cardForm.title,
                         description: this.cardForm.description,
                         priority: this.cardForm.priority,
+                        blocked: this.cardForm.blocked,
+                        blocked_reason: this.cardForm.blocked ? this.cardForm.blocked_reason : null,
                         due_at: this.cardForm.due_at,
                     });
 
@@ -229,20 +421,61 @@ const registerKanbanBoard = () => {
                 }
             },
 
+            startInlineEdit(card) {
+                if (!this.canEdit) {
+                    return;
+                }
+
+                this.editingCardId = Number(card.id);
+                this.inlineCardTitle = card.title || '';
+            },
+
+            cancelInlineEdit() {
+                this.editingCardId = null;
+                this.inlineCardTitle = '';
+            },
+
+            async saveInlineCardTitle(cardId) {
+                const title = this.inlineCardTitle.trim();
+                if (!title) {
+                    this.queueToast('Card title cannot be empty.', 'error');
+                    return;
+                }
+
+                try {
+                    const response = await window.axios.patch(this.apiBase(`/cards/${cardId}`), {
+                        title,
+                    });
+
+                    this.applyCardUpdated(response.data.data);
+                    this.cancelInlineEdit();
+                } catch (error) {
+                    console.error(error);
+                    this.queueToast(error?.response?.data?.message || 'Card title could not be updated.', 'error');
+                }
+            },
+
+            async quickAssignToMe(cardId) {
+                try {
+                    const response = await window.axios.post(this.apiBase(`/cards/${cardId}/assign`), {
+                        assigned_user_id: this.currentUserId,
+                    });
+
+                    this.applyCardUpdated(response.data.data);
+                    this.queueToast('Card assigned to you.', 'success');
+                } catch (error) {
+                    console.error(error);
+                    this.queueToast(error?.response?.data?.message || 'Assignment failed.', 'error');
+                }
+            },
+
             async archiveSelectedCard() {
                 if (!this.selectedCard) {
                     return;
                 }
 
-                try {
-                    await window.axios.post(this.apiBase(`/cards/${this.selectedCard.id}/archive`));
-                    this.applyCardArchived({ id: this.selectedCard.id, column_id: this.selectedColumnId });
-                    this.closeCardModal();
-                    this.queueToast('Card archived.', 'info');
-                } catch (error) {
-                    console.error(error);
-                    this.queueToast('Card could not be archived.', 'error');
-                }
+                this.archiveCardWithUndo(this.selectedCard.id, this.selectedColumnId);
+                this.closeCardModal();
             },
 
             async addComment(body) {
@@ -260,6 +493,51 @@ const registerKanbanBoard = () => {
                     console.error(error);
                     this.queueToast('Comment could not be added.', 'error');
                 }
+            },
+
+            archiveCardWithUndo(cardId, columnId = null) {
+                const snapshot = this.cloneColumns();
+                const located = this.findCard(cardId);
+                if (!located.card || !located.column) {
+                    return;
+                }
+
+                const resolvedColumnId = columnId ?? located.column.id;
+
+                this.applyCardArchived({ id: cardId, column_id: resolvedColumnId });
+
+                const timeoutId = window.setTimeout(async () => {
+                    this.pendingArchive = null;
+
+                    try {
+                        await window.axios.post(this.apiBase(`/cards/${cardId}/archive`));
+                        this.queueToast('Card archived.', 'info');
+                    } catch (error) {
+                        console.error(error);
+                        this.restoreColumns(snapshot);
+                        this.queueToast(error?.response?.data?.message || 'Card could not be archived.', 'error');
+                    }
+                }, 2600);
+
+                this.pendingArchive = { cardId, snapshot, timeoutId };
+
+                this.queueToast('Card moved to archive.', 'info', {
+                    actionLabel: 'Undo',
+                    actionType: 'undo-archive',
+                    actionPayload: { cardId },
+                    duration: 2600,
+                });
+            },
+
+            undoArchive(payload) {
+                if (!this.pendingArchive || Number(this.pendingArchive.cardId) !== Number(payload?.cardId)) {
+                    return;
+                }
+
+                window.clearTimeout(this.pendingArchive.timeoutId);
+                this.restoreColumns(this.pendingArchive.snapshot);
+                this.pendingArchive = null;
+                this.queueToast('Archive undone.', 'success');
             },
 
             initEcho() {
@@ -299,6 +577,7 @@ const registerKanbanBoard = () => {
                 if (!column.cards.find(item => Number(item.id) === Number(card.id))) {
                     column.cards.push(card);
                     this.sortCards(column);
+                    this.recalculateFlowState();
                     this.queueToast('A new card was added.', 'info');
                 }
             },
@@ -311,6 +590,7 @@ const registerKanbanBoard = () => {
                     Object.assign(this.selectedCard, card);
                 }
                 this.sortCards(located.column);
+                this.recalculateFlowState();
             },
 
             applyCardMoved(card) {
@@ -332,6 +612,7 @@ const registerKanbanBoard = () => {
 
                 targetColumn.cards.push(movedCard);
                 this.sortCards(targetColumn);
+                this.recalculateFlowState();
 
                 if (this.selectedCard && Number(this.selectedCard.id) === Number(card.id)) {
                     this.selectedColumnId = card.column_id;
@@ -346,6 +627,7 @@ const registerKanbanBoard = () => {
                         column.cards.splice(index, 1);
                     }
                 }
+                this.recalculateFlowState();
             },
 
             applyColumnCreated(column) {
@@ -515,6 +797,15 @@ const registerKanbanBoard = () => {
                 }
 
                 const sourceColumn = located.column;
+                if (
+                    targetColumn.wip_limit
+                    && Number(sourceColumn.id) !== Number(targetColumn.id)
+                    && (targetColumn.current_wip || targetColumn.cards.length) >= targetColumn.wip_limit
+                ) {
+                    this.queueToast('This move would exceed the destination column WIP limit.', 'error');
+                    return null;
+                }
+
                 const sourceCards = [...sourceColumn.cards].sort((a, b) => a.order_key.localeCompare(b.order_key));
                 const targetCards = sourceColumn.id === targetColumn.id
                     ? sourceCards
@@ -553,6 +844,7 @@ const registerKanbanBoard = () => {
                 if (sourceColumn.id !== targetColumn.id) {
                     this.sortCards(targetColumn);
                 }
+                this.recalculateFlowState();
 
                 if (this.selectedCard && Number(this.selectedCard.id) === Number(cardId)) {
                     Object.assign(this.selectedCard, updatedCard);
@@ -562,7 +854,43 @@ const registerKanbanBoard = () => {
                 return { snapshot, orderKey, sourceColumnId: sourceColumn.id };
             },
 
-            async persistOptimisticMove(cardId, targetColumnId, targetIndex, fromColumnId = null) {
+            buildUndoMovePayload(snapshot, cardId) {
+                const sortedColumns = snapshot
+                    .map((column) => ({
+                        ...column,
+                        cards: [...column.cards].sort((a, b) => a.order_key.localeCompare(b.order_key)),
+                    }))
+                    .sort((a, b) => a.order_key.localeCompare(b.order_key));
+
+                for (const column of sortedColumns) {
+                    const index = column.cards.findIndex((card) => Number(card.id) === Number(cardId));
+                    if (index !== -1) {
+                        return {
+                            cardId,
+                            targetColumnId: column.id,
+                            targetIndex: index,
+                        };
+                    }
+                }
+
+                return null;
+            },
+
+            async undoMove(payload) {
+                if (!payload) {
+                    return;
+                }
+
+                await this.persistOptimisticMove(
+                    payload.cardId,
+                    payload.targetColumnId,
+                    payload.targetIndex,
+                    null,
+                    { allowUndoToast: false },
+                );
+            },
+
+            async persistOptimisticMove(cardId, targetColumnId, targetIndex, fromColumnId = null, options = {}) {
                 const payload = this.optimisticMoveCard(cardId, targetColumnId, targetIndex);
                 if (!payload) {
                     return;
@@ -580,10 +908,22 @@ const registerKanbanBoard = () => {
                         to_column_id: targetColumnId,
                         position: targetIndex,
                     });
+
+                    if (options.allowUndoToast !== false) {
+                        const undoPayload = this.buildUndoMovePayload(payload.snapshot, cardId);
+                        if (undoPayload) {
+                            this.queueToast('Card moved.', 'success', {
+                                actionLabel: 'Undo',
+                                actionType: 'undo-move',
+                                actionPayload: undoPayload,
+                                duration: 3600,
+                            });
+                        }
+                    }
                 } catch (error) {
                     console.error(error);
                     this.restoreColumns(payload.snapshot);
-                    this.queueToast('Card move failed. Position restored.', 'error');
+                    this.queueToast(error?.response?.data?.message || 'Card move failed. Position restored.', 'error');
                     window.trackEvent?.('ux_issue_detected', {
                         board_id: this.boardId,
                         issue: 'drag_failed',
