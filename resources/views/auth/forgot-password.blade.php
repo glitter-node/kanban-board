@@ -21,13 +21,9 @@
             />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
-        <button type="submit" class="btn-primary btn-md focus-ring mt-4 w-full">
-            {{ __('Email Password Reset Link') }}
-        </button>
     </form>
 
-    <div class="mt-2 text-right">
+    <div class="flex items-center justify-end gap-2 mt-4">
         <button
             type="button"
             class="btn-primary btn-md focus-ring"
@@ -35,5 +31,12 @@
         >
             Cancel
         </button>
+
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+            <button type="submit" class="btn-primary btn-md focus-ring">
+                {{ __('Email Password Reset Link') }}
+            </button>
+        </form>
     </div>
 </x-guest-layout>
