@@ -25,7 +25,7 @@
         <div class="flex items-center justify-end gap-2 mt-4">
             <button
                 type="button"
-                class="btn-primary-outline btn-md focus-ring"
+                class="btn-primary btn-md focus-ring"
                 onclick="history.back()"
             >
                 Cancel
