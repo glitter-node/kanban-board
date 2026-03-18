@@ -5,6 +5,9 @@
     "scripts": {
         "audit:a11y": "node scripts/audit-a11y.mjs",
         "build": "vite build",
+        "contrast:extract": "node scripts/extract-contrast-failures.mjs",
+        "contrast:fix": "node scripts/fix-contrast-failures.mjs",
+        "contrast:pipeline": "node scripts/contrast-pipeline.mjs",
         "dev": "vite",
         "lint:colors": "node scripts/check-semantic-colors.mjs"
     },

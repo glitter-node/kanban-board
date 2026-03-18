@@ -5,13 +5,13 @@
         @csrf
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label bg-surface text-secondary border border-border for="email" :value="__('Email')" />
             <x-text-input id="email" class="mt-1 block w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <div class="mt-4 space-y-4">
-            <div class="text-sm text-muted-foreground">
+            <div class="text-sm text-secondary">
                 {{ __('Enter your email to receive a pre-verification link before registration.') }}
             </div>
 

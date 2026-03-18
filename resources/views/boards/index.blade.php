@@ -6,8 +6,8 @@
             </h2>
             <div class="flex items-center gap-3">
                 <button @click="$store.theme.toggle()"
-                        aria-label="Toggle dark mode"
-                        class="btn-icon p-1.5">
+                        aria-label bg-surface text-secondary border border-border="Toggle dark mode"
+                        class="btn-icon p-1.5 bg-primary text-white">
                     <svg x-show="$store.theme.current !== 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                     </svg>
@@ -34,11 +34,11 @@
             @if ($boards->isEmpty())
                 <div class="ui-panel overflow-hidden sm:rounded-lg">
                     <div class="p-12 text-center">
-                        <svg class="mx-auto h-12 w-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mx-auto h-12 w-12 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
                         </svg>
                         <h3 class="mt-4 text-lg font-medium text-foreground">No boards yet</h3>
-                        <p class="mt-2 text-sm text-muted-foreground">Create a new board to start organizing your work.</p>
+                        <p class="mt-2 text-sm text-secondary">Create a new board to start organizing your work.</p>
                         <div class="mt-6">
                             <a href="{{ route('boards.create') }}"
                                class="btn-primary">
@@ -57,7 +57,7 @@
                                         {{ $board->title }}
                                     </h3>
                                     <div class="flex items-center gap-1 ml-2" x-data="{ open: false }">
-                                        <button @click.prevent="open = !open" aria-label="Open board actions" class="btn-icon p-1">
+                                        <button @click.prevent="open = !open" aria-label bg-surface text-secondary border border-border="Open board actions" class="btn-icon p-1 bg-primary text-white">
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/>
                                             </svg>
@@ -66,7 +66,7 @@
                                              class="ui-panel absolute right-0 z-10 mt-20 w-36 p-1">
                                             <a href="{{ route('boards.edit', $board) }}"
                                                @click.stop
-                                               class="block rounded-md px-4 py-2 text-sm text-muted-foreground transition hover:bg-elevated hover:text-foreground">
+                                               class="block rounded-md px-4 py-2 text-sm text-secondary transition hover:bg-elevated hover:text-foreground">
                                                 Edit
                                             </a>
                                             <form method="POST" action="{{ route('boards.destroy', $board) }}" @click.stop
@@ -74,7 +74,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                        class="block w-full rounded-md px-4 py-2 text-left text-sm text-error transition hover:bg-elevated">
+                                                        class="block w-full rounded-md px-4 py-2 text-sm transition hover: bg-primary text-white">
                                                     Delete
                                                 </button>
                                             </form>
@@ -83,10 +83,10 @@
                                 </div>
 
                                 @if ($board->description)
-                                    <p class="mt-2 line-clamp-2 text-sm text-surface-foreground">{{ $board->description }}</p>
+                                    <p class="mt-2 line-clamp-2 text-sm text-surface-foreground text-secondary">{{ $board->description }}</p>
                                 @endif
 
-                                <div class="mt-4 flex items-center gap-4 text-xs text-surface-foreground">
+                                <div class="mt-4 flex items-center gap-4 text-xs text-surface-foreground text-secondary">
                                     <span class="flex items-center gap-1">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2"/>

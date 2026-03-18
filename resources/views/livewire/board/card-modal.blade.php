@@ -11,14 +11,14 @@
         <div class="ui-panel-elevated relative z-10 flex max-h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl p-0">
             <div class="ui-panel-header flex items-start justify-between gap-4 px-6 py-5">
                 <div class="min-w-0">
-                    <p class="ui-kicker">Card Detail</p>
+                    <p class="ui-kicker text-secondary">Card Detail</p>
                     <h2 class="mt-2 truncate text-xl font-semibold text-foreground" x-text="selectedCard?.title || 'Card'"></h2>
                 </div>
 
                 <button
                     type="button"
-                    class="btn-icon"
-                    aria-label="Close card details"
+                    class="btn-icon bg-primary text-white"
+                    aria-label bg-surface text-secondary border border-border="Close card details"
                     @click="closeCardModal()"
                 >
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -29,19 +29,19 @@
                 <div class="min-h-0 overflow-y-auto px-6 py-5">
                     <form class="space-y-5" @submit.prevent="saveCard()">
                         <div>
-                            <label class="mb-2 block text-sm font-medium text-muted-foreground">Title</label>
-                            <input type="text" x-model="cardForm.title" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
+                            <label bg-surface text-secondary border border-border class="mb-2 block text-sm font-medium text-secondary">Title</label bg-surface text-secondary border border-border>
+                            <input type="text" x-model="cardForm.title" class="ui-input w-full rounded-2xl px-4 py-3 text-sm text-secondary">
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm font-medium text-muted-foreground">Description</label>
-                            <textarea x-model="cardForm.description" rows="5" class="ui-input w-full rounded-2xl px-4 py-3 text-sm"></textarea>
+                            <label bg-surface text-secondary border border-border class="mb-2 block text-sm font-medium text-secondary">Description</label bg-surface text-secondary border border-border>
+                            <textarea x-model="cardForm.description" rows="5" class="ui-input w-full rounded-2xl px-4 py-3 text-sm text-secondary"></textarea>
                         </div>
 
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                             <div>
-                                <label class="mb-2 block text-sm font-medium text-muted-foreground">Priority</label>
-                                <select x-model="cardForm.priority" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
+                                <label bg-surface text-secondary border border-border class="mb-2 block text-sm font-medium text-secondary">Priority</label bg-surface text-secondary border border-border>
+                                <select x-model="cardForm.priority" class="ui-input w-full rounded-2xl px-4 py-3 text-sm text-secondary">
                                     <option :value="1">Low</option>
                                     <option :value="2">Medium</option>
                                     <option :value="3">High</option>
@@ -50,8 +50,8 @@
                             </div>
 
                             <div>
-                                <label class="mb-2 block text-sm font-medium text-muted-foreground">Assignee</label>
-                                <select x-model="cardForm.assigned_user_id" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
+                                <label bg-surface text-secondary border border-border class="mb-2 block text-sm font-medium text-secondary">Assignee</label bg-surface text-secondary border border-border>
+                                <select x-model="cardForm.assigned_user_id" class="ui-input w-full rounded-2xl px-4 py-3 text-sm text-secondary">
                                     <option value="">Unassigned</option>
                                     <template x-for="user in users" :key="user.id">
                                         <option :value="user.id" x-text="user.name"></option>
@@ -60,17 +60,17 @@
                             </div>
 
                             <div>
-                                <label class="mb-2 block text-sm font-medium text-muted-foreground">Due date</label>
-                                <input type="date" x-model="cardForm.due_at" class="ui-input w-full rounded-2xl px-4 py-3 text-sm">
+                                <label bg-surface text-secondary border border-border class="mb-2 block text-sm font-medium text-secondary">Due date</label bg-surface text-secondary border border-border>
+                                <input type="date" x-model="cardForm.due_at" class="ui-input w-full rounded-2xl px-4 py-3 text-sm text-secondary">
                             </div>
                         </div>
 
                         <div class="flex items-center justify-between gap-3">
-                            <button type="button" x-show="canEdit" class="btn-danger rounded-2xl px-4 py-3 text-sm font-medium normal-case tracking-normal" @click="archiveSelectedCard()">
+                            <button type="button" x-show="canEdit" class="btn-danger rounded-2xl px-4 py-3 text-sm font-medium normal-case tracking-normal bg-primary text-white" @click="archiveSelectedCard()">
                                 Archive card
                             </button>
 
-                            <button type="submit" class="btn-primary rounded-2xl px-5 py-3 text-sm normal-case tracking-normal" :disabled="loading">
+                            <button type="submit" class="btn-primary rounded-2xl px-5 py-3 text-sm normal-case tracking-normal bg-primary text-white" :disabled="loading">
                                 Save changes
                             </button>
                         </div>
@@ -79,16 +79,16 @@
 
                 <div class="border-t border-border bg-muted px-6 py-5 lg:border-l lg:border-t-0">
                     <div class="mb-4 flex items-center justify-between">
-                        <h3 class="text-sm font-semibold text-foreground">Comments</h3>
-                        <span class="text-xs text-muted-foreground" x-text="selectedCardComments.length"></span>
+                        <h3 class="text-sm font-semibold text-foreground text-secondary">Comments</h3>
+                        <span class="text-xs text-secondary" x-text="selectedCardComments.length"></span>
                     </div>
 
                     <livewire:board.comment-list :key="'comment-list-'.$boardId" />
 
                     <div class="mt-4 space-y-3" x-show="canEdit">
-                        <textarea x-model="commentBody" rows="3" placeholder="Write a comment..." class="ui-input w-full rounded-2xl px-4 py-3 text-sm"></textarea>
+                        <textarea x-model="commentBody" rows="3" placeholder="Write a comment..." class="ui-input w-full rounded-2xl px-4 py-3 text-sm text-secondary"></textarea>
 
-                        <button type="button" class="btn-secondary w-full rounded-2xl px-4 py-3 text-sm normal-case tracking-normal" @click="addComment(commentBody); commentBody = ''">
+                        <button type="button" class="btn-secondary w-full rounded-2xl px-4 py-3 text-sm normal-case tracking-normal bg-primary text-white" @click="addComment(commentBody); commentBody = ''">
                             Add comment
                         </button>
                     </div>

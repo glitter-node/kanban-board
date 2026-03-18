@@ -20,14 +20,14 @@
                             type="button"
                             data-column-handle
                             x-show="canEdit"
-                            class="btn-icon cursor-grab"
-                            aria-label="Drag column"
+                            class="btn-icon cursor-grab bg-primary text-white"
+                            aria-label bg-surface text-secondary border border-border="Drag column"
                         >
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/></svg>
                         </button>
                         <div>
-                            <h2 class="text-sm font-semibold text-foreground" x-text="column.title"></h2>
-                            <p class="text-xs text-muted-foreground" x-text="column.cards.length + ' cards'"></p>
+                            <h2 class="text-sm font-semibold text-foreground text-secondary" x-text="column.title"></h2>
+                            <p class="text-xs text-secondary" x-text="column.cards.length + ' cards'"></p>
                         </div>
                     </div>
                 </div>
@@ -41,25 +41,25 @@
                                 @click="openCard(card.id)"
                             >
                                 <div class="flex items-start justify-between gap-2">
-                                    <h3 class="line-clamp-2 text-sm font-medium text-surface-foreground" x-text="card.title"></h3>
+                                    <h3 class="line-clamp-2 text-sm font-medium text-surface-foreground text-secondary" x-text="card.title"></h3>
                                     <span
-                                        class="ui-badge ui-badge-sm"
+                                        class="ui-badge bg-surface text-secondary border border-border ui-badge bg-surface text-secondary border border-border-sm"
                                         :class="{
-                                            'ui-badge-success': card.priority <= 1,
-                                            'ui-badge-warning': card.priority === 2,
-                                            'ui-badge-error': card.priority >= 3,
+                                            'ui-badge bg-surface text-secondary border border-border-success': card.priority <= 1,
+                                            'ui-badge bg-surface text-secondary border border-border-warning': card.priority === 2,
+                                            'ui-badge bg-surface text-secondary border border-border-error': card.priority >= 3,
                                         }"
                                         x-text="'P' + card.priority"
                                     ></span>
                                 </div>
 
-                                <p class="mt-2 line-clamp-2 text-xs text-surface-foreground" x-text="card.description || 'No description'"></p>
+                                <p class="mt-2 line-clamp-2 text-xs text-surface-foreground text-secondary" x-text="card.description || 'No description'"></p>
 
-                                <div class="mt-3 flex items-center justify-between gap-2 text-xs text-surface-foreground">
+                                <div class="mt-3 flex items-center justify-between gap-2 text-xs text-surface-foreground text-secondary">
                                     <span x-text="card.due_at ? new Date(card.due_at).toLocaleDateString() : 'No due date'"></span>
                                     <span
                                         x-show="card.assigned_user_id"
-                                        class="ui-badge ui-badge-sm ui-badge-accent max-w-[9rem] truncate"
+                                        class="ui-badge bg-surface text-secondary border border-border ui-badge bg-surface text-secondary border border-border-sm ui-badge bg-surface text-secondary border border-border-accent max-w-[9rem] truncate"
                                         x-text="users.find(user => Number(user.id) === Number(card.assigned_user_id))?.name || 'Assigned'"
                                     ></span>
                                 </div>

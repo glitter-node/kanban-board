@@ -14,25 +14,25 @@
                         @method('PUT')
 
                         <div class="mb-6">
-                            <label for="title" class="mb-1 block text-sm font-medium text-muted-foreground">
+                            <label bg-surface text-secondary border border-border for="title" class="mb-1 block text-sm font-medium text-secondary">
                                 Board Title <span class="text-error">*</span>
-                            </label>
+                            </label bg-surface text-secondary border border-border>
                             <input type="text" name="title" id="title" value="{{ old('title', $board->title) }}"
                                    class="ui-input w-full"
                                    required autofocus>
                             @error('title')
-                                <p class="mt-1 text-sm text-error">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-error text-secondary">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-6">
-                            <label for="description" class="mb-1 block text-sm font-medium text-muted-foreground">
+                            <label bg-surface text-secondary border border-border for="description" class="mb-1 block text-sm font-medium text-secondary">
                                 Description
-                            </label>
+                            </label bg-surface text-secondary border border-border>
                             <textarea name="description" id="description" rows="4"
                                       class="ui-input w-full">{{ old('description', $board->description) }}</textarea>
                             @error('description')
-                                <p class="mt-1 text-sm text-error">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-error text-secondary">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -42,7 +42,7 @@
                                 Cancel
                             </a>
                             <button type="submit"
-                                    class="btn-primary focus:ring-offset-canvas">
+                                    class="btn-primary focus:ring-offset-canvas bg-primary text-white">
                                 Save Changes
                             </button>
                         </div>

@@ -2,10 +2,10 @@
     <div class="ui-panel-header">
         <div class="flex items-center justify-between">
             <div>
-                <p class="ui-kicker">Activity</p>
+                <p class="ui-kicker text-secondary">Activity</p>
                 <h2 class="mt-1 ui-title">Live feed</h2>
             </div>
-            <x-ui.badge x-text="activities.length"></x-ui.badge>
+            <x-ui.badge bg-surface text-secondary border border-border x-text="activities.length"></x-ui.badge bg-surface text-secondary border border-border>
         </div>
     </div>
 
@@ -30,9 +30,9 @@
                 <div class="flex items-start gap-3">
                     <x-ui.avatar class="mt-1" x-text="initials(activity.actor_name || 'System')"></x-ui.avatar>
                     <div class="min-w-0 flex-1">
-                        <p class="text-sm font-medium text-foreground" x-text="activity.actor_name || 'System'"></p>
-                        <p class="mt-1 text-sm text-muted-foreground" x-text="activity.action"></p>
-                        <p class="mt-1 text-xs text-muted-foreground" x-text="activity.created_at ? new Date(activity.created_at).toLocaleString() : ''"></p>
+                        <p class="text-sm font-medium text-foreground text-secondary" x-text="activity.actor_name || 'System'"></p>
+                        <p class="mt-1 text-sm text-secondary" x-text="activity.action"></p>
+                        <p class="mt-1 text-xs text-secondary" x-text="activity.created_at ? new Date(activity.created_at).toLocaleString() : ''"></p>
                     </div>
                 </div>
             </x-ui.card>

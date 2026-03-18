@@ -45,7 +45,7 @@
         <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
             <div class="min-w-0">
                 <h1 class="truncate text-2xl font-semibold text-foreground" x-text="board.title"></h1>
-                <p class="mt-1 truncate text-sm text-muted-foreground" x-text="board.description || 'No description'"></p>
+                <p class="mt-1 truncate text-sm text-secondary" x-text="board.description || 'No description'"></p>
             </div>
             <div class="flex items-center gap-3">
                 <div class="hidden items-center gap-2 sm:flex">

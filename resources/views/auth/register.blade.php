@@ -6,14 +6,14 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label bg-surface text-secondary border border-border for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label bg-surface text-secondary border border-border for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" :value="session('pre_verified_email')" readonly disabled autocomplete="username" />
             <input type="hidden" name="email" value="{{ session('pre_verified_email') }}">
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -21,7 +21,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label bg-surface text-secondary border border-border for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
@@ -33,7 +33,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label bg-surface text-secondary border border-border for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
@@ -44,7 +44,7 @@
 
         <div class="mt-4 space-y-4">
             <div class="flex justify-end">
-                <a class="ui-link rounded-md text-sm underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-canvas" href="{{ route('login') }}">
+                <a class="ui-link rounded-md text-sm underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-canvas text-secondary" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
             </div>

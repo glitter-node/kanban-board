@@ -1,7 +1,7 @@
 <div class="space-y-3">
     <template x-if="selectedCardCommentsLoading">
         <x-layout.stack space="3">
-            <x-ui.state.loading label="Loading comments" />
+            <x-ui.state.loading label bg-surface text-secondary border border-border="Loading comments" />
             <x-ui.state.skeleton :lines="3" :avatar="true" />
         </x-layout.stack>
     </template>
@@ -28,11 +28,11 @@
             <div class="flex items-center gap-3">
                 <x-ui.avatar x-text="initials(comment.author_name || currentUserName)"></x-ui.avatar>
                 <div>
-                    <p class="text-sm font-medium text-foreground" x-text="comment.author_name || currentUserName"></p>
-                    <p class="text-xs text-muted-foreground" x-text="comment.created_at ? new Date(comment.created_at).toLocaleString() : ''"></p>
+                    <p class="text-sm font-medium text-foreground text-secondary" x-text="comment.author_name || currentUserName"></p>
+                    <p class="text-xs text-secondary" x-text="comment.created_at ? new Date(comment.created_at).toLocaleString() : ''"></p>
                 </div>
             </div>
-            <p class="mt-3 whitespace-pre-wrap text-sm text-muted-foreground" x-text="comment.body"></p>
+            <p class="mt-3 whitespace-pre-wrap text-sm text-secondary" x-text="comment.body"></p>
         </x-ui.card>
     </template>
 </div>

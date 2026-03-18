@@ -2,10 +2,10 @@
     <div class="ui-panel-header">
         <div class="flex items-center justify-between">
             <div>
-                <p class="ui-kicker">Members</p>
+                <p class="ui-kicker text-secondary">Members</p>
                 <h2 class="mt-1 ui-title">Team</h2>
             </div>
-            <x-ui.badge x-text="members.length"></x-ui.badge>
+            <x-ui.badge bg-surface text-secondary border border-border x-text="members.length"></x-ui.badge bg-surface text-secondary border border-border>
         </div>
     </div>
 
@@ -30,13 +30,13 @@
                 <div class="flex items-center gap-3">
                     <x-ui.avatar size="md" x-text="initials(member.name)"></x-ui.avatar>
                     <div>
-                        <p class="text-sm font-medium text-foreground" x-text="member.name"></p>
-                        <p class="text-xs text-muted-foreground" x-text="member.email"></p>
+                        <p class="text-sm font-medium text-foreground text-secondary" x-text="member.name"></p>
+                        <p class="text-xs text-secondary" x-text="member.email"></p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <x-ui.badge x-text="member.role"></x-ui.badge>
+                    <x-ui.badge bg-surface text-secondary border border-border x-text="member.role"></x-ui.badge bg-surface text-secondary border border-border>
                     <span x-show="onlineUsers.find(user => Number(user.id) === Number(member.user_id))" class="connection-dot connected" title="Online"></span>
                 </div>
             </x-ui.card>
