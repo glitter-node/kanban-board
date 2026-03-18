@@ -26,14 +26,14 @@
             <button
                 type="button"
                 class="btn-primary-outline btn-md focus-ring"
-                data-action="back"
+                onclick="history.back()"
             >
                 Cancel
             </button>
 
-            <x-primary-button>
+            <button type="submit" class="btn-primary btn-md focus-ring">
                 {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </x-guest-layout>
