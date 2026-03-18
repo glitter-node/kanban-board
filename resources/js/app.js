@@ -14,6 +14,16 @@ let recentClicks = [];
 let sessionEndedTracked = false;
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
+const experimentAssignments = (() => {
+    const content = document.querySelector('meta[name="app-experiments"]')?.getAttribute('content') ?? '{}';
+
+    try {
+        return JSON.parse(content);
+    } catch (error) {
+        console.error(error);
+        return {};
+    }
+})();
 
 const ensureSessionId = () => {
     const key = 'kanban.analytics.session_id';
@@ -38,6 +48,7 @@ const analyticsContext = () => {
         path,
         board_id: boardMatch ? Number(boardMatch[1]) : undefined,
         viewport: window.innerWidth < 768 ? 'mobile' : 'desktop',
+        experiments: experimentAssignments,
     };
 };
 

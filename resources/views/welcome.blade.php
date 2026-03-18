@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="app-experiments" content='@json($frontendExperiments ?? [])'>
     <meta name="description" content="Organize work with simple realtime boards. Collaborative Kanban for teams and individuals built with Laravel.">
     <title>{{ config('app.name', 'Kanban Board') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -60,9 +61,18 @@
                             </p>
 
                             <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-                                <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                    Create a board
-                                </x-ui.button>
+                                @experiment('landing_primary_cta')
+                                    @variant('A')
+                                        <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
+                                            Create a board
+                                        </x-ui.button>
+                                    @endvariant
+                                    @variant('B')
+                                        <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
+                                            Start your board
+                                        </x-ui.button>
+                                    @endvariant
+                                @endexperiment
                                 <x-ui.button as="a" href="#preview" variant="secondary" size="lg" class="rounded-2xl normal-case tracking-normal">
                                     View demo
                                 </x-ui.button>

@@ -3,11 +3,14 @@
 namespace App\Providers;
 
 use App\Notifications\ResetPasswordCustom;
+use App\Services\ExperimentService;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +41,26 @@ class AppServiceProvider extends ServiceProvider
 
         ResetPassword::toMailUsing(function ($notifiable, string $token) {
             return (new ResetPasswordCustom($token))->toMail($notifiable);
+        });
+
+        Blade::directive('experiment', function ($expression) {
+            return "<?php if(app(\\App\\Services\\ExperimentService::class)->beginExperiment({$expression}, auth()->user())): ?>";
+        });
+
+        Blade::directive('variant', function ($expression) {
+            return "<?php if(app(\\App\\Services\\ExperimentService::class)->variantMatches({$expression})): ?>";
+        });
+
+        Blade::directive('endvariant', function () {
+            return '<?php endif; ?>';
+        });
+
+        Blade::directive('endexperiment', function () {
+            return '<?php app(\\App\\Services\\ExperimentService::class)->endExperiment(); endif; ?>';
+        });
+
+        View::composer(['layouts.app', 'layouts.guest', 'welcome'], function ($view): void {
+            $view->with('frontendExperiments', app(ExperimentService::class)->frontendAssignments(auth()->user()));
         });
     }
 }

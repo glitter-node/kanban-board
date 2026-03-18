@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AnalyticsService;
+use App\Services\ExperimentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class AnalyticsEventController extends Controller
 {
     public function __construct(
         private readonly AnalyticsService $analyticsService,
+        private readonly ExperimentService $experimentService,
     ) {}
 
     public function store(Request $request): JsonResponse
@@ -22,6 +24,11 @@ class AnalyticsEventController extends Controller
         ]);
 
         $this->analyticsService->recordBatch(
+            user: $request->user(),
+            events: $validated['events'],
+        );
+
+        $this->experimentService->recordEventBatch(
             user: $request->user(),
             events: $validated['events'],
         );

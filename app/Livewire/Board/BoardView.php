@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Board;
 
+use App\Livewire\Concerns\InteractsWithExperiments;
 use App\Models\Board;
 use App\Services\ActivityService;
 use App\Services\BoardMemberService;
@@ -14,6 +15,8 @@ use Livewire\Component;
 
 class BoardView extends Component
 {
+    use InteractsWithExperiments;
+
     public Board $board;
 
     public array $boardPayload = [];
@@ -61,6 +64,7 @@ class BoardView extends Component
             'title' => $board->title,
             'description' => $board->description,
             'type' => $board->type,
+            'experiments' => $this->experimentAssignments(),
         ];
 
         $cards = collect($cardService->listCards($board, [], 500)->items());

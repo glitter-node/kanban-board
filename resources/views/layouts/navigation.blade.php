@@ -14,6 +14,9 @@
                 <x-nav-link :href="route('analytics.index')" :active="request()->routeIs('analytics.*')">
                     Analytics
                 </x-nav-link>
+                <x-nav-link :href="route('experiments.index')" :active="request()->routeIs('experiments.*')">
+                    Experiments
+                </x-nav-link>
             </div>
         </div>
 
@@ -73,6 +76,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('analytics.index')" :active="request()->routeIs('analytics.*')">
                     Analytics
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('experiments.index')" :active="request()->routeIs('experiments.*')">
+                    Experiments
                 </x-responsive-nav-link>
             </div>
 
