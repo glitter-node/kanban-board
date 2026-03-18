@@ -14,8 +14,8 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="mt-4 flex items-center justify-end gap-3">
-            <button type="button" class="btn-secondary" onclick="window.history.back()">
+        <div class="form-actions mt-4">
+            <button type="button" class="btn-secondary" onclick="window.history.length > 1 ? window.history.back() : window.location.assign('/login')">
                 {{ __('Cancel') }}
             </button>
 

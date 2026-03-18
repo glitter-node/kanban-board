@@ -941,6 +941,10 @@
         @apply mt-2;
     }
 
+    .form-actions {
+        @apply flex items-center justify-end gap-3;
+    }
+
     #stuck-exposure .section-inner,
     #flow-resolution .section-inner,
     #preview .section-inner {
