@@ -155,6 +155,18 @@ window.addEventListener('click', (event) => {
     }
 }, { passive: true });
 
+document.addEventListener('click', (event) => {
+    const backTrigger = event.target instanceof Element
+        ? event.target.closest('[data-action="back"]')
+        : null;
+
+    if (!backTrigger) {
+        return;
+    }
+
+    window.history.back();
+});
+
 const trackSessionEnd = () => {
     if (sessionEndedTracked) {
         return;

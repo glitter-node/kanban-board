@@ -14,14 +14,14 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="form-actions mt-4">
-            <button type="button" class="btn-secondary" onclick="window.history.length > 1 ? window.history.back() : window.location.assign('/login')">
+        <div class="flex items-center justify-end gap-2 mt-4">
+            <button class="btn-secondary btn-md focus-ring" type="button" data-action="back">
                 {{ __('Cancel') }}
             </button>
 
-            <x-primary-button>
+            <button class="btn-primary btn-md focus-ring" type="submit">
                 {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
 </x-guest-layout>
