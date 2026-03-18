@@ -12,6 +12,6 @@
     </div>
 
     @if ($count !== null)
-        <x-ui.badge bg-surface text-secondary border border-border>{{ $count }}</x-ui.badge bg-surface text-secondary border border-border>
+        <x-ui.badge>{{ $count }}</x-ui.badge>
     @endif
 </div>

@@ -5,17 +5,17 @@
 
 @php
     $toneClass = match ($tone) {
-        'accent' => 'ui-badge bg-surface text-secondary border border-border-accent',
-        'success' => 'ui-badge bg-surface text-secondary border border-border-success',
-        'warning' => 'ui-badge bg-surface text-secondary border border-border-warning',
-        'error' => 'ui-badge bg-surface text-secondary border border-border-error',
-        'info' => 'ui-badge bg-surface text-secondary border border-border-info',
+        'accent' => 'ui-badge-accent',
+        'success' => 'ui-badge-success',
+        'warning' => 'ui-badge-warning',
+        'error' => 'ui-badge-error',
+        'info' => 'ui-badge-info',
         default => '',
     };
 
-    $sizeClass = $size === 'sm' ? 'ui-badge bg-surface text-secondary border border-border-sm' : 'ui-badge bg-surface text-secondary border border-border';
+    $sizeClass = $size === 'sm' ? 'ui-badge-sm' : '';
 @endphp
 
-<span {{ $attributes->class([$sizeClass, $toneClass]) }}>
+<span {{ $attributes->except(['bg-surface', 'text-secondary', 'border', 'border-border'])->class(['ui-badge', $sizeClass, $toneClass]) }}>
     {{ $slot }}
 </span>

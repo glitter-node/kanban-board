@@ -48,9 +48,6 @@
         --ease-decelerate: cubic-bezier(0, 0, 0, 1);
         --ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
 
-        --shadow-sm: none;
-        --shadow-md: none;
-        --shadow-lg: none;
     }
 
     html {
@@ -311,7 +308,7 @@
 
     .ui-panel-elevated {
         @apply motion rounded-3xl;
-        background-color: var(--color-bg-elevated);
+        background-color: var(--color-bg-surface);
         border: 1px solid var(--color-border);
     }
 
@@ -523,7 +520,7 @@
     }
 
     .app-hero-orbs {
-        background: none;
+        display: none;
     }
 
     .app-glass-panel {
@@ -590,7 +587,7 @@
     .ui-empty {
         @apply rounded-2xl border border-dashed px-4 py-8 text-center text-sm;
         border-color: rgb(var(--border-strong));
-        color: var(--color-text-muted);
+        color: var(--color-text-secondary);
         background-color: var(--color-bg-surface);
     }
 
@@ -608,8 +605,8 @@
     }
 
     @keyframes cardPulse {
-        0%, 100% { box-shadow: 0 0 0 0 var(--color-primary); }
-        50% { box-shadow: 0 0 0 2px var(--color-primary); }
+        0%, 100% { border-color: var(--color-border); }
+        50% { border-color: var(--color-primary); }
     }
 
     .modal-backdrop {
@@ -658,8 +655,7 @@
     }
 
     .sortable-ghost {
-        @apply ring-2 ring-offset-2;
-        --tw-ring-color: var(--color-secondary);
+        border: 1px solid var(--color-border);
     }
 
     .sortable-drag {
