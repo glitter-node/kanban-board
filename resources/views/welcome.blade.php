@@ -20,7 +20,7 @@
         <header>
             <x-layout.container class="flex items-center justify-between py-6">
                 <a href="/" class="flex items-center gap-3">
-                    <span class="ui-surface-elevated grid h-10 w-10 place-items-center rounded-2xl">
+                    <x-ui.surface as="span" variant="elevated" class="grid h-10 w-10 place-items-center rounded-2xl p-0">
                         <span class="grid grid-cols-3 gap-1">
                             <span class="h-2 w-2 rounded-sm bg-[var(--primary)]"></span>
                             <span class="h-2 w-2 rounded-sm bg-[var(--primary)]"></span>
@@ -29,7 +29,7 @@
                             <span class="h-2 w-2 rounded-sm bg-[var(--text-primary)]"></span>
                             <span class="h-2 w-2 rounded-sm bg-[var(--text-primary)]"></span>
                         </span>
-                    </span>
+                    </x-ui.surface>
                     <span class="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--text-secondary)]">Board</span>
                 </a>
 
@@ -43,9 +43,7 @@
         </header>
 
         <main>
-            <x-layout.section class="relative py-24 pb-24 pt-10 lg:pb-32 lg:pt-12" spacing="none">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container class="relative z-10">
+            <x-ui.section class="pb-24 pt-10 lg:pb-32 lg:pt-12" width="7xl">
                     <x-layout.grid :lg="null" class="gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
                         <div class="max-w-2xl">
                             <div class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-primary)]">
@@ -62,27 +60,27 @@
                             </p>
 
                             <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-                                <a href="{{ route('register') }}" class="btn-primary ui-glow rounded-2xl bg-[var(--primary)] px-6 py-3 text-sm normal-case tracking-normal text-[var(--primary-foreground)]">
+                                <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
                                     Create a board
-                                </a>
-                                <a href="#preview" class="btn-secondary rounded-2xl border border-[var(--border)] px-6 py-3 text-sm normal-case tracking-normal text-[var(--text-primary)]">
+                                </x-ui.button>
+                                <x-ui.button as="a" href="#preview" variant="secondary" size="lg" class="rounded-2xl normal-case tracking-normal">
                                     View demo
-                                </a>
+                                </x-ui.button>
                             </div>
 
                             <div class="mt-12 grid gap-4 sm:grid-cols-3">
-                                <div class="ui-card p-4">
+                                <x-ui.card class="p-4">
                                     <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Boards</p>
                                     <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Personal + Team</p>
-                                </div>
-                                <div class="ui-card p-4">
+                                </x-ui.card>
+                                <x-ui.card class="p-4">
                                     <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Sync</p>
                                     <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Realtime</p>
-                                </div>
-                                <div class="ui-card p-4">
+                                </x-ui.card>
+                                <x-ui.card class="p-4">
                                     <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Flow</p>
                                     <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Visual</p>
-                                </div>
+                                </x-ui.card>
                             </div>
                         </div>
 
@@ -90,39 +88,39 @@
                             <div class="absolute -left-8 top-12 h-28 w-28 rounded-full bg-[var(--primary)]"></div>
                             <div class="absolute -right-8 bottom-8 h-32 w-32 rounded-full bg-[var(--surface)]"></div>
 
-                            <div class="ui-surface-elevated rounded-[2rem] p-4">
-                                <div class="ui-surface rounded-[1.7rem] p-5">
+                            <x-ui.surface variant="elevated" class="rounded-[2rem] p-4">
+                                <x-ui.surface class="rounded-[1.7rem] p-5">
                                     <div class="flex items-center justify-between">
                                         <div>
                                             <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Product Launch</p>
                                             <h2 class="mt-2 text-xl font-semibold text-[var(--text-primary)]">Board overview</h2>
                                         </div>
                                         <div class="flex -space-x-2">
-                                            <span class="ui-surface-elevated grid h-9 w-9 place-items-center rounded-full text-xs font-semibold text-[var(--text-secondary)]">AK</span>
-                                            <span class="ui-surface-elevated grid h-9 w-9 place-items-center rounded-full text-xs font-semibold text-[var(--text-secondary)]">JM</span>
-                                            <span class="ui-surface-elevated grid h-9 w-9 place-items-center rounded-full text-xs font-semibold text-[var(--text-secondary)]">LS</span>
+                                            <x-ui.surface as="span" variant="elevated" class="grid h-9 w-9 place-items-center rounded-full p-0 text-xs font-semibold text-[var(--text-secondary)]">AK</x-ui.surface>
+                                            <x-ui.surface as="span" variant="elevated" class="grid h-9 w-9 place-items-center rounded-full p-0 text-xs font-semibold text-[var(--text-secondary)]">JM</x-ui.surface>
+                                            <x-ui.surface as="span" variant="elevated" class="grid h-9 w-9 place-items-center rounded-full p-0 text-xs font-semibold text-[var(--text-secondary)]">LS</x-ui.surface>
                                         </div>
                                     </div>
 
                                     <div class="mt-6 grid gap-4 lg:grid-cols-4">
-                                        <div class="ui-card p-4 rounded-3xl">
+                                        <x-ui.card class="rounded-3xl p-4">
                                             <div class="flex items-center justify-between">
                                                 <p class="text-sm font-semibold text-[var(--text-primary)]">Backlog</p>
                                                 <span class="ui-badge ui-badge-sm">6</span>
                                             </div>
                                             <div class="mt-4 space-y-3">
-                                                <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                     <p class="text-sm font-semibold">Outline release scope</p>
                                                     <p class="mt-2 text-xs text-[var(--text-secondary)]">Brief · Spec</p>
-                                                </div>
-                                                <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                </x-ui.surface>
+                                                <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                     <p class="text-sm font-semibold">Collect beta notes</p>
                                                     <p class="mt-2 text-xs text-[var(--text-secondary)]">Inbox</p>
-                                                </div>
+                                                </x-ui.surface>
                                             </div>
-                                        </div>
+                                        </x-ui.card>
 
-                                        <div class="ui-card p-4 rounded-3xl">
+                                        <x-ui.card class="rounded-3xl p-4">
                                             <div class="flex items-center justify-between">
                                                 <p class="text-sm font-semibold text-[var(--text-primary)]">In Progress</p>
                                                 <span class="ui-badge ui-badge-sm ui-badge-info">3</span>
@@ -135,92 +133,86 @@
                                                         <span>AK</span>
                                                     </div>
                                                 </div>
-                                                <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                     <p class="text-sm font-semibold">Finalize billing copy</p>
                                                     <p class="mt-2 text-xs text-[var(--text-secondary)]">Review tomorrow</p>
-                                                </div>
+                                                </x-ui.surface>
                                             </div>
-                                        </div>
+                                        </x-ui.card>
 
-                                        <div class="ui-card p-4 rounded-3xl">
+                                        <x-ui.card class="rounded-3xl p-4">
                                             <div class="flex items-center justify-between">
                                                 <p class="text-sm font-semibold text-[var(--text-primary)]">Review</p>
                                                 <span class="ui-badge ui-badge-sm ui-badge-warning">2</span>
                                             </div>
                                             <div class="mt-4 space-y-3">
-                                                <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                     <p class="text-sm font-semibold">Realtime event audit</p>
                                                     <div class="mt-3 flex items-center justify-between text-[11px] text-[var(--text-secondary)]">
                                                         <span>12 comments</span>
                                                         <span>JM</span>
                                                     </div>
-                                                </div>
+                                                </x-ui.surface>
                                             </div>
-                                        </div>
+                                        </x-ui.card>
 
-                                        <div class="ui-card p-4 rounded-3xl">
+                                        <x-ui.card class="rounded-3xl p-4">
                                             <div class="flex items-center justify-between">
                                                 <p class="text-sm font-semibold text-[var(--text-primary)]">Done</p>
                                                 <span class="ui-badge ui-badge-sm ui-badge-success">14</span>
                                             </div>
                                             <div class="mt-4 space-y-3">
-                                                <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                     <p class="text-sm font-semibold">API routes wired</p>
                                                     <p class="mt-2 text-xs text-[var(--text-secondary)]">Delivered</p>
-                                                </div>
-                                                <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                </x-ui.surface>
+                                                <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                     <p class="text-sm font-semibold">Auth flow ready</p>
                                                     <p class="mt-2 text-xs text-[var(--text-secondary)]">Completed</p>
-                                                </div>
+                                                </x-ui.surface>
                                             </div>
-                                        </div>
+                                        </x-ui.card>
                                     </div>
-                                </div>
-                            </div>
+                                </x-ui.surface>
+                            </x-ui.surface>
                         </div>
                     </x-layout.grid>
-                </x-layout.container>
-            </x-layout.section>
+            </x-ui.section>
 
-            <x-layout.section class="relative border-y border-[var(--border)] py-24 bg-[var(--surface)]" spacing="lg">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container width="xl" class="relative z-10">
+            <x-ui.section class="border-y border-[var(--border)] bg-[var(--surface)]" width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Problem</p>
                         <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Work becomes chaotic without structure</h2>
                     </div>
 
-                    <div class="ui-surface-elevated mt-10 p-6">
+                    <x-ui.surface variant="elevated" class="mt-10 p-6">
                         <div class="grid gap-4 md:grid-cols-[repeat(5,minmax(0,1fr))] md:items-center">
-                            <div class="ui-card p-5 text-center">
+                            <x-ui.card class="p-5 text-center">
                                 <p class="text-sm font-semibold text-[var(--text-primary)]">Tasks</p>
-                            </div>
+                            </x-ui.card>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <div class="ui-card p-5 text-center">
+                            <x-ui.card class="p-5 text-center">
                                 <p class="text-sm font-semibold text-[var(--text-primary)]">Chat</p>
-                            </div>
+                            </x-ui.card>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <div class="ui-card p-5 text-center">
+                            <x-ui.card class="p-5 text-center">
                                 <p class="text-sm font-semibold text-[var(--text-primary)]">Email</p>
-                            </div>
+                            </x-ui.card>
                         </div>
 
                         <div class="mt-4 grid gap-4 md:grid-cols-[repeat(3,minmax(0,1fr))] md:items-center">
-                            <div class="ui-card p-5 text-center">
+                            <x-ui.card class="p-5 text-center">
                                 <p class="text-sm font-semibold text-[var(--text-primary)]">Notes</p>
-                            </div>
+                            </x-ui.card>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
                             <div class="rounded-3xl border border-[var(--danger)] bg-[var(--danger)] p-5 text-center text-[var(--danger-foreground)] shadow-[var(--shadow-md)]">
                                 <p class="text-sm font-semibold">Missed deadlines</p>
                             </div>
                         </div>
-                    </div>
-                </x-layout.container>
-            </x-layout.section>
+                    </x-ui.surface>
+            </x-ui.section>
 
-            <x-layout.section class="relative py-24" spacing="lg">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container width="xl" class="relative z-10">
+            <x-ui.section width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Solution</p>
                         <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">A clear workflow with Kanban</h2>
@@ -229,31 +221,28 @@
                         </p>
                     </div>
 
-                    <div class="ui-surface-elevated mt-10 rounded-xl p-6">
+                    <x-ui.surface variant="elevated" class="mt-10 rounded-xl p-6">
                         <div class="grid gap-4 lg:grid-cols-[repeat(7,minmax(0,1fr))] lg:items-center">
-                            <div class="ui-surface rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
+                            <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
                                 Backlog
-                            </div>
+                            </x-ui.surface>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
                             <div class="ui-glow rounded-lg bg-[var(--primary)] px-4 py-2 text-center text-[var(--primary-foreground)]">
                                 In Progress
                             </div>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <div class="ui-surface rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
+                            <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
                                 Review
-                            </div>
+                            </x-ui.surface>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <div class="ui-surface rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
+                            <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
                                 Done
-                            </div>
+                            </x-ui.surface>
                         </div>
-                    </div>
-                </x-layout.container>
-            </x-layout.section>
+                    </x-ui.surface>
+            </x-ui.section>
 
-            <x-layout.section id="features" class="relative py-24" spacing="lg">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container width="xl" class="relative z-10">
+            <x-ui.section id="features" width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Features</p>
                         <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Built for focused workflow management</h2>
@@ -272,7 +261,7 @@
                         @endphp
 
                         @foreach ($features as $feature)
-                            <article class="ui-card p-6">
+                            <x-ui.card as="article">
                                 <div class="mb-4 text-[var(--primary)]">
                                     <div class="ui-glow flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-lg font-semibold">
                                         {{ $feature['icon'] }}
@@ -280,123 +269,114 @@
                                 </div>
                                 <h3 class="mt-5 text-lg font-semibold text-[var(--text-primary)]">{{ $feature['title'] }}</h3>
                                 <p class="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{{ $feature['text'] }}</p>
-                            </article>
+                            </x-ui.card>
                         @endforeach
                     </x-layout.grid>
-                </x-layout.container>
-            </x-layout.section>
+            </x-ui.section>
 
-            <x-layout.section class="relative py-24" spacing="lg">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container width="xl" class="relative z-10">
+            <x-ui.section width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">How It Works</p>
                         <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Simple board setup, visible execution</h2>
                     </div>
 
-                    <div class="ui-surface-elevated mt-10 p-6">
+                    <x-ui.surface variant="elevated" class="mt-10 p-6">
                         <div class="grid gap-4 md:grid-cols-5 md:items-center">
                             @php
                                 $steps = ['Create Board', 'Add Columns', 'Create Cards', 'Move Tasks', 'Team Collaboration'];
                             @endphp
 
                             @foreach ($steps as $index => $step)
-                                <div class="ui-card p-5 text-center">
+                                <x-ui.card class="p-5 text-center">
                                     <p class="text-sm font-semibold text-[var(--text-primary)]">{{ $step }}</p>
-                                </div>
+                                </x-ui.card>
 
                                 @if ($index < count($steps) - 1)
                                     <div class="text-center text-2xl text-[var(--text-secondary)]">↓</div>
                                 @endif
                             @endforeach
                         </div>
-                    </div>
-                </x-layout.container>
-            </x-layout.section>
+                    </x-ui.surface>
+            </x-ui.section>
 
-            <x-layout.section id="preview" class="relative py-24" spacing="lg">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container width="xl" class="relative z-10">
+            <x-ui.section id="preview" width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Product Preview</p>
                         <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">A board interface built around movement and visibility</h2>
                     </div>
 
-                    <div class="ui-surface-elevated mt-10 rounded-2xl p-5">
-                        <div class="ui-surface rounded-[1.8rem] p-5">
+                    <x-ui.surface variant="elevated" class="mt-10 rounded-2xl p-5">
+                        <x-ui.surface class="rounded-[1.8rem] p-5">
                             <div class="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)]">
-                                <div class="ui-surface overflow-hidden rounded-[1.6rem]">
+                                <x-ui.surface class="overflow-hidden rounded-[1.6rem]">
                                     <div class="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
                                         <div>
                                             <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Board UI</p>
                                             <h3 class="mt-1 text-lg font-semibold text-[var(--text-primary)]">Sprint planning</h3>
                                         </div>
                                         <div class="flex -space-x-2">
-                                            <span class="ui-surface-elevated h-8 w-8 rounded-full"></span>
-                                            <span class="ui-surface-elevated h-8 w-8 rounded-full"></span>
-                                            <span class="ui-surface-elevated h-8 w-8 rounded-full"></span>
+                                            <x-ui.surface as="span" variant="elevated" class="h-8 w-8 rounded-full p-0"></x-ui.surface>
+                                            <x-ui.surface as="span" variant="elevated" class="h-8 w-8 rounded-full p-0"></x-ui.surface>
+                                            <x-ui.surface as="span" variant="elevated" class="h-8 w-8 rounded-full p-0"></x-ui.surface>
                                         </div>
                                     </div>
 
                                     <div class="grid gap-4 p-4 md:grid-cols-4">
                                         @foreach (['Columns', 'Cards', 'Comments', 'Due dates'] as $label)
-                                            <div class="ui-card rounded-3xl p-4">
+                                            <x-ui.card class="rounded-3xl p-4">
                                                 <p class="text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)]">{{ $label }}</p>
                                                 <div class="mt-4 space-y-3">
-                                                    <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                    <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                         <div class="h-2.5 w-20 rounded-full bg-[var(--text-primary)]"></div>
                                                         <div class="mt-3 h-2 w-14 rounded-full bg-[var(--text-secondary)]"></div>
-                                                    </div>
-                                                    <div class="ui-surface-elevated rounded-2xl p-3 text-[var(--text-primary)]">
+                                                    </x-ui.surface>
+                                                    <x-ui.surface variant="elevated" class="rounded-2xl p-3 text-[var(--text-primary)]">
                                                         <div class="h-2.5 w-24 rounded-full bg-[var(--text-primary)]"></div>
                                                         <div class="mt-3 h-2 w-10 rounded-full bg-[var(--text-secondary)]"></div>
-                                                    </div>
+                                                    </x-ui.surface>
                                                 </div>
-                                            </div>
+                                            </x-ui.card>
                                         @endforeach
                                     </div>
-                                </div>
+                                </x-ui.surface>
 
                                 <div class="space-y-4">
-                                    <div class="ui-card rounded-[1.6rem] p-5">
+                                    <x-ui.card class="rounded-[1.6rem] p-5">
                                         <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Visible details</p>
                                         <div class="mt-5 space-y-4">
-                                            <div class="ui-surface-elevated flex items-center justify-between rounded-2xl px-4 py-3">
+                                            <x-ui.surface variant="elevated" class="flex items-center justify-between rounded-2xl px-4 py-3">
                                                 <span class="text-sm text-[var(--text-secondary)]">Columns</span>
                                                 <span class="text-sm font-semibold text-[var(--text-primary)]">Workflow stages</span>
-                                            </div>
-                                            <div class="ui-surface-elevated flex items-center justify-between rounded-2xl px-4 py-3">
+                                            </x-ui.surface>
+                                            <x-ui.surface variant="elevated" class="flex items-center justify-between rounded-2xl px-4 py-3">
                                                 <span class="text-sm text-[var(--text-secondary)]">Cards</span>
                                                 <span class="text-sm font-semibold text-[var(--text-primary)]">Work items</span>
-                                            </div>
-                                            <div class="ui-surface-elevated flex items-center justify-between rounded-2xl px-4 py-3">
+                                            </x-ui.surface>
+                                            <x-ui.surface variant="elevated" class="flex items-center justify-between rounded-2xl px-4 py-3">
                                                 <span class="text-sm text-[var(--text-secondary)]">User avatars</span>
                                                 <span class="text-sm font-semibold text-[var(--text-primary)]">Owners</span>
-                                            </div>
-                                            <div class="ui-surface-elevated flex items-center justify-between rounded-2xl px-4 py-3">
+                                            </x-ui.surface>
+                                            <x-ui.surface variant="elevated" class="flex items-center justify-between rounded-2xl px-4 py-3">
                                                 <span class="text-sm text-[var(--text-secondary)]">Comments</span>
                                                 <span class="text-sm font-semibold text-[var(--text-primary)]">Context</span>
-                                            </div>
-                                            <div class="ui-surface-elevated flex items-center justify-between rounded-2xl px-4 py-3">
+                                            </x-ui.surface>
+                                            <x-ui.surface variant="elevated" class="flex items-center justify-between rounded-2xl px-4 py-3">
                                                 <span class="text-sm text-[var(--text-secondary)]">Due dates</span>
                                                 <span class="text-sm font-semibold text-[var(--text-primary)]">Timing</span>
-                                            </div>
+                                            </x-ui.surface>
                                         </div>
-                                    </div>
+                                    </x-ui.card>
 
                                     <div class="ui-glow rounded-[1.6rem] border border-[var(--primary)] bg-[var(--primary)] p-5 text-[var(--primary-foreground)]">
                                         <p class="text-sm font-semibold">Move work, keep context, stay aligned.</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </x-layout.container>
-            </x-layout.section>
+                        </x-ui.surface>
+                    </x-ui.surface>
+            </x-ui.section>
 
-            <x-layout.section id="use-cases" class="relative py-24" spacing="lg">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container width="xl" class="relative z-10">
+            <x-ui.section id="use-cases" width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Use Cases</p>
                         <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">One board model, multiple ways to work</h2>
@@ -413,37 +393,33 @@
                         @endphp
 
                         @foreach ($useCases as $useCase)
-                            <article class="ui-card p-6">
-                                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ui-surface-elevated text-lg font-semibold text-[var(--primary)]">
+                            <x-ui.card as="article">
+                                <x-ui.surface class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl p-0 text-lg font-semibold text-[var(--primary)]" variant="elevated">
                                     {{ $useCase['icon'] }}
-                                </div>
+                                </x-ui.surface>
                                 <h3 class="mt-5 text-lg font-semibold text-[var(--text-primary)]">{{ $useCase['title'] }}</h3>
-                            </article>
+                            </x-ui.card>
                         @endforeach
                     </x-layout.grid>
-                </x-layout.container>
-            </x-layout.section>
+            </x-ui.section>
 
-            <x-layout.section class="relative py-24 pb-24 pt-8" spacing="none">
-                <div class="absolute inset-0 ui-gradient opacity-50 pointer-events-none"></div>
-                <x-layout.container width="lg" class="relative z-10">
-                    <div class="ui-card flex items-center justify-between rounded-[2.4rem] p-8 sm:p-10">
+            <x-ui.section class="pb-24 pt-8" width="lg">
+                    <x-ui.card class="flex items-center justify-between rounded-[2.4rem] p-8 sm:p-10">
                         <div>
                             <p class="ui-kicker text-[var(--primary)]">Final CTA</p>
                             <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Start organizing your work</h2>
                         </div>
 
                         <div class="flex flex-col gap-3 sm:flex-row">
-                            <a href="{{ route('register') }}" class="btn-primary ui-glow rounded-2xl bg-[var(--primary)] px-6 py-3 text-sm normal-case tracking-normal text-[var(--primary-foreground)]">
+                            <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
                                 Create board
-                            </a>
-                            <a href="{{ route('login') }}" class="btn-secondary rounded-2xl border border-[var(--border)] px-6 py-3 text-sm normal-case tracking-normal text-[var(--text-primary)]">
+                            </x-ui.button>
+                            <x-ui.button as="a" href="{{ route('login') }}" variant="secondary" size="lg" class="rounded-2xl normal-case tracking-normal">
                                 Sign in
-                            </a>
+                            </x-ui.button>
                         </div>
-                    </div>
-                </x-layout.container>
-            </x-layout.section>
+                    </x-ui.card>
+            </x-ui.section>
         </main>
 
         <x-layout.divider class="bg-border" />

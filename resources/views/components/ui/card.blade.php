@@ -1,7 +1,12 @@
 @props([
     'interactive' => false,
+    'as' => 'div',
 ])
 
-<article {{ $attributes->class([$interactive ? 'ui-card-interactive' : 'ui-card']) }}>
+@php
+    $classes = $interactive ? 'ui-card ui-card-interactive p-6' : 'ui-card p-6';
+@endphp
+
+<{{ $as }} {{ $attributes->class([$classes]) }}>
     {{ $slot }}
-</article>
+</{{ $as }}>
