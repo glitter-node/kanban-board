@@ -22,18 +22,18 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end gap-2 mt-4">
-            <button
-                type="button"
-                class="btn-primary btn-md focus-ring"
-                onclick="history.back()"
-            >
-                Cancel
-            </button>
-
-            <button type="submit" class="btn-primary btn-md focus-ring">
-                {{ __('Email Password Reset Link') }}
-            </button>
-        </div>
+        <button type="submit" class="btn-primary btn-md focus-ring mt-4 w-full">
+            {{ __('Email Password Reset Link') }}
+        </button>
     </form>
+
+    <div class="mt-2 text-right">
+        <button
+            type="button"
+            class="btn-primary btn-md focus-ring"
+            onclick="history.back()"
+        >
+            Cancel
+        </button>
+    </div>
 </x-guest-layout>
