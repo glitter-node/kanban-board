@@ -39,6 +39,20 @@
             <main id="main-content" role="main">
                 {{ $slot }}
             </main>
+
+            <footer class="border-t border-border bg-surface py-6">
+                <div class="mx-auto flex max-w-7xl justify-end px-4 sm:px-6 lg:px-8">
+                    <a
+                        href="https://glitter.kr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Visit Glitter.kr"
+                        class="text-zinc-500 transition-colors hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-600"
+                    >
+                        Glitter.kr
+                    </a>
+                </div>
+            </footer>
         </div>
         @livewireScripts
         @stack('scripts')

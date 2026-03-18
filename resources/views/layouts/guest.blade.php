@@ -25,6 +25,20 @@
             <div class="ui-panel mt-6 w-full overflow-hidden px-6 py-4 sm:max-w-md sm:rounded-lg">
                 {{ $slot }}
             </div>
+
+            <footer class="mt-6 w-full py-6">
+                <div class="mx-auto flex w-full max-w-md justify-end px-6">
+                    <a
+                        href="https://glitter.kr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Visit Glitter.kr"
+                        class="text-zinc-500 transition-colors hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-600"
+                    >
+                        Glitter.kr
+                    </a>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
