@@ -43,7 +43,7 @@
         </header>
 
         <main>
-            <x-ui.section class="pb-24 pt-10 lg:pb-32 lg:pt-12" width="7xl">
+            <x-ui.section id="hero" class="pb-24 pt-10 lg:pb-32 lg:pt-12" width="7xl">
                     <x-layout.grid :lg="null" class="gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
                         <div class="max-w-2xl">
                             <div class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-primary)]">
@@ -188,70 +188,79 @@
                     </x-layout.grid>
             </x-ui.section>
 
-            <x-ui.section class="border-y border-[var(--border)] bg-[var(--surface)]" width="xl">
-                    <div class="max-w-3xl">
-                        <p class="ui-kicker text-[var(--primary)]">This is where work stalls</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Work does not stop in one obvious place. It starts waiting between the handoff and the next owner.</h2>
+            <x-ui.section id="stuck-exposure" class="section border-y border-[var(--border)] bg-[var(--surface)]" width="xl">
+                    <div id="features" class="section-inner">
+                        <p class="section-label ui-kicker text-[var(--primary)]">This is where work stalls</p>
+                        <h2 class="section-title">Work doesn&apos;t stop in one place. It slows, waits, and slips between handoffs.</h2>
                     </div>
 
                     <x-ui.surface variant="elevated" class="mt-10 p-6">
-                        <div class="space-y-4 text-lg font-medium leading-8 text-[var(--text-primary)] sm:text-xl">
-                            <p>Waiting on someone who thinks the task is not theirs.</p>
-                            <p>Marked in progress, untouched, and quietly slipping.</p>
-                            <p>Blocked, but no one surfaces it before the delay spreads.</p>
-                            <p>Ownership changed, but the handoff never landed.</p>
-                            <p>Discussion happened elsewhere, so the work kept waiting.</p>
+                        <div class="stuck-list">
+                            <p>Waiting on someone who thinks it is not theirs</p>
+                            <p>Marked in progress but not touched</p>
+                            <p>Blocked, but no one calls it out</p>
+                            <p>Ownership moved, but the work did not</p>
+                            <p>Discussion happened outside, so the task lost context</p>
                         </div>
 
                         <div class="mt-8 flex flex-col items-start gap-4">
-                            <p class="text-base text-[var(--text-secondary)]">
-                                You are not missing the work. You are missing where it is stuck.
+                            <p class="section-bridge">
+                                Nothing is broken. It is just not moving.
                             </p>
-                            <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                See what&apos;s blocked right now
+                            <x-ui.button as="a" href="/pre-verify/request" variant="primary" size="lg" class="cta-primary rounded-2xl normal-case tracking-normal">
+                                See what&apos;s already blocked
                             </x-ui.button>
                         </div>
                     </x-ui.surface>
             </x-ui.section>
 
-            <x-ui.section id="features" width="xl">
-                    <div class="max-w-3xl">
-                        <p class="ui-kicker text-[var(--primary)]">Make work move again</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">When work is stuck, the fix is simple: expose the handoff, assign the owner, and move it before it slips again.</h2>
+            <x-ui.section id="flow-resolution" class="section" width="xl">
+                    <div class="section-inner">
+                        <p class="section-label ui-kicker text-[var(--primary)]">Make work move again</p>
+                        <h2 class="section-title">When work is stuck, you need to see it, assign it, and move it.</h2>
                     </div>
 
-                    <div class="mt-10 space-y-5">
+                    <div class="flow-grid mt-10">
                         @php
                             $features = [
-                                ['step' => '01', 'title' => 'Make ownership obvious', 'text' => 'Every task shows who owns the next move. Waiting stops hiding behind assumption.'],
-                                ['step' => '02', 'title' => 'Surface blockers fast', 'text' => 'Blocked work stands out before the delay spreads. The stall becomes visible the moment it starts.'],
-                                ['step' => '03', 'title' => 'Move the work now', 'text' => 'Reassign it, drag it forward, and clear the handoff before another idle day forms around it.'],
-                                ['step' => '04', 'title' => 'Keep context attached', 'text' => 'Comments, decisions, and history stay with the task so movement does not break the handoff.'],
+                                ['step' => '01', 'title' => 'See ownership clearly', 'text' => 'Every task shows who owns the next move.'],
+                                ['step' => '02', 'title' => 'Spot blockers instantly', 'text' => 'Work that is stuck stands out without digging.'],
+                                ['step' => '03', 'title' => 'Unstick work fast', 'text' => 'Move tasks before waiting turns into delay.'],
+                                ['step' => '04', 'title' => 'Carry decisions to done', 'text' => 'Context stays with the task across every handoff.'],
                             ];
                         @endphp
 
                         @foreach ($features as $feature)
-                            <x-ui.card as="article" class="flex flex-col gap-5 p-6 md:flex-row md:items-start md:gap-6">
+                            <article class="flow-item">
                                 <div class="text-[var(--primary)]">
                                     <div class="ui-glow flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-sm font-semibold">
                                         {{ $feature['step'] }}
                                     </div>
                                 </div>
-                                <div class="max-w-2xl">
-                                    <h3 class="text-lg font-semibold text-[var(--text-primary)]">{{ $feature['title'] }}</h3>
-                                    <p class="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{{ $feature['text'] }}</p>
+                                <div class="mt-5 max-w-2xl">
+                                    <h3>{{ $feature['title'] }}</h3>
+                                    <p>{{ $feature['text'] }}</p>
                                 </div>
-                            </x-ui.card>
+                            </article>
                         @endforeach
+                    </div>
+
+                    <div class="mt-8 flex flex-col items-start gap-4">
+                        <p class="section-bridge">
+                            Once you see where work is stuck, you can move it immediately.
+                        </p>
+                        <x-ui.button as="a" href="/pre-verify/request" variant="primary" size="lg" class="cta-primary rounded-2xl normal-case tracking-normal">
+                            See what&apos;s already blocked
+                        </x-ui.button>
                     </div>
             </x-ui.section>
 
-            <x-ui.section id="preview" width="xl">
-                    <div class="max-w-2xl">
-                        <p class="ui-kicker text-[var(--primary)]">Proof</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">This is where you see what is stuck and where the next move belongs.</h2>
-                        <p class="mt-4 text-base text-[var(--text-secondary)]">
-                            The board makes blocked work, waiting handoffs, and ownership visible in one place so movement starts again.
+            <x-ui.section id="preview" class="section" width="xl">
+                    <div class="section-inner max-w-2xl">
+                        <p class="section-label ui-kicker text-[var(--primary)]">See what is stuck</p>
+                        <h2 class="section-title">This is where blocked work becomes visible</h2>
+                        <p class="section-bridge mt-4">
+                            See ownership, waiting work, and stalled tasks in one place.
                         </p>
                     </div>
 
@@ -326,16 +335,16 @@
                     </x-ui.surface>
             </x-ui.section>
 
-            <x-ui.section class="pb-24 pt-8" width="lg">
-                    <x-ui.card class="flex items-center justify-between rounded-[2.4rem] p-8 sm:p-10">
+            <x-ui.section id="final-cta" class="section pb-24 pt-8" width="lg">
+                    <x-ui.card class="section-inner flex flex-col items-center rounded-[2.4rem] p-8 text-center sm:p-10">
                         <div>
-                            <p class="ui-kicker text-[var(--primary)]">Final CTA</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">If work is already slipping between handoffs, do not wait for another update.</h2>
+                            <p class="section-label ui-kicker text-[var(--primary)]">Final CTA</p>
+                            <h2 class="section-title">Work is already waiting. You just haven&apos;t seen it yet.</h2>
                         </div>
 
-                        <div class="flex flex-col gap-3 sm:flex-row">
-                            <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                See what&apos;s blocked right now
+                        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                            <x-ui.button as="a" href="/pre-verify/request" variant="primary" size="lg" class="cta-primary rounded-2xl normal-case tracking-normal">
+                                See what&apos;s already blocked
                             </x-ui.button>
                         </div>
                     </x-ui.card>

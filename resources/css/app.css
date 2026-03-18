@@ -876,6 +876,89 @@
     .sidebar-transition {
         transition: width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     }
+
+    .section {
+        @apply relative py-16 md:py-20 lg:py-24;
+    }
+
+    .section-inner {
+        @apply mx-auto w-full max-w-5xl;
+    }
+
+    .container {
+        @apply mx-auto w-full max-w-6xl;
+    }
+
+    .section-label {
+        @apply text-xs font-semibold uppercase;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.22em;
+    }
+
+    .section-title {
+        @apply mt-4 text-3xl font-semibold tracking-tight sm:text-4xl;
+        color: var(--color-text-primary);
+        line-height: 1.1;
+        max-width: 16ch;
+    }
+
+    .section-bridge {
+        @apply text-base leading-7;
+        color: var(--color-text-secondary);
+    }
+
+    .stuck-list {
+        @apply flex flex-col gap-3;
+        color: var(--color-text-secondary);
+    }
+
+    .stuck-list p {
+        @apply text-base font-medium leading-7 sm:text-lg;
+    }
+
+    .flow-grid {
+        @apply grid grid-cols-1 gap-5 md:grid-cols-2;
+    }
+
+    .flow-item {
+        @apply rounded-2xl p-6;
+        background: var(--gradient-surface), var(--surface-elevated);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-md);
+    }
+
+    .flow-item h3 {
+        @apply text-lg font-semibold;
+        color: var(--color-text-primary);
+    }
+
+    .flow-item p {
+        @apply mt-2 text-sm leading-6;
+        color: var(--color-text-secondary);
+    }
+
+    .cta-primary {
+        @apply mt-2;
+    }
+
+    #stuck-exposure .section-inner,
+    #flow-resolution .section-inner,
+    #preview .section-inner {
+        @apply max-w-5xl;
+    }
+
+    #final-cta .section-inner {
+        @apply max-w-3xl text-center;
+    }
+
+    #final-cta .section-title {
+        @apply mx-auto text-4xl;
+        max-width: 14ch;
+    }
+
+    #final-cta .cta-primary {
+        @apply mx-auto;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
