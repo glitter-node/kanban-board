@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="app-experiments" content='@json($frontendExperiments ?? [])'>
-    <meta name="description" content="Organize work with simple realtime boards. Collaborative Kanban for teams and individuals built with Laravel.">
+    <meta name="description" content="A realtime board that reveals blocked work, ownership gaps, and stalled progress so teams can keep work moving without status chasing.">
     <title>{{ config('app.name', 'Kanban Board') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
@@ -37,7 +37,6 @@
                 <nav class="hidden items-center gap-8 text-sm text-[var(--text-secondary)] md:flex">
                     <a href="#features" class="transition-colors hover:text-[var(--text-primary)]">Features</a>
                     <a href="#preview" class="transition-colors hover:text-[var(--text-primary)]">Preview</a>
-                    <a href="#use-cases" class="transition-colors hover:text-[var(--text-primary)]">Use Cases</a>
                     <a href="{{ route('login') }}" class="transition-colors hover:text-[var(--text-primary)]">Sign in</a>
                 </nav>
             </x-layout.container>
@@ -49,47 +48,47 @@
                         <div class="max-w-2xl">
                             <div class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-primary)]">
                                 <span class="h-2 w-2 rounded-full bg-[var(--primary)]"></span>
-                                Realtime collaborative workflow
+                                Realtime flow visibility
                             </div>
 
                             <h1 class="mt-8 max-w-3xl text-5xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-6xl">
-                                Organize work with simple realtime boards
+                                See where work is stuck. Move it forward.
                             </h1>
 
                             <p class="mt-6 max-w-2xl text-lg leading-8 text-[var(--text-secondary)]">
-                                A collaborative Kanban system for teams and individuals to manage tasks and workflows in realtime.
+                                A realtime board that makes blockers, ownership, and progress visible without status chasing.
                             </p>
 
                             <div class="mt-10 flex flex-col gap-3 sm:flex-row">
                                 @experiment('landing_primary_cta')
                                     @variant('A')
                                         <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                            Create a board
+                                            Find what's blocking your work
                                         </x-ui.button>
                                     @endvariant
                                     @variant('B')
                                         <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                            Start your board
+                                            See where work is stuck
                                         </x-ui.button>
                                     @endvariant
                                 @endexperiment
                                 <x-ui.button as="a" href="#preview" variant="secondary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                    View demo
+                                    See the board in motion
                                 </x-ui.button>
                             </div>
 
                             <div class="mt-12 grid gap-4 sm:grid-cols-3">
                                 <x-ui.card class="p-4">
-                                    <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Boards</p>
-                                    <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Personal + Team</p>
+                                    <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Blocked work</p>
+                                    <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Visible</p>
                                 </x-ui.card>
                                 <x-ui.card class="p-4">
-                                    <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Sync</p>
-                                    <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Realtime</p>
+                                    <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Ownership</p>
+                                    <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Clear</p>
                                 </x-ui.card>
                                 <x-ui.card class="p-4">
-                                    <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Flow</p>
-                                    <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Visual</p>
+                                    <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Movement</p>
+                                    <p class="mt-2 text-2xl font-semibold text-[var(--text-primary)]">Immediate</p>
                                 </x-ui.card>
                             </div>
                         </div>
@@ -192,42 +191,27 @@
             <x-ui.section class="border-y border-[var(--border)] bg-[var(--surface)]" width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Problem</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Work becomes chaotic without structure</h2>
+                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Work doesn't fail loudly. It gets stuck quietly.</h2>
                     </div>
 
                     <x-ui.surface variant="elevated" class="mt-10 p-6">
-                        <div class="grid gap-4 md:grid-cols-[repeat(5,minmax(0,1fr))] md:items-center">
-                            <x-ui.card class="p-5 text-center">
-                                <p class="text-sm font-semibold text-[var(--text-primary)]">Tasks</p>
-                            </x-ui.card>
-                            <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <x-ui.card class="p-5 text-center">
-                                <p class="text-sm font-semibold text-[var(--text-primary)]">Chat</p>
-                            </x-ui.card>
-                            <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <x-ui.card class="p-5 text-center">
-                                <p class="text-sm font-semibold text-[var(--text-primary)]">Email</p>
-                            </x-ui.card>
+                        <div class="space-y-4 text-2xl font-semibold leading-tight text-[var(--text-primary)] sm:text-3xl">
+                            <p>Between people.</p>
+                            <p>Between decisions.</p>
+                            <p>Between &ldquo;in progress&rdquo; and &ldquo;done&rdquo;.</p>
                         </div>
-
-                        <div class="mt-4 grid gap-4 md:grid-cols-[repeat(3,minmax(0,1fr))] md:items-center">
-                            <x-ui.card class="p-5 text-center">
-                                <p class="text-sm font-semibold text-[var(--text-primary)]">Notes</p>
-                            </x-ui.card>
-                            <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <div class="rounded-3xl border border-[var(--danger)] bg-[var(--danger)] p-5 text-center text-[var(--danger-foreground)] shadow-[var(--shadow-md)]">
-                                <p class="text-sm font-semibold">Missed deadlines</p>
-                            </div>
-                        </div>
+                        <p class="mt-6 text-base text-[var(--text-secondary)]">
+                            You don&apos;t lose work. You lose momentum.
+                        </p>
                     </x-ui.surface>
             </x-ui.section>
 
             <x-ui.section width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Solution</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">A clear workflow with Kanban</h2>
+                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Reveal the handoff. Keep the work moving.</h2>
                         <p class="mt-4 text-base text-[var(--text-secondary)]">
-                            Tasks move visually across workflow stages, so everyone sees what is next, what is blocked, and what is done.
+                            The board shows what is waiting, who owns it, and what is blocked so the next move is obvious.
                         </p>
                     </div>
 
@@ -238,11 +222,11 @@
                             </x-ui.surface>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
                             <div class="ui-glow rounded-lg bg-[var(--primary)] px-4 py-2 text-center text-[var(--primary-foreground)]">
-                                In Progress
+                                Blocked
                             </div>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
                             <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
-                                Review
+                                Unblocked
                             </x-ui.surface>
                             <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
                             <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
@@ -254,19 +238,20 @@
 
             <x-ui.section id="features" width="xl">
                     <div class="max-w-2xl">
-                        <p class="ui-kicker text-[var(--primary)]">Features</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Built for focused workflow management</h2>
+                        <p class="ui-kicker text-[var(--primary)]">Make work move again</p>
+                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">When work is stuck, you do not need more tasks.</h2>
+                        <p class="mt-4 text-base text-[var(--text-secondary)]">
+                            You need to see it clearly, assign the handoff, and move it before the waiting turns into delay.
+                        </p>
                     </div>
 
-                    <x-layout.grid class="mt-10" md="2" lg="3" gap="5">
+                    <x-layout.grid class="mt-10" md="2" lg="2" gap="5">
                         @php
                             $features = [
-                                ['icon' => '◌', 'title' => 'Realtime collaboration', 'text' => 'Board updates appear instantly across connected members.'],
-                                ['icon' => '↕', 'title' => 'Drag and drop workflow', 'text' => 'Move cards smoothly between workflow stages.'],
-                                ['icon' => '☰', 'title' => 'Task comments and activity', 'text' => 'Track discussion and history directly on work items.'],
-                                ['icon' => '◷', 'title' => 'Due dates and assignments', 'text' => 'Keep ownership and deadlines visible in the board.'],
-                                ['icon' => '◫', 'title' => 'Board permissions', 'text' => 'Separate owner, editor, and viewer access.'],
-                                ['icon' => '◉', 'title' => 'Notifications', 'text' => 'Receive assignment and mention alerts without leaving the flow.'],
+                                ['step' => '01', 'title' => 'Make ownership obvious', 'text' => 'Every task shows who owns the next move. The handoff stops waiting on assumption.'],
+                                ['step' => '02', 'title' => 'Surface blockers fast', 'text' => 'Blocked work stands out before it slips unnoticed. Waiting becomes visible the moment it starts.'],
+                                ['step' => '03', 'title' => 'Move the work now', 'text' => 'Drag it, reassign it, and push it forward before another update thread forms around it.'],
+                                ['step' => '04', 'title' => 'Keep the handoff intact', 'text' => 'Comments, decisions, and history stay with the task so movement does not break context.'],
                             ];
                         @endphp
 
@@ -274,7 +259,7 @@
                             <x-ui.card as="article">
                                 <div class="mb-4 text-[var(--primary)]">
                                     <div class="ui-glow flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-lg font-semibold">
-                                        {{ $feature['icon'] }}
+                                        {{ $feature['step'] }}
                                     </div>
                                 </div>
                                 <h3 class="mt-5 text-lg font-semibold text-[var(--text-primary)]">{{ $feature['title'] }}</h3>
@@ -282,37 +267,21 @@
                             </x-ui.card>
                         @endforeach
                     </x-layout.grid>
-            </x-ui.section>
 
-            <x-ui.section width="xl">
-                    <div class="max-w-2xl">
-                        <p class="ui-kicker text-[var(--primary)]">How It Works</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Simple board setup, visible execution</h2>
+                    <div class="mt-10 flex flex-col items-start gap-4">
+                        <p class="text-base text-[var(--text-secondary)]">
+                            Once the stall is visible, the next move stops being a guess.
+                        </p>
+                        <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
+                            See what&apos;s blocked right now
+                        </x-ui.button>
                     </div>
-
-                    <x-ui.surface variant="elevated" class="mt-10 p-6">
-                        <div class="grid gap-4 md:grid-cols-5 md:items-center">
-                            @php
-                                $steps = ['Create Board', 'Add Columns', 'Create Cards', 'Move Tasks', 'Team Collaboration'];
-                            @endphp
-
-                            @foreach ($steps as $index => $step)
-                                <x-ui.card class="p-5 text-center">
-                                    <p class="text-sm font-semibold text-[var(--text-primary)]">{{ $step }}</p>
-                                </x-ui.card>
-
-                                @if ($index < count($steps) - 1)
-                                    <div class="text-center text-2xl text-[var(--text-secondary)]">↓</div>
-                                @endif
-                            @endforeach
-                        </div>
-                    </x-ui.surface>
             </x-ui.section>
 
             <x-ui.section id="preview" width="xl">
                     <div class="max-w-2xl">
                         <p class="ui-kicker text-[var(--primary)]">Product Preview</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">A board interface built around movement and visibility</h2>
+                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">A board built to expose waiting, blockers, and next ownership</h2>
                     </div>
 
                     <x-ui.surface variant="elevated" class="mt-10 rounded-2xl p-5">
@@ -378,7 +347,7 @@
                                     </x-ui.card>
 
                                     <div class="ui-glow rounded-[1.6rem] border border-[var(--primary)] bg-[var(--primary)] p-5 text-[var(--primary-foreground)]">
-                                        <p class="text-sm font-semibold">Move work, keep context, stay aligned.</p>
+                                        <p class="text-sm font-semibold">See the stall. Make the next move obvious.</p>
                                     </div>
                                 </div>
                             </div>
@@ -386,43 +355,16 @@
                     </x-ui.surface>
             </x-ui.section>
 
-            <x-ui.section id="use-cases" width="xl">
-                    <div class="max-w-2xl">
-                        <p class="ui-kicker text-[var(--primary)]">Use Cases</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">One board model, multiple ways to work</h2>
-                    </div>
-
-                    <x-layout.grid class="mt-10" md="2" lg="4" gap="5">
-                        @php
-                            $useCases = [
-                                ['icon' => '▣', 'title' => 'Team project management'],
-                                ['icon' => '◎', 'title' => 'Personal task boards'],
-                                ['icon' => '◍', 'title' => 'Remote collaboration'],
-                                ['icon' => '◫', 'title' => 'Product development workflows'],
-                            ];
-                        @endphp
-
-                        @foreach ($useCases as $useCase)
-                            <x-ui.card as="article">
-                                <x-ui.surface class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl p-0 text-lg font-semibold text-[var(--primary)]" variant="elevated">
-                                    {{ $useCase['icon'] }}
-                                </x-ui.surface>
-                                <h3 class="mt-5 text-lg font-semibold text-[var(--text-primary)]">{{ $useCase['title'] }}</h3>
-                            </x-ui.card>
-                        @endforeach
-                    </x-layout.grid>
-            </x-ui.section>
-
             <x-ui.section class="pb-24 pt-8" width="lg">
                     <x-ui.card class="flex items-center justify-between rounded-[2.4rem] p-8 sm:p-10">
                         <div>
                             <p class="ui-kicker text-[var(--primary)]">Final CTA</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Start organizing your work</h2>
+                            <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Find the work that is waiting on you</h2>
                         </div>
 
                         <div class="flex flex-col gap-3 sm:flex-row">
                             <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                Create board
+                                Find what&apos;s blocking your work
                             </x-ui.button>
                             <x-ui.button as="a" href="{{ route('login') }}" variant="secondary" size="lg" class="rounded-2xl normal-case tracking-normal">
                                 Sign in
@@ -437,7 +379,7 @@
         <footer class="py-10 text-[var(--text-secondary)]">
             <x-layout.container class="flex flex-col items-center justify-between gap-5 text-sm text-[var(--text-secondary)] md:flex-row md:items-center md:justify-between">
                 <div class="flex items-center gap-3">
-                    <span>Board for collaborative Kanban workflow.</span>
+                    <span>Board that reveals blocked work and keeps it moving.</span>
                     <a href="https://glitter.kr" target="_blank" rel="noopener noreferrer" aria-label="Visit Glitter.kr" class="transition-colors hover:text-[var(--text-primary)]">
                         Glitter.kr
                     </a>
@@ -445,7 +387,7 @@
 
                 <div class="flex gap-6 flex-wrap">
                     <a href="#features" class="transition-colors hover:text-[var(--text-primary)]">Features</a>
-                    <a href="#preview" class="transition-colors hover:text-[var(--text-primary)]">Documentation</a>
+                    <a href="#preview" class="transition-colors hover:text-[var(--text-primary)]">Preview</a>
                     <a href="{{ route('login') }}" class="transition-colors hover:text-[var(--text-primary)]">Sign in</a>
                     <a href="{{ route('register') }}" class="transition-colors hover:text-[var(--text-primary)]">Register</a>
                     <a href="#" class="transition-colors hover:text-[var(--text-primary)]">Privacy</a>
