@@ -41,59 +41,59 @@
     </template>
 
     <div x-show="!booting && !boardError">
-    <div class="ui-surface border-b border-border">
-        <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-            <div class="min-w-0">
-                <h1 class="truncate text-2xl font-semibold text-foreground" x-text="board.title"></h1>
-                <p class="mt-1 truncate text-sm text-secondary" x-text="board.description || 'No description'"></p>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="hidden items-center gap-2 sm:flex">
-                    <template x-for="user in onlineUsers" :key="user.id">
-                        <x-ui.avatar
-                            class="shadow"
-                            :title="user.name"
-                            x-text="initials(user.name)"
-                        ></x-ui.avatar>
-                    </template>
+        <x-ui.surface class="rounded-none border-x-0 border-t-0 px-0 py-0 shadow-none">
+            <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+                <div class="min-w-0">
+                    <h1 class="truncate text-2xl font-semibold" x-text="board.title"></h1>
+                    <p class="mt-1 truncate text-sm ui-meta" x-text="board.description || 'No description'"></p>
                 </div>
 
-                <livewire:board.notification-bell
-                    :user-id="$currentUserId"
-                    :initial-notifications="$notifications"
-                    :key="'notification-bell-'.$board->getKey().'-'.$currentUserId"
-                />
+                <div class="flex items-center gap-3">
+                    <div class="hidden items-center gap-2 sm:flex">
+                        <template x-for="user in onlineUsers" :key="user.id">
+                            <x-ui.avatar
+                                :title="user.name"
+                                x-text="initials(user.name)"
+                            ></x-ui.avatar>
+                        </template>
+                    </div>
+
+                    <livewire:board.notification-bell
+                        :user-id="$currentUserId"
+                        :initial-notifications="$notifications"
+                        :key="'notification-bell-'.$board->getKey().'-'.$currentUserId"
+                    />
+                </div>
             </div>
+        </x-ui.surface>
+
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:px-8">
+            <section class="min-w-0">
+                <livewire:board.column-list
+                    :board-id="$board->getKey()"
+                    :can-edit="$canEdit"
+                    :key="'column-list-'.$board->getKey()"
+                />
+            </section>
+
+            <aside class="space-y-6">
+                <livewire:board.member-list
+                    :can-edit="$canEdit"
+                    :key="'member-list-'.$board->getKey()"
+                />
+
+                <livewire:board.activity-feed
+                    :key="'activity-feed-'.$board->getKey()"
+                />
+            </aside>
         </div>
-    </div>
 
-    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:px-8">
-        <section class="min-w-0">
-            <livewire:board.column-list
-                :board-id="$board->getKey()"
-                :can-edit="$canEdit"
-                :key="'column-list-'.$board->getKey()"
-            />
-        </section>
-
-        <aside class="space-y-6">
-            <livewire:board.member-list
-                :can-edit="$canEdit"
-                :key="'member-list-'.$board->getKey()"
-            />
-
-            <livewire:board.activity-feed
-                :key="'activity-feed-'.$board->getKey()"
-            />
-        </aside>
-    </div>
-
-    <livewire:board.card-modal
-        :board-id="$board->getKey()"
-        :users="$users"
-        :can-edit="$canEdit"
-        :key="'card-modal-'.$board->getKey()"
-    />
+        <livewire:board.card-modal
+            :board-id="$board->getKey()"
+            :users="$users"
+            :can-edit="$canEdit"
+            :key="'card-modal-'.$board->getKey()"
+        />
     </div>
 
     @push('scripts')

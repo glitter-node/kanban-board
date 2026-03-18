@@ -8,50 +8,46 @@
 
         <title>{{ config('app.name', 'Kanban Board') }}</title>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
 
         <style>[x-cloak] { display: none !important; }</style>
     </head>
     <body class="app-shell font-sans antialiased">
-        <div class="min-h-screen">
+        <div class="min-h-screen bg-[var(--background)] text-[var(--text-primary)]">
             <a href="#main-content" class="sr-only absolute left-2 top-2 z-50 rounded-md bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only">
                 Skip to main content
             </a>
 
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
             @isset($header)
-                <header class="border-b border-border bg-surface">
-                    <div class="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+                <header class="px-4 py-6 sm:px-6 lg:px-8">
+                    <x-ui.surface class="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-6">
                         {{ $header }}
-                    </div>
+                    </x-ui.surface>
                 </header>
             @endisset
 
-            <!-- Page Content -->
             <main id="main-content" role="main">
                 {{ $slot }}
             </main>
 
-            <footer class="border-t border-border bg-surface py-6">
-                <div class="mx-auto flex max-w-7xl justify-end px-4 sm:px-6 lg:px-8">
+            <footer class="px-4 py-6 sm:px-6 lg:px-8">
+                <x-ui.surface class="mx-auto flex max-w-7xl justify-end px-4 py-4 sm:px-6">
                     <a
                         href="https://glitter.kr"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Visit Glitter.kr"
-                        class="text-zinc-500 transition-colors hover:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-600"
+                        class="text-secondary transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-border"
                     >
                         Glitter.kr
                     </a>
-                </div>
+                </x-ui.surface>
             </footer>
         </div>
         @livewireScripts

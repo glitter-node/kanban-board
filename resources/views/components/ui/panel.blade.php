@@ -1,4 +1,5 @@
 @props([
+    'as' => 'section',
     'padding' => 'default',
     'header' => false,
     'elevated' => false,
@@ -15,6 +16,6 @@
     };
 @endphp
 
-<section {{ $attributes->class([$panelClass, $paddingClass]) }}>
+<{{ $as }} {{ $attributes->class([$panelClass, $paddingClass]) }}>
     {{ $slot }}
-</section>
+</{{ $as }}>
