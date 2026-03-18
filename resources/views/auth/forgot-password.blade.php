@@ -15,13 +15,13 @@
         </div>
 
         <div class="flex items-center justify-end gap-2 mt-4">
-            <button class="btn-secondary btn-md focus-ring" type="button" data-action="back">
-                {{ __('Cancel') }}
+            <button type="button" class="ui-button ui-button-outline" data-action="back">
+                Cancel
             </button>
 
-            <button class="btn-primary btn-md focus-ring" type="submit">
+            <x-primary-button>
                 {{ __('Email Password Reset Link') }}
-            </button>
+            </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
