@@ -10,12 +10,24 @@
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="mt-1 block w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <x-text-input
+                id="email"
+                class="block mt-1 w-full"
+                type="email"
+                name="email"
+                :value="old('email')"
+                required
+                autofocus
+            />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end gap-2 mt-4">
-            <button type="button" class="ui-button ui-button-outline" data-action="back">
+            <button
+                type="button"
+                class="btn-primary-outline btn-md focus-ring"
+                data-action="back"
+            >
                 Cancel
             </button>
 
