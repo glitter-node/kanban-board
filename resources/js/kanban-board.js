@@ -41,6 +41,10 @@ const registerKanbanBoard = () => {
                     this.initColumnSortable();
                     this.initCardSortables();
                     this.initEcho();
+                    window.trackEvent?.('board_viewed', {
+                        board_id: this.boardId,
+                        columns_count: this.columns.length,
+                    });
                     window.addEventListener('board:open-card', (event) => this.openCard(event.detail.cardId));
                 } catch (error) {
                     console.error(error);
@@ -144,10 +148,23 @@ const registerKanbanBoard = () => {
                 };
 
                 this.loadComments(card.id);
+                window.trackEvent?.('modal_opened', {
+                    board_id: this.boardId,
+                    card_id: card.id,
+                    column_id: column.id,
+                });
                 window.dispatchEvent(new CustomEvent('board:card-modal-open'));
             },
 
             closeCardModal() {
+                if (this.selectedCard) {
+                    window.trackEvent?.('modal_closed', {
+                        board_id: this.boardId,
+                        card_id: this.selectedCard.id,
+                        column_id: this.selectedColumnId,
+                    });
+                }
+
                 this.selectedCard = null;
                 this.selectedColumnId = null;
                 this.selectedCardComments = [];
@@ -450,6 +467,11 @@ const registerKanbanBoard = () => {
                             onStart: (event) => {
                                 event.item.classList.add('drag-active');
                                 this.setDropTarget(event.from.closest('[data-column-panel]'));
+                                window.trackEvent?.('drag_started', {
+                                    board_id: this.boardId,
+                                    card_id: Number(event.item.dataset.cardId),
+                                    from_column_id: Number(event.from.dataset.columnId),
+                                });
                             },
                             onMove: (event) => {
                                 this.setDropTarget(event.to.closest('[data-column-panel]'));
@@ -464,7 +486,12 @@ const registerKanbanBoard = () => {
                                     .map((element) => Number(element.dataset.cardId));
                                 const newIndex = orderedIds.findIndex((id) => id === cardId);
 
-                                await this.persistOptimisticMove(cardId, targetColumnId, newIndex);
+                                await this.persistOptimisticMove(
+                                    cardId,
+                                    targetColumnId,
+                                    newIndex,
+                                    Number(event.from.dataset.columnId),
+                                );
                             },
                         });
                     });
@@ -532,10 +559,10 @@ const registerKanbanBoard = () => {
                     this.selectedColumnId = targetColumnId;
                 }
 
-                return { snapshot, orderKey };
+                return { snapshot, orderKey, sourceColumnId: sourceColumn.id };
             },
 
-            async persistOptimisticMove(cardId, targetColumnId, targetIndex) {
+            async persistOptimisticMove(cardId, targetColumnId, targetIndex, fromColumnId = null) {
                 const payload = this.optimisticMoveCard(cardId, targetColumnId, targetIndex);
                 if (!payload) {
                     return;
@@ -546,10 +573,24 @@ const registerKanbanBoard = () => {
                         column_id: targetColumnId,
                         order_key: payload.orderKey,
                     });
+                    window.trackEvent?.('drag_completed', {
+                        board_id: this.boardId,
+                        card_id: cardId,
+                        from_column_id: fromColumnId ?? payload.sourceColumnId,
+                        to_column_id: targetColumnId,
+                        position: targetIndex,
+                    });
                 } catch (error) {
                     console.error(error);
                     this.restoreColumns(payload.snapshot);
                     this.queueToast('Card move failed. Position restored.', 'error');
+                    window.trackEvent?.('ux_issue_detected', {
+                        board_id: this.boardId,
+                        issue: 'drag_failed',
+                        card_id: cardId,
+                        from_column_id: fromColumnId ?? payload.sourceColumnId,
+                        to_column_id: targetColumnId,
+                    });
                 }
             },
 
@@ -564,7 +605,15 @@ const registerKanbanBoard = () => {
                 const nextIndex = currentIndex + offset;
                 if (nextIndex < 0 || nextIndex >= sortedCards.length) return;
 
-                await this.persistOptimisticMove(cardId, columnId, nextIndex);
+                window.trackEvent?.('card_move_button_used', {
+                    board_id: this.boardId,
+                    card_id: cardId,
+                    from_column_id: columnId,
+                    to_column_id: columnId,
+                    direction: offset > 0 ? 'down' : 'up',
+                });
+
+                await this.persistOptimisticMove(cardId, columnId, nextIndex, columnId);
             },
 
             async moveCardHorizontally(cardId, offset) {
@@ -577,7 +626,15 @@ const registerKanbanBoard = () => {
                 const targetColumn = this.columns[currentColumnIndex + offset] ?? null;
                 if (!targetColumn) return;
 
-                await this.persistOptimisticMove(cardId, targetColumn.id, targetColumn.cards.length);
+                window.trackEvent?.('card_move_button_used', {
+                    board_id: this.boardId,
+                    card_id: cardId,
+                    from_column_id: located.column.id,
+                    to_column_id: targetColumn.id,
+                    direction: offset > 0 ? 'right' : 'left',
+                });
+
+                await this.persistOptimisticMove(cardId, targetColumn.id, targetColumn.cards.length, located.column.id);
             },
 
             generateOrderKeyBefore(right) {

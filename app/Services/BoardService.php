@@ -14,6 +14,7 @@ class BoardService
 {
     public function __construct(
         private readonly ActivityService $activityService,
+        private readonly AnalyticsService $analyticsService,
     ) {}
 
     /**
@@ -51,6 +52,12 @@ class BoardService
 
             $this->dispatchAfterCommit('boards.created', [
                 'board_id' => $board->getKey(),
+            ]);
+
+            $this->analyticsService->record('board_created', $owner, [
+                'board_id' => $board->getKey(),
+                'board_type' => $board->type,
+                'visibility' => $board->visibility,
             ]);
 
             return $board->load(['owner', 'memberships']);

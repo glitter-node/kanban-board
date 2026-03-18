@@ -21,6 +21,7 @@ class CardService
         private readonly ActivityService $activityService,
         private readonly NotificationService $notificationService,
         private readonly CardMoveService $cardMoveService,
+        private readonly AnalyticsService $analyticsService,
     ) {}
 
     /**
@@ -70,6 +71,13 @@ class CardService
                     if ($card->assigned_user_id !== null) {
                         $this->notificationService->notifyAssignment($card, $card->assignee, $creator);
                     }
+
+                    $this->analyticsService->record('card_created', $creator, [
+                        'board_id' => $board->getKey(),
+                        'card_id' => $card->getKey(),
+                        'column_id' => $column->getKey(),
+                        'priority' => $card->priority,
+                    ]);
 
                     $this->dispatchAfterCommit(new CardCreated(
                         boardId: $board->getKey(),
@@ -138,6 +146,18 @@ class CardService
                 card: $this->cardPayload($card),
             ));
 
+            if (
+                in_array($card->status, ['done', 'completed'], true)
+                || $card->completed_at !== null
+            ) {
+                $this->analyticsService->record('card_completed', $actor, [
+                    'board_id' => $board->getKey(),
+                    'card_id' => $card->getKey(),
+                    'column_id' => $card->column_id,
+                    'completed_at' => $card->completed_at?->toISOString(),
+                ]);
+            }
+
             return $card->refresh();
         });
     }
@@ -173,6 +193,20 @@ class CardService
                 boardId: $board->getKey(),
                 card: $this->cardPayload($card),
             ));
+
+            $this->analyticsService->record('card_deleted', $actor, [
+                'board_id' => $board->getKey(),
+                'card_id' => $card->getKey(),
+                'column_id' => $card->column_id,
+                'status' => $card->status,
+            ]);
+
+            $this->analyticsService->record('card_completed', $actor, [
+                'board_id' => $board->getKey(),
+                'card_id' => $card->getKey(),
+                'column_id' => $card->column_id,
+                'completed_at' => $card->archived_at?->toISOString(),
+            ]);
 
             return $card->refresh();
         });

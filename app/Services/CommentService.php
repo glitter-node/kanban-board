@@ -17,6 +17,7 @@ class CommentService
     public function __construct(
         private readonly ActivityService $activityService,
         private readonly NotificationService $notificationService,
+        private readonly AnalyticsService $analyticsService,
     ) {}
 
     /**
@@ -68,6 +69,13 @@ class CommentService
                     'created_at' => $comment->created_at?->toISOString(),
                 ],
             ));
+
+            $this->analyticsService->record('comment_created', $author, [
+                'board_id' => $board->getKey(),
+                'card_id' => $card->getKey(),
+                'comment_id' => $comment->getKey(),
+                'mentions_count' => $mentionedUsers->count(),
+            ]);
 
             return $comment->load('author');
         });

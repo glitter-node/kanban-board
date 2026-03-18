@@ -19,6 +19,7 @@ class ColumnService
     public function __construct(
         private readonly ActivityService $activityService,
         private readonly CardMoveService $cardMoveService,
+        private readonly AnalyticsService $analyticsService,
     ) {}
 
     /**
@@ -51,6 +52,12 @@ class ColumnService
                 boardId: $board->getKey(),
                 column: $this->columnPayload($column),
             ));
+
+            $this->analyticsService->record('column_created', $actor, [
+                'board_id' => $board->getKey(),
+                'column_id' => $column->getKey(),
+                'column_type' => $column->type,
+            ]);
 
             return $column;
         });

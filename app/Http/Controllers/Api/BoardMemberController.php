@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBoardMemberRoleRequest;
 use App\Models\Board;
 use App\Models\BoardMember;
 use App\Models\User;
+use App\Services\AnalyticsService;
 use App\Services\BoardMemberService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
@@ -19,6 +20,7 @@ class BoardMemberController extends Controller
 
     public function __construct(
         private readonly BoardMemberService $boardMemberService,
+        private readonly AnalyticsService $analyticsService,
     ) {}
 
     public function index(Request $request, Board $board): JsonResponse
@@ -42,6 +44,12 @@ class BoardMemberController extends Controller
             role: $validated['role'] ?? 'viewer',
             actor: $request->user(),
         );
+
+        $this->analyticsService->record('member_added', $request->user(), [
+            'board_id' => $board->getKey(),
+            'member_user_id' => $member->user_id,
+            'role' => $member->role,
+        ]);
 
         return response()->json([
             'message' => 'Board member invited successfully.',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBoardRequest;
 use App\Http\Requests\UpdateBoardRequest;
 use App\Models\Board;
+use App\Services\AnalyticsService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
@@ -13,6 +14,10 @@ use Illuminate\View\View;
 class BoardController extends Controller
 {
     use AuthorizesRequests;
+
+    public function __construct(
+        private readonly AnalyticsService $analyticsService,
+    ) {}
 
     public function index(): View
     {
@@ -42,6 +47,12 @@ class BoardController extends Controller
         $board->members()->create([
             'user_id' => $request->user()->id,
             'role' => 'owner',
+        ]);
+
+        $this->analyticsService->record('board_created', $request->user(), [
+            'board_id' => $board->getKey(),
+            'visibility' => $board->visibility ?? null,
+            'board_type' => $board->type ?? null,
         ]);
 
         Cache::forget("user.{$request->user()->id}.boards");

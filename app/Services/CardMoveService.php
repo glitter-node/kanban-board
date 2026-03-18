@@ -17,6 +17,7 @@ class CardMoveService
 
     public function __construct(
         private readonly ActivityService $activityService,
+        private readonly AnalyticsService $analyticsService,
     ) {}
 
     /**
@@ -124,6 +125,14 @@ class CardMoveService
                             'updated_at' => $lockedCard->updated_at?->toISOString(),
                         ],
                     ));
+
+                    $this->analyticsService->record('card_moved', $actor, [
+                        'board_id' => $board->getKey(),
+                        'card_id' => $lockedCard->getKey(),
+                        'from_column_id' => $fromColumnId,
+                        'to_column_id' => $destinationColumn->getKey(),
+                        'order_key' => $orderKey,
+                    ]);
 
                     return $lockedCard->refresh();
                 });
@@ -274,6 +283,14 @@ class CardMoveService
                             'updated_at' => $lockedCard->updated_at?->toISOString(),
                         ],
                     ));
+
+                    $this->analyticsService->record('card_moved', $actor, [
+                        'board_id' => $board->getKey(),
+                        'card_id' => $lockedCard->getKey(),
+                        'from_column_id' => $fromColumnId,
+                        'to_column_id' => $destinationColumn->getKey(),
+                        'order_key' => $newOrderKey,
+                    ]);
 
                     return $lockedCard->refresh();
                 });

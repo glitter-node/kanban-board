@@ -11,6 +11,9 @@
                 <x-nav-link :href="route('boards.index')" :active="request()->routeIs('boards.*')">
                     My Boards
                 </x-nav-link>
+                <x-nav-link :href="route('analytics.index')" :active="request()->routeIs('analytics.*')">
+                    Analytics
+                </x-nav-link>
             </div>
         </div>
 
@@ -63,12 +66,15 @@
         </div>
     </x-ui.surface>
 
-    <div :class="{ 'block': open, 'hidden': ! open }" class="hidden sm:hidden">
-        <div class="mx-auto mt-3 max-w-7xl space-y-1">
-            <x-responsive-nav-link :href="route('boards.index')" :active="request()->routeIs('boards.*')">
-                My Boards
-            </x-responsive-nav-link>
-        </div>
+        <div :class="{ 'block': open, 'hidden': ! open }" class="hidden sm:hidden">
+            <div class="mx-auto mt-3 max-w-7xl space-y-1">
+                <x-responsive-nav-link :href="route('boards.index')" :active="request()->routeIs('boards.*')">
+                    My Boards
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('analytics.index')" :active="request()->routeIs('analytics.*')">
+                    Analytics
+                </x-responsive-nav-link>
+            </div>
 
         <x-ui.surface class="mx-auto mt-3 max-w-7xl px-4 py-4">
             <div>
