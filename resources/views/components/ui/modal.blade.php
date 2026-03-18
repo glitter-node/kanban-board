@@ -49,9 +49,9 @@
     x-on:close.stop="show = false"
     x-on:keydown.escape.window="show = false"
     x-on:keydown.tab.prevent="$event.shiftKey ? prevFocusable().focus() : nextFocusable().focus()"
+    x-cloak
     x-show="show"
     class="fixed inset-0 z-50 overflow-y-auto px-4 py-6 sm:px-0"
-    style="display: {{ $show ? 'block' : 'none' }};"
 >
     <div
         x-show="show"

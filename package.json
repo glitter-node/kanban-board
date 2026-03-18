@@ -9,7 +9,8 @@
         "contrast:fix": "node scripts/fix-contrast-failures.mjs",
         "contrast:pipeline": "node scripts/contrast-pipeline.mjs",
         "dev": "vite",
-        "lint:colors": "node scripts/check-semantic-colors.mjs"
+        "lint:colors": "node scripts/check-semantic-colors.mjs",
+        "ui:check": "bash scripts/check-ui-consistency.sh"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
