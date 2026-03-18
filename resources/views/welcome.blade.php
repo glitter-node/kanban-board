@@ -189,99 +189,70 @@
             </x-ui.section>
 
             <x-ui.section class="border-y border-[var(--border)] bg-[var(--surface)]" width="xl">
-                    <div class="max-w-2xl">
-                        <p class="ui-kicker text-[var(--primary)]">Problem</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Work doesn't fail loudly. It gets stuck quietly.</h2>
+                    <div class="max-w-3xl">
+                        <p class="ui-kicker text-[var(--primary)]">This is where work stalls</p>
+                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Work does not stop in one obvious place. It starts waiting between the handoff and the next owner.</h2>
                     </div>
 
                     <x-ui.surface variant="elevated" class="mt-10 p-6">
-                        <div class="space-y-4 text-2xl font-semibold leading-tight text-[var(--text-primary)] sm:text-3xl">
-                            <p>Between people.</p>
-                            <p>Between decisions.</p>
-                            <p>Between &ldquo;in progress&rdquo; and &ldquo;done&rdquo;.</p>
+                        <div class="space-y-4 text-lg font-medium leading-8 text-[var(--text-primary)] sm:text-xl">
+                            <p>Waiting on someone who thinks the task is not theirs.</p>
+                            <p>Marked in progress, untouched, and quietly slipping.</p>
+                            <p>Blocked, but no one surfaces it before the delay spreads.</p>
+                            <p>Ownership changed, but the handoff never landed.</p>
+                            <p>Discussion happened elsewhere, so the work kept waiting.</p>
                         </div>
-                        <p class="mt-6 text-base text-[var(--text-secondary)]">
-                            You don&apos;t lose work. You lose momentum.
-                        </p>
-                    </x-ui.surface>
-            </x-ui.section>
 
-            <x-ui.section width="xl">
-                    <div class="max-w-2xl">
-                        <p class="ui-kicker text-[var(--primary)]">Solution</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Reveal the handoff. Keep the work moving.</h2>
-                        <p class="mt-4 text-base text-[var(--text-secondary)]">
-                            The board shows what is waiting, who owns it, and what is blocked so the next move is obvious.
-                        </p>
-                    </div>
-
-                    <x-ui.surface variant="elevated" class="mt-10 rounded-xl p-6">
-                        <div class="grid gap-4 lg:grid-cols-[repeat(7,minmax(0,1fr))] lg:items-center">
-                            <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
-                                Backlog
-                            </x-ui.surface>
-                            <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <div class="ui-glow rounded-lg bg-[var(--primary)] px-4 py-2 text-center text-[var(--primary-foreground)]">
-                                Blocked
-                            </div>
-                            <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
-                                Unblocked
-                            </x-ui.surface>
-                            <div class="text-center text-2xl text-[var(--text-secondary)]">→</div>
-                            <x-ui.surface class="rounded-lg px-4 py-2 text-center text-[var(--text-primary)]">
-                                Done
-                            </x-ui.surface>
+                        <div class="mt-8 flex flex-col items-start gap-4">
+                            <p class="text-base text-[var(--text-secondary)]">
+                                You are not missing the work. You are missing where it is stuck.
+                            </p>
+                            <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
+                                See what&apos;s blocked right now
+                            </x-ui.button>
                         </div>
                     </x-ui.surface>
             </x-ui.section>
 
             <x-ui.section id="features" width="xl">
-                    <div class="max-w-2xl">
+                    <div class="max-w-3xl">
                         <p class="ui-kicker text-[var(--primary)]">Make work move again</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">When work is stuck, you do not need more tasks.</h2>
-                        <p class="mt-4 text-base text-[var(--text-secondary)]">
-                            You need to see it clearly, assign the handoff, and move it before the waiting turns into delay.
-                        </p>
+                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">When work is stuck, the fix is simple: expose the handoff, assign the owner, and move it before it slips again.</h2>
                     </div>
 
-                    <x-layout.grid class="mt-10" md="2" lg="2" gap="5">
+                    <div class="mt-10 space-y-5">
                         @php
                             $features = [
-                                ['step' => '01', 'title' => 'Make ownership obvious', 'text' => 'Every task shows who owns the next move. The handoff stops waiting on assumption.'],
-                                ['step' => '02', 'title' => 'Surface blockers fast', 'text' => 'Blocked work stands out before it slips unnoticed. Waiting becomes visible the moment it starts.'],
-                                ['step' => '03', 'title' => 'Move the work now', 'text' => 'Drag it, reassign it, and push it forward before another update thread forms around it.'],
-                                ['step' => '04', 'title' => 'Keep the handoff intact', 'text' => 'Comments, decisions, and history stay with the task so movement does not break context.'],
+                                ['step' => '01', 'title' => 'Make ownership obvious', 'text' => 'Every task shows who owns the next move. Waiting stops hiding behind assumption.'],
+                                ['step' => '02', 'title' => 'Surface blockers fast', 'text' => 'Blocked work stands out before the delay spreads. The stall becomes visible the moment it starts.'],
+                                ['step' => '03', 'title' => 'Move the work now', 'text' => 'Reassign it, drag it forward, and clear the handoff before another idle day forms around it.'],
+                                ['step' => '04', 'title' => 'Keep context attached', 'text' => 'Comments, decisions, and history stay with the task so movement does not break the handoff.'],
                             ];
                         @endphp
 
                         @foreach ($features as $feature)
-                            <x-ui.card as="article">
-                                <div class="mb-4 text-[var(--primary)]">
-                                    <div class="ui-glow flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-lg font-semibold">
+                            <x-ui.card as="article" class="flex flex-col gap-5 p-6 md:flex-row md:items-start md:gap-6">
+                                <div class="text-[var(--primary)]">
+                                    <div class="ui-glow flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-sm font-semibold">
                                         {{ $feature['step'] }}
                                     </div>
                                 </div>
-                                <h3 class="mt-5 text-lg font-semibold text-[var(--text-primary)]">{{ $feature['title'] }}</h3>
-                                <p class="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{{ $feature['text'] }}</p>
+                                <div class="max-w-2xl">
+                                    <h3 class="text-lg font-semibold text-[var(--text-primary)]">{{ $feature['title'] }}</h3>
+                                    <p class="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{{ $feature['text'] }}</p>
+                                </div>
                             </x-ui.card>
                         @endforeach
-                    </x-layout.grid>
-
-                    <div class="mt-10 flex flex-col items-start gap-4">
-                        <p class="text-base text-[var(--text-secondary)]">
-                            Once the stall is visible, the next move stops being a guess.
-                        </p>
-                        <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                            See what&apos;s blocked right now
-                        </x-ui.button>
                     </div>
             </x-ui.section>
 
             <x-ui.section id="preview" width="xl">
                     <div class="max-w-2xl">
-                        <p class="ui-kicker text-[var(--primary)]">Product Preview</p>
-                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">A board built to expose waiting, blockers, and next ownership</h2>
+                        <p class="ui-kicker text-[var(--primary)]">Proof</p>
+                        <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">This is where you see what is stuck and where the next move belongs.</h2>
+                        <p class="mt-4 text-base text-[var(--text-secondary)]">
+                            The board makes blocked work, waiting handoffs, and ownership visible in one place so movement starts again.
+                        </p>
                     </div>
 
                     <x-ui.surface variant="elevated" class="mt-10 rounded-2xl p-5">
@@ -290,8 +261,8 @@
                                 <x-ui.surface class="overflow-hidden rounded-[1.6rem]">
                                     <div class="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
                                         <div>
-                                            <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Board UI</p>
-                                            <h3 class="mt-1 text-lg font-semibold text-[var(--text-primary)]">Sprint planning</h3>
+                                            <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Where work gets exposed</p>
+                                            <h3 class="mt-1 text-lg font-semibold text-[var(--text-primary)]">See blocked work, owners, and waiting handoffs</h3>
                                         </div>
                                         <div class="flex -space-x-2">
                                             <x-ui.surface as="span" variant="elevated" class="h-8 w-8 rounded-full p-0"></x-ui.surface>
@@ -321,7 +292,7 @@
 
                                 <div class="space-y-4">
                                     <x-ui.card class="rounded-[1.6rem] p-5">
-                                        <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">Visible details</p>
+                                        <p class="text-xs uppercase tracking-[0.18em] text-[var(--text-secondary)]">What becomes visible</p>
                                         <div class="mt-5 space-y-4">
                                             <x-ui.surface variant="elevated" class="flex items-center justify-between rounded-2xl px-4 py-3">
                                                 <span class="text-sm text-[var(--text-secondary)]">Columns</span>
@@ -347,7 +318,7 @@
                                     </x-ui.card>
 
                                     <div class="ui-glow rounded-[1.6rem] border border-[var(--primary)] bg-[var(--primary)] p-5 text-[var(--primary-foreground)]">
-                                        <p class="text-sm font-semibold">See the stall. Make the next move obvious.</p>
+                                        <p class="text-sm font-semibold">This is how stuck work becomes visible enough to move.</p>
                                     </div>
                                 </div>
                             </div>
@@ -359,15 +330,12 @@
                     <x-ui.card class="flex items-center justify-between rounded-[2.4rem] p-8 sm:p-10">
                         <div>
                             <p class="ui-kicker text-[var(--primary)]">Final CTA</p>
-                            <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">Find the work that is waiting on you</h2>
+                            <h2 class="mt-4 text-3xl font-semibold text-[var(--text-primary)]">If work is already slipping between handoffs, do not wait for another update.</h2>
                         </div>
 
                         <div class="flex flex-col gap-3 sm:flex-row">
                             <x-ui.button as="a" href="{{ route('register') }}" variant="primary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                Find what&apos;s blocking your work
-                            </x-ui.button>
-                            <x-ui.button as="a" href="{{ route('login') }}" variant="secondary" size="lg" class="rounded-2xl normal-case tracking-normal">
-                                Sign in
+                                See what&apos;s blocked right now
                             </x-ui.button>
                         </div>
                     </x-ui.card>
