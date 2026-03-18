@@ -1,101 +1,181 @@
 :root {
-    --color-bg-base: #020617;
-    --color-surface: #0b1220;
+    --bg-base: #020617;
+    --surface: #111827;
+    --surface-2: #1f2937;
+    --surface-3: #334155;
 
-    --color-text-primary: #e5e7eb;
-    --color-text-secondary: #cbd5f5;
-    --color-text-muted: #94a3b8;
+    --text-primary: #f9fafb;
+    --text-secondary: #e5e7eb;
+    --text-muted: #cbd5e1;
+    --text-strong: #ffffff;
 
-    --color-border: #1e293b;
+    --border: #475569;
 
-    --color-primary: #4f46e5;
-    --color-primary-hover: #4338ca;
-    --color-primary-foreground: #ffffff;
+    --primary: #4f46e5;
+    --primary-foreground: #f8fafc;
 
-    --color-accent: #22c55e;
-    --color-accent-foreground: #022c22;
+    --danger: #dc2626;
+    --danger-foreground: #f8fafc;
 
-    --color-danger: #ef4444;
-    --color-danger-foreground: #ffffff;
+    --success: #22c55e;
+    --success-foreground: #052e16;
+    --warning: #f59e0b;
+    --warning-foreground: #111827;
+    --info: #4f46e5;
+    --info-foreground: #f8fafc;
 
-    --background: 2 6 23;
-    --foreground: 229 231 235;
-
-    --surface: 11 18 32;
-    --surface-foreground: 229 231 235;
-    --surface-hover: 30 41 59;
-
-    --muted: 11 18 32;
-    --muted-foreground: 203 213 245;
-
-    --border: 30 41 59;
-    --border-strong: 51 65 85;
-
-    --primary: 79 70 229;
-    --primary-foreground: 255 255 255;
-    --primary-hover: 67 56 202;
-    --primary-active: 67 56 202;
-
-    --input-background: 11 18 32;
-    --input-foreground: 229 231 235;
-
-    --success: 34 197 94;
-    --success-foreground: 2 44 34;
-    --warning: 245 158 11;
-    --warning-foreground: 17 24 39;
-    --error: 239 68 68;
-    --error-foreground: 255 255 255;
-    --info: 79 70 229;
-    --info-foreground: 255 255 255;
-
-    --elevated: 11 18 32;
-    --elevated-foreground: 229 231 235;
+    --background: var(--bg-base);
+    --foreground: var(--text-primary);
+    --surface-foreground: var(--text-primary);
+    --surface-hover: var(--surface-2);
+    --muted: var(--surface);
+    --muted-foreground: var(--text-secondary);
+    --border-strong: var(--surface-3);
+    --primary-hover: var(--primary);
+    --primary-active: var(--primary);
+    --input-background: var(--surface);
+    --input-foreground: var(--text-primary);
+    --elevated: var(--surface-2);
+    --elevated-foreground: var(--text-primary);
+    --accent: var(--success);
+    --accent-foreground: var(--success-foreground);
+    --error: var(--danger);
+    --error-foreground: var(--danger-foreground);
 }
 
 [data-theme="light"] {
-    --color-bg-base: #ffffff;
-    --color-surface: #f8fafc;
+    --bg-base: #ffffff;
+    --surface: #f8fafc;
+    --surface-2: #f1f5f9;
+    --surface-3: #e2e8f0;
 
-    --color-text-primary: #020617;
-    --color-text-secondary: #334155;
-    --color-text-muted: #64748b;
+    --text-primary: #0f172a;
+    --text-secondary: #1e293b;
+    --text-muted: #334155;
+    --text-strong: #020617;
 
-    --color-border: #e2e8f0;
+    --border: #cbd5e1;
 
-    --color-primary: #4f46e5;
-    --color-primary-hover: #4338ca;
-    --color-primary-foreground: #ffffff;
+    --primary: #4f46e5;
+    --primary-foreground: #f8fafc;
 
-    --background: 255 255 255;
-    --foreground: 2 6 23;
+    --danger: #dc2626;
+    --danger-foreground: #f8fafc;
 
-    --surface: 248 250 252;
-    --surface-foreground: 2 6 23;
-    --surface-hover: 226 232 240;
+    --success: #22c55e;
+    --success-foreground: #052e16;
+    --warning: #f59e0b;
+    --warning-foreground: #111827;
+    --info: #4f46e5;
+    --info-foreground: #f8fafc;
 
-    --muted: 248 250 252;
-    --muted-foreground: 51 65 85;
+    --background: var(--bg-base);
+    --foreground: var(--text-primary);
+    --surface-foreground: var(--text-primary);
+    --surface-hover: var(--surface-2);
+    --muted: var(--surface);
+    --muted-foreground: var(--text-secondary);
+    --border-strong: var(--surface-3);
+    --primary-hover: var(--primary);
+    --primary-active: var(--primary);
+    --input-background: var(--surface);
+    --input-foreground: var(--text-primary);
+    --elevated: var(--surface-2);
+    --elevated-foreground: var(--text-primary);
+    --accent: var(--success);
+    --accent-foreground: var(--success-foreground);
+    --error: var(--danger);
+    --error-foreground: var(--danger-foreground);
+}
 
-    --border: 226 232 240;
-    --border-strong: 203 213 225;
+@supports (color: oklch(50% 0.1 260)) {
+    :root {
+        --bg-base: oklch(12% 0.02 260);
+        --surface: oklch(18% 0.02 260);
+        --surface-2: oklch(22% 0.02 260);
+        --surface-3: oklch(26% 0.02 260);
 
-    --primary: 79 70 229;
-    --primary-foreground: 255 255 255;
-    --primary-hover: 67 56 202;
-    --primary-active: 67 56 202;
+        --text-primary: oklch(92% 0.02 260);
+        --text-secondary: oklch(82% 0.02 260);
+        --text-muted: oklch(72% 0.02 260);
+        --text-strong: oklch(98% 0.01 260);
 
-    --input-background: 255 255 255;
-    --input-foreground: 2 6 23;
+        --border: oklch(35% 0.02 260);
 
-    --success: 34 197 94;
-    --success-foreground: 2 44 34;
-    --warning: 245 158 11;
-    --warning-foreground: 17 24 39;
-    --error: 239 68 68;
-    --error-foreground: 255 255 255;
-    --info: 79 70 229;
-    --info-foreground: 255 255 255;
+        --primary: oklch(55% 0.18 260);
+        --primary-foreground: oklch(98% 0.01 260);
 
-    --elevated: 248 250 252;
-    --elevated-foreground: 2 6 23;
+        --danger: oklch(55% 0.20 25);
+        --danger-foreground: oklch(98% 0.01 25);
+
+        --success: oklch(72% 0.16 145);
+        --success-foreground: oklch(20% 0.03 145);
+        --warning: oklch(78% 0.16 85);
+        --warning-foreground: oklch(22% 0.02 85);
+        --info: oklch(55% 0.18 260);
+        --info-foreground: oklch(98% 0.01 260);
+
+        --background: var(--bg-base);
+        --foreground: var(--text-primary);
+        --surface-foreground: var(--text-primary);
+        --surface-hover: var(--surface-2);
+        --muted: var(--surface);
+        --muted-foreground: var(--text-secondary);
+        --border-strong: var(--surface-3);
+        --primary-hover: var(--primary);
+        --primary-active: var(--primary);
+        --input-background: var(--surface);
+        --input-foreground: var(--text-primary);
+        --elevated: var(--surface-2);
+        --elevated-foreground: var(--text-primary);
+        --accent: var(--success);
+        --accent-foreground: var(--success-foreground);
+        --error: var(--danger);
+        --error-foreground: var(--danger-foreground);
+    }
+
+    [data-theme="light"] {
+        --bg-base: oklch(98% 0.01 260);
+        --surface: oklch(95% 0.01 260);
+        --surface-2: oklch(91% 0.01 260);
+        --surface-3: oklch(87% 0.01 260);
+
+        --text-primary: oklch(15% 0.02 260);
+        --text-secondary: oklch(25% 0.02 260);
+        --text-muted: oklch(40% 0.02 260);
+        --text-strong: oklch(8% 0.02 260);
+
+        --border: oklch(80% 0.01 260);
+
+        --primary: oklch(55% 0.18 260);
+        --primary-foreground: oklch(98% 0.01 260);
+
+        --danger: oklch(55% 0.20 25);
+        --danger-foreground: oklch(98% 0.01 25);
+
+        --success: oklch(72% 0.16 145);
+        --success-foreground: oklch(20% 0.03 145);
+        --warning: oklch(78% 0.16 85);
+        --warning-foreground: oklch(22% 0.02 85);
+        --info: oklch(55% 0.18 260);
+        --info-foreground: oklch(98% 0.01 260);
+
+        --background: var(--bg-base);
+        --foreground: var(--text-primary);
+        --surface-foreground: var(--text-primary);
+        --surface-hover: var(--surface-2);
+        --muted: var(--surface);
+        --muted-foreground: var(--text-secondary);
+        --border-strong: var(--surface-3);
+        --primary-hover: var(--primary);
+        --primary-active: var(--primary);
+        --input-background: var(--surface);
+        --input-foreground: var(--text-primary);
+        --elevated: var(--surface-2);
+        --elevated-foreground: var(--text-primary);
+        --accent: var(--success);
+        --accent-foreground: var(--success-foreground);
+        --error: var(--danger);
+        --error-foreground: var(--danger-foreground);
+    }
 }
